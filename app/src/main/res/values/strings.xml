@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Reverse Market</string>
+    <string name="title_activity_navigation">MainActivity</string>
+    <string name="title_buy">Buy</string>
+    <string name="title_sell">Sell</string>
+    <string name="title_profile">Profile</string>
 </resources>
