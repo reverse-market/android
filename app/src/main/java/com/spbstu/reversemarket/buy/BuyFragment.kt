@@ -18,8 +18,7 @@ class BuyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         buyViewModel = ViewModelProvider(this).get(BuyViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        return root
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 }

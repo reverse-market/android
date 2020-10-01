@@ -18,7 +18,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_sell, container, false)
-        return root
+
+        return inflater.inflate(R.layout.fragment_sell, container, false)
     }
 }
