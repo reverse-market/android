@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tag"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_marginLeft="10sp"
+            android:text="Кроссовки"
+            android:textColor="#2E2D2C"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_tag_image"
+            android:padding="9dp"
+            android:paddingStart="6dp"
+            />
+
+</LinearLayout>
