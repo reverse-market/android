@@ -4,6 +4,6 @@
     <string name="title_buy">Buy</string>
     <string name="title_sell">Sell</string>
     <string name="title_profile">Profile</string>
-    <string name="login_facebook">Login with Facebook</string>
-    <string name="login_google">Login with Google</string>
+    <string name="login_facebook">Войти через Facebook</string>
+    <string name="login_google">Войти через Google</string>
 </resources>
