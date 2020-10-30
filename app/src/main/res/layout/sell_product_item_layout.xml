@@ -65,16 +65,23 @@
             android:layout_below="@id/full_name"
             android:layout_height="200dp"
             android:layout_width="match_parent"
-            android:src="@drawable/nike"/>
+            android:src="@drawable/nike"
+            />
 
+<!--        <com.google.android.flexbox.FlexboxLayout-->
+<!--            android:id="@+id/product_tag_bar_layout"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/product_main_image">-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_tag_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@id/product_main_image"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/product_tag_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_below="@id/product_main_image"/>
+<!--        </com.google.android.flexbox.FlexboxLayout>-->
 
         <TextView
             android:id="@+id/product_description"
@@ -88,8 +95,7 @@
             android:gravity="top"
             android:layout_marginEnd="10sp"
             android:layout_marginStart="10sp"
-            android:layout_below="@id/product_tag_bar"
-            />
+            android:layout_below="@id/product_tag_bar"/>
 
 
         <TextView

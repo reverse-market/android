@@ -4,26 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile.ProfileFragment">
+    android:background="#F1F1F1"
+    tools:context=".sell.SellFragment">
 
     <include
         android:id="@+id/search_bar"
         android:layout_width="wrap_content"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         layout="@layout/sell_search_bar"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tags_list"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="42dp"
+        android:background="#FFFFFF"
         android:layout_below="@id/search_bar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:layout_marginBottom="10dp"
         android:layout_below="@id/tags_list"/>
 
 
-</>
+</RelativeLayout>

@@ -40,6 +40,7 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
+    implementation 'com.google.android:flexbox:2.0.1'
 
     // navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:2.3.0"
