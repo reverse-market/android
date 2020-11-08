@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -26,7 +27,7 @@ class SellFragment : Fragment() {
     private lateinit var productList: RecyclerView
     private lateinit var tagsList: RecyclerView
     private lateinit var searchButton: FrameLayout
-    private lateinit var categoryNameToolbar: LinearLayout
+    private lateinit var categoryNameToolbar: TextView
     private lateinit var searchTextBackground: FrameLayout
     private lateinit var searchText: EditText
 
@@ -38,19 +39,19 @@ class SellFragment : Fragment() {
 
         sellViewModel = ViewModelProvider(this).get(SellViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_sell, container, false)
-        val toolbar: Toolbar = view.findViewById(R.id.search_bar);
+        val toolbar: Toolbar = view.findViewById(R.id.frg_search_bar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        productList = view.findViewById(R.id.product_list)
-        tagsList = view.findViewById(R.id.tags_list)
+        productList = view.findViewById(R.id.frg_product_list)
+        tagsList = view.findViewById(R.id.frg_tags_list)
         productList.layoutManager = LinearLayoutManager(context)
         productList.adapter = ProductsAdapter(provideProducts(), context)
         tagsList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        tagsList.adapter = TagsAdapter(provideTags(), R.layout.sell_tag_layout, ::filterRecycler)
+        tagsList.adapter = TagsAdapter(provideTags(), R.layout.layout_removable_product_tag, ::filterRecycler)
 
-        categoryNameToolbar = view.findViewById(R.id.category_name_toolbar)
-        searchTextBackground = view.findViewById(R.id.search_text_background)
-        searchText = view.findViewById(R.id.search_text)
-        searchButton = view.findViewById(R.id.search_button)
+        categoryNameToolbar = view.findViewById(R.id.layout_toolbar_search__category_name)
+        searchTextBackground = view.findViewById(R.id.layout_toolbar_search_text__background)
+        searchText = view.findViewById(R.id.layout_toolbar_search__text)
+        searchButton = view.findViewById(R.id.layout_toolbar_search__button)
 
         searchButton.setOnClickListener(searchButtonListener)
         searchText.setOnKeyListener(enterListener)

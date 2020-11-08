@@ -4,10 +4,9 @@
     android:layout_height="wrap_content"
     android:background="@drawable/tag"
     android:layout_marginStart="12dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
         <TextView
-            android:id="@+id/tagName"
+            android:id="@+id/layout_removable_product_tag__name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="6dp"
@@ -19,7 +18,7 @@
             />
 
         <ImageView
-            android:id="@+id/delete_tag_btn"
+            android:id="@+id/layout_removable_product_tag__btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_delete_tag_image"

@@ -20,14 +20,14 @@ class ProductsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.sell_product_item_layout, parent, false);
+            .inflate(R.layout.layout_product_item, parent, false)
         return TagViewHolder(view)
     }
 
     var products: List<Product> = initProducts
         set(value) {
             field = value
-            notifyDataSetChanged();
+            notifyDataSetChanged()
         }
 
 
@@ -40,9 +40,8 @@ class ProductsAdapter(
         holder.viewAmount.text = products[position].viewAmount.toString()
         holder.productTags.adapter = TagsAdapter(
             products[position].tags,
-            R.layout.product_tag_layout
+            R.layout.layout_product_tag
         )
-//        holder.productTags.layoutManager = LinearLayoutManager(context, GridLayoutManager.HORIZONTAL, false)
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
@@ -55,13 +54,13 @@ class ProductsAdapter(
     }
 
     class TagViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.name)
-        val fullName: TextView = view.findViewById(R.id.full_name)
-        val viewAmount: TextView = view.findViewById(R.id.view_amount)
-        val productTags: RecyclerView = view.findViewById(R.id.product_tag_bar)
-        val productDescription: TextView = view.findViewById(R.id.product_description)
-        val price: TextView = view.findViewById(R.id.price)
-        val userName: TextView = view.findViewById(R.id.username)
-        val date: TextView = view.findViewById(R.id.date)
+        val name: TextView = view.findViewById(R.id.layout_product_item__name)
+        val fullName: TextView = view.findViewById(R.id.layout_product_item__full_name)
+        val viewAmount: TextView = view.findViewById(R.id.layout_product_item__view_amount)
+        val productTags: RecyclerView = view.findViewById(R.id.layout_product_item__tags)
+        val productDescription: TextView = view.findViewById(R.id.layout_product_item__description)
+        val price: TextView = view.findViewById(R.id.layout_product_item__price)
+        val userName: TextView = view.findViewById(R.id.layout_product_item__username)
+        val date: TextView = view.findViewById(R.id.layout_product_item__date)
     }
 }

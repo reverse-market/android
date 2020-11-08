@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="#FFFFFF"
@@ -15,31 +16,31 @@
             android:layout_marginTop="2dp">
 
             <FrameLayout
-                android:id="@+id/search_text_background"
+                android:id="@+id/layout_toolbar_search_text__background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/search_background"
+                android:paddingStart="5dp"
                 android:paddingTop="3dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:paddingStart="5dp"
                 android:visibility="gone">
 
                 <EditText
-                    android:id="@+id/search_text"
+                    android:id="@+id/layout_toolbar_search__text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="35dp"
-                    android:textCursorDrawable="@drawable/black_cursor"
-                    android:maxLines="1"
+                    android:background="@drawable/search_background"
                     android:inputType="text"
-                    android:background="@drawable/search_background" />
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/search_black_cursor" />
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/search_button"
+                android:id="@+id/layout_toolbar_search__button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/circle"
@@ -54,33 +55,23 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/category_name_toolbar"
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/layout_toolbar_search__category_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:text="ОДЕЖДА"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#2E2D2C"
+            android:textSize="22sp"
+            app:drawableEndCompat="@drawable/ic_arrow" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="ОДЕЖДА"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="#2E2D2C"
-                android:textSize="22sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="1dp"
-                android:src="@drawable/ic_arrow" />
-
-        </LinearLayout>
 
         <ImageView
+            android:id="@+id/layout_toolbar_search__settings_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

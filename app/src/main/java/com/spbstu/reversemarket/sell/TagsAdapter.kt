@@ -16,7 +16,7 @@ class TagsAdapter(
 ) : RecyclerView.Adapter<TagsAdapter.TagViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(sellTagLayout, parent, false);
+        val view = LayoutInflater.from(parent.context).inflate(sellTagLayout, parent, false)
         return TagViewHolder(view, sellTagLayout)
     }
 
@@ -34,12 +34,15 @@ class TagsAdapter(
     }
 
     class TagViewHolder(view: View, sellTagLayout: Int): RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById(R.id.tagName)
+        var name: TextView
         var deleteTagBtn: ImageView? = null
 
         init {
-            if (sellTagLayout == R.layout.sell_tag_layout) {
-                deleteTagBtn = view.findViewById(R.id.delete_tag_btn)
+            if (sellTagLayout == R.layout.layout_removable_product_tag) {
+                deleteTagBtn = view.findViewById(R.id.layout_removable_product_tag__btn)
+                name = view.findViewById(R.id.layout_removable_product_tag__name)
+            } else {
+                name = view.findViewById(R.id.layout_product_tag__name)
             }
         }
     }

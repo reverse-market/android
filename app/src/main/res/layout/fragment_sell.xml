@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,26 +7,26 @@
     tools:context=".sell.SellFragment">
 
     <include
-        android:id="@+id/search_bar"
+        android:id="@+id/frg_search_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/sell_search_bar"/>
+        layout="@layout/layout_toolbar__search"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tags_list"
+        android:id="@+id/frg_tags_list"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:background="#FFFFFF"
-        android:layout_below="@id/search_bar"/>
+        android:layout_below="@id/frg_search_bar"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_list"
+        android:id="@+id/frg_product_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/tags_list"/>
+        android:layout_below="@id/frg_tags_list"/>
 
 
 </RelativeLayout>
