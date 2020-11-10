@@ -19,6 +19,6 @@ class BuyFragment : Fragment() {
     ): View? {
         buyViewModel = ViewModelProvider(this).get(BuyViewModel::class.java)
 
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_buy, container, false)
     }
 }

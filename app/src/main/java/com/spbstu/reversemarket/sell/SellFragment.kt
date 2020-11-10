@@ -19,6 +19,6 @@ class SellFragment : Fragment() {
     ): View? {
         sellViewModel = ViewModelProvider(this).get(SellViewModel::class.java)
 
-        return inflater.inflate(R.layout.fragment_buy, container, false)
+        return inflater.inflate(R.layout.fragment_sell, container, false)
     }
 }
