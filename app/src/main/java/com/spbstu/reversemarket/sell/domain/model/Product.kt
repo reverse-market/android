@@ -1,4 +1,4 @@
-package com.spbstu.reversemarket.sell
+package com.spbstu.reversemarket.sell.domain.model
 
 data class Product(
     val name: String,

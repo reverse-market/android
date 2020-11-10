@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/frg_filter__title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_filter_title"
+        android:textColor="@color/colorFilterTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:textSize="21sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:drawableStartCompat="@drawable/ic_back_arrow" />
+
+    <FrameLayout
+        android:id="@+id/frg_filter__search_text_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_background"
+        android:layout_margin="8dp"
+        android:visibility="visible"
+        android:layout_below="@id/frg_filter__title">
+
+        <EditText
+            android:id="@+id/layout_toolbar_search__text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_background"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:text="   Поиск"
+            android:textSize="16sp"
+            android:textColor="@color/colorFilterSearchDefaultText"
+            android:textCursorDrawable="@drawable/search_black_cursor"
+            android:drawableStart="@drawable/ic_search"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/frg_filter_selected_and_price"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/frg_filter__search_text_background"
+        android:orientation="vertical"
+        android:background="@color/mainBackgroundColor">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/white_rounded_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/colorFilterTitle"
+                android:text="@string/filter_selected_title"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:elevation="24dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/frg_filter__selected_categories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/layout_filter_selected_item"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/white_rounded_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/colorFilterTitle"
+                android:text="@string/filter_price_title"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:elevation="24dp"/>
+
+            <com.edmodo.rangebar.RangeBar
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                custom:barColor="#000000"
+                custom:connectingLineColor="#000000"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/frg_filter_sorting_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_sorting_title"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/colorFilterTitle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="0.1"
+            android:padding="16dp"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_filter_btn_text"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_margin="24dp"
+
+            android:background="@drawable/filter_save_btn_background"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

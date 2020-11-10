@@ -1,4 +1,4 @@
-package com.spbstu.reversemarket.sell
+package com.spbstu.reversemarket.sell.presentation
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.sell.domain.model.Product
 
 
 class ProductsAdapter(
@@ -21,7 +22,9 @@ class ProductsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_product_item, parent, false)
-        return TagViewHolder(view)
+        return TagViewHolder(
+            view
+        )
     }
 
     var products: List<Product> = initProducts
@@ -38,10 +41,11 @@ class ProductsAdapter(
         holder.name.text = products[position].name
         holder.fullName.text = products[position].fullName
         holder.viewAmount.text = products[position].viewAmount.toString()
-        holder.productTags.adapter = TagsAdapter(
-            products[position].tags,
-            R.layout.layout_product_tag
-        )
+        holder.productTags.adapter =
+            TagsAdapter(
+                products[position].tags,
+                R.layout.layout_product_tag
+            )
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
