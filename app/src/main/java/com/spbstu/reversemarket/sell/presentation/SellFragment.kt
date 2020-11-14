@@ -1,4 +1,4 @@
-package com.spbstu.reversemarket.sell
+package com.spbstu.reversemarket.sell.presentation
 
 import android.app.Activity
 import android.os.Bundle
@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -19,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.sell.domain.model.Product
 
 
 class SellFragment : Fragment() {
@@ -44,9 +44,18 @@ class SellFragment : Fragment() {
         productList = view.findViewById(R.id.frg_product_list)
         tagsList = view.findViewById(R.id.frg_tags_list)
         productList.layoutManager = LinearLayoutManager(context)
-        productList.adapter = ProductsAdapter(provideProducts(), context)
+        productList.adapter =
+            ProductsAdapter(
+                provideProducts(),
+                context
+            )
         tagsList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        tagsList.adapter = TagsAdapter(provideTags(), R.layout.layout_removable_product_tag, ::filterRecycler)
+        tagsList.adapter =
+            TagsAdapter(
+                provideTags(),
+                R.layout.layout_removable_product_tag,
+                ::filterRecycler
+            )
 
         categoryNameToolbar = view.findViewById(R.id.layout_toolbar_search__category_name)
         searchTextBackground = view.findViewById(R.id.layout_toolbar_search_text__background)

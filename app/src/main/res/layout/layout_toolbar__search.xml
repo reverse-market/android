@@ -21,10 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/search_background"
-                android:paddingStart="5dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="5dp"
+                android:padding="@dimen/small_dimen"
                 android:visibility="gone">
 
                 <EditText
@@ -44,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/circle"
-                android:padding="5dp">
+                android:padding="@dimen/small_dimen">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -75,8 +72,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:padding="5dp"
+            android:layout_marginEnd="@dimen/big_dimen"
+            android:padding="@dimen/small_dimen"
             android:src="@drawable/ic_filters" />
     </RelativeLayout>
 

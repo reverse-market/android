@@ -1,4 +1,4 @@
-package com.spbstu.reversemarket.sell
+package com.spbstu.reversemarket.sell.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,10 @@ class TagsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(sellTagLayout, parent, false)
-        return TagViewHolder(view, sellTagLayout)
+        return TagViewHolder(
+            view,
+            sellTagLayout
+        )
     }
 
     override fun getItemCount(): Int = tags.size

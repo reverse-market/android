@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/navigation_sell"
-        android:name="com.spbstu.reversemarket.sell.SellFragment"
+        android:name="com.spbstu.reversemarket.sell.presentation.SellFragment"
         tools:layout="@layout/fragment_sell" />
 
     <fragment
