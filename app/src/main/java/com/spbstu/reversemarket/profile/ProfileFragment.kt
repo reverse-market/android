@@ -19,6 +19,6 @@ class ProfileFragment : Fragment() {
     ): View? {
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        return inflater.inflate(R.layout.fragment_sell, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#FFFFFF"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp">
+
+            <FrameLayout
+                android:id="@+id/layout_toolbar_search_text__background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/search_background"
+                android:padding="@dimen/small_dimen"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/layout_toolbar_search__text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:background="@drawable/search_background"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/search_black_cursor" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/layout_toolbar_search__button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle"
+                android:padding="@dimen/small_dimen">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/layout_toolbar_search__category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ОДЕЖДА"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#2E2D2C"
+            android:textSize="22sp"
+            app:drawableEndCompat="@drawable/ic_arrow" />
+
+
+        <ImageView
+            android:id="@+id/layout_toolbar_search__settings_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/big_dimen"
+            android:padding="@dimen/small_dimen"
+            android:src="@drawable/ic_filters" />
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>
