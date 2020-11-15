@@ -17,5 +17,5 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.spbstu.reversemarket.profile.ProfileFragment" />
+        android:name="com.spbstu.reversemarket.profile.FilterFragment" />
 </navigation>

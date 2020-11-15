@@ -1,106 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/frg_filter__title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/def_dimen"
+        android:layout_marginTop="@dimen/def_dimen"
+        android:layout_marginEnd="24dp"
+        android:drawableStart="@drawable/ic_back_arrow"
+        android:gravity="center"
         android:text="@string/fragment_filter_title"
         android:textColor="@color/colorFilterTitle"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:textSize="21sp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:drawableStartCompat="@drawable/ic_back_arrow" />
+        android:textSize="21sp" />
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/frg_filter__search_text_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/frg_filter__title"
+        android:layout_marginStart="@dimen/def_dimen"
+        android:layout_marginTop="@dimen/def_dimen"
+        android:layout_marginEnd="@dimen/def_dimen"
+        android:layout_marginBottom="@dimen/def_dimen"
         android:background="@drawable/search_background"
-        android:layout_margin="8dp"
-        android:visibility="visible"
-        android:layout_below="@id/frg_filter__title">
+        android:visibility="visible">
 
         <EditText
-            android:id="@+id/layout_toolbar_search__text"
+            android:id="@+id/frg_filter__toolbar_search__text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/search_background"
+            android:drawableStart="@drawable/ic_search"
             android:inputType="text"
             android:maxLines="1"
-            android:padding="8dp"
+            android:padding="@dimen/def_dimen"
             android:text="   Поиск"
-            android:textSize="16sp"
             android:textColor="@color/colorFilterSearchDefaultText"
             android:textCursorDrawable="@drawable/search_black_cursor"
-            android:drawableStart="@drawable/ic_search"/>
-    </FrameLayout>
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/frg_filter_selected_tags"
+        layout="@layout/layout_selected_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/frg_filter__search_text_background"
+        android:layout_marginStart="@dimen/def_dimen"
+        android:layout_marginEnd="@dimen/def_dimen"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/frg_filter_selected_and_price"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/frg_filter__search_text_background"
-        android:orientation="vertical"
-        android:background="@color/mainBackgroundColor">
+        android:background="@color/mainBackgroundColor"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.6"
             android:layout_margin="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/white_rounded_background">
+            android:layout_weight="0.6"
+            android:background="@drawable/white_rounded_background"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/colorFilterTitle"
-                android:text="@string/filter_selected_title"
+                android:elevation="24dp"
                 android:gravity="center"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:elevation="24dp"/>
+                android:text="@string/filter_selected_title"
+                android:textColor="@color/colorFilterTitle"
+                android:textSize="18sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/frg_filter__selected_categories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/layout_filter_selected_item"/>
+                tools:listitem="@layout/layout_filter_selected_item" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.3"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/white_rounded_background">
+            android:layout_weight="0.3"
+            android:background="@drawable/white_rounded_background"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/colorFilterTitle"
-                android:text="@string/filter_price_title"
+                android:elevation="24dp"
                 android:gravity="center"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:elevation="24dp"/>
+                android:text="@string/filter_price_title"
+                android:textColor="@color/colorFilterTitle"
+                android:textSize="18sp" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rangeSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:valueFrom="500"
+                android:valueTo="100000"
+                app:values="@array/initial_range_slider_values"
+                app:trackColorActive="@color/colorFilterTitle"
+                app:trackColorInactive="@color/mainBackgroundColor"
+                app:thumbColor="@color/colorFilterTitle"
+                app:haloColor="@color/mainBackgroundColor"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/frg_filter__min_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/big_dimen"
+                    android:background="@drawable/tag"
+                    android:padding="@dimen/def_dimen"
+                    android:paddingStart="@dimen/huge_dimen"
+                    android:paddingEnd="@dimen/huge_dimen"
+                    android:text="1000"
+                    android:layout_weight="0.5"/>
+
+                <EditText
+                    android:id="@+id/frg_filter__max_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/big_dimen"
+                    android:background="@drawable/tag"
+                    android:padding="@dimen/def_dimen"
+                    android:paddingStart="@dimen/huge_dimen"
+                    android:paddingEnd="@dimen/huge_dimen"
+                    android:text="42000"
+                    android:layout_weight="0.5"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -108,31 +166,30 @@
             android:id="@+id/frg_filter_sorting_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/filter_sorting_title"
             android:gravity="center"
-            android:textSize="18sp"
-            android:textColor="@color/colorFilterTitle"/>
+            android:text="@string/filter_sorting_title"
+            android:textColor="@color/colorFilterTitle"
+            android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
             android:layout_weight="0.1"
-            android:padding="16dp"/>
+            android:padding="16dp" />
 
         <Button
-            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="24dp"
+            android:background="@drawable/filter_save_btn_background"
             android:text="@string/save_filter_btn_text"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_margin="24dp"
 
-            android:background="@drawable/filter_save_btn_background"/>
+            android:textSize="18sp" />
 
     </LinearLayout>
-
 
 
 </RelativeLayout>
