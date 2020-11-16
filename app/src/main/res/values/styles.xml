@@ -8,11 +8,12 @@
         <item name="android:statusBarColor">#000000</item>
     </style>
 
-    <style name="ThemeOverlay.App.Slider" parent="">
-        <item name="colorPrimary">@color/colorFilterTitle</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorOnSurface">@color/colorFilterTitle</item>
+    <style name="Filter.Page.Style" parent="">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
+
 <!--    <style name="statusBarStyle" parent="@android:style/Theme.DeviceDefault.Light">-->
 <!--        <item name="android:statusBarColor">#000000</item>-->
 <!--    </style>-->

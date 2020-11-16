@@ -7,7 +7,7 @@
             android:id="@+id/layout_removable_product_tag__name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/def_dimen"
+            android:paddingTop="6dp"
             android:layout_marginStart="@dimen/def_dimen"
             android:text="Кроссовки"
             android:textColor="#2E2D2C"

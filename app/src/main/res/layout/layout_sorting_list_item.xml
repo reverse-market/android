@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tag"
+    android:paddingStart="@dimen/small_dimen"
+    android:paddingEnd="@dimen/small_dimen">
+
+    <TextView
+        android:id="@+id/layout_sorting_list_item__name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/def_dimen"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:text="Просмотры"
+        android:textColor="#2E2D2C"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        />
+
+    <FrameLayout
+        android:id="@+id/layout_sorting_list_item__button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_black"
+        android:layout_margin="@dimen/def_dimen"
+        android:layout_alignParentEnd="true"
+        >
+
+        <ImageView
+            android:id="@+id/layout_sorting_list_item__button_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_down_arrow"
+            android:tag="down"/>
+
+    </FrameLayout>
+
+</RelativeLayout>

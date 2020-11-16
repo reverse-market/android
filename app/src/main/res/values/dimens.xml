@@ -7,6 +7,6 @@
     <dimen name="def_dimen">8dp</dimen>
     <dimen name="big_dimen">12dp</dimen>
     <dimen name="huge_dimen">16dp</dimen>
-    <dimen name="extra_huge_dimen">24dp</dimen>
+    <dimen name="x_huge_dimen">24dp</dimen>
 
 </resources>

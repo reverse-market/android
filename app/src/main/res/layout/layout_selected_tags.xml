@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.7"
-        tools:listitem="@layout/layout_removable_product_tag"
+        tools:listitem="@layout/layout_filter_selected_item"
         />
 
 </LinearLayout>

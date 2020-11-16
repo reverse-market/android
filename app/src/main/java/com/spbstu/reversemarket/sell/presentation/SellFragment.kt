@@ -10,11 +10,13 @@ import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
@@ -30,6 +32,7 @@ class SellFragment : Fragment() {
     private lateinit var categoryNameToolbar: TextView
     private lateinit var searchTextBackground: FrameLayout
     private lateinit var searchText: EditText
+    private lateinit var filterBtn: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +57,8 @@ class SellFragment : Fragment() {
             TagsAdapter(
                 provideTags(),
                 R.layout.layout_removable_product_tag,
-                ::filterRecycler
+                ::filterRecycler,
+                context = context
             )
 
         categoryNameToolbar = view.findViewById(R.id.layout_toolbar_search__category_name)
@@ -64,6 +68,10 @@ class SellFragment : Fragment() {
 
         searchButton.setOnClickListener(searchButtonListener)
         searchText.setOnKeyListener(enterListener)
+
+        filterBtn = view.findViewById(R.id.layout_toolbar_search__settings_btn)
+        filterBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.filterFragment, null))
+
         return view
     }
 
@@ -99,15 +107,8 @@ class SellFragment : Fragment() {
     private fun filterRecycler() {
         val text = searchText.text.toString().trim().toLowerCase()
         val filter = provideProducts().filter {
-            var inTags = false
-            for (tag in (tagsList.adapter as TagsAdapter).tags) {
-                if (it.tags.contains(tag)) {
-                    inTags = true
-                    break
-                }
-            }
-            (it.name.toLowerCase().contains(text) ||
-                    it.fullName.toLowerCase().contains(text)) && inTags
+            (it.name.contains(text, true) || it.fullName.contains(text, true))
+                    && (tagsList.adapter as TagsAdapter).tags.intersect(it.tags).isNotEmpty()
         }
         (productList.adapter as ProductsAdapter).products = filter
     }

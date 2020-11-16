@@ -13,9 +13,23 @@
     <fragment
         android:id="@+id/navigation_sell"
         android:name="com.spbstu.reversemarket.sell.presentation.SellFragment"
-        tools:layout="@layout/fragment_sell" />
+        tools:layout="@layout/fragment_sell" >
+        <action
+            android:id="@+id/action_navigation_sell_to_filterFragment"
+            app:destination="@id/filterFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.spbstu.reversemarket.profile.FilterFragment" />
+        android:name="com.spbstu.reversemarket.profile.ProfileFragment" />
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.spbstu.reversemarket.sell.presentation.FilterFragment"
+        android:label="FilterFragment" >
+        <action
+            android:id="@+id/action_filterFragment_to_navigation_sell"
+            app:destination="@id/navigation_sell" />
+    </fragment>
+
 </navigation>

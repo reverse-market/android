@@ -44,7 +44,8 @@ class ProductsAdapter(
         holder.productTags.adapter =
             TagsAdapter(
                 products[position].tags,
-                R.layout.layout_product_tag
+                R.layout.layout_product_tag,
+                context = context
             )
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW

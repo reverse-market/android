@@ -4,28 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    style="@style/Filter.Page.Style">
 
-    <TextView
-        android:id="@+id/frg_filter__title"
+
+
+    <RelativeLayout
+        android:id="@+id/frg_filter__title_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="@dimen/def_dimen"
-        android:layout_marginTop="@dimen/def_dimen"
-        android:layout_marginEnd="24dp"
-        android:drawableStart="@drawable/ic_back_arrow"
-        android:gravity="center"
-        android:text="@string/fragment_filter_title"
-        android:textColor="@color/colorFilterTitle"
-        android:textSize="21sp" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/frg_filter__title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/def_dimen"
+            android:layout_marginTop="@dimen/def_dimen"
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:gravity="center"
+            android:padding="@dimen/small_dimen"
+            android:text="@string/fragment_filter_title"
+            android:textColor="@color/colorFilterTitle"
+            android:textSize="21sp" />
+
+        <ImageView
+            android:id="@+id/frg_filter__back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/huge_dimen"
+            android:layout_marginStart="@dimen/big_dimen"
+            android:src="@drawable/ic_back_arrow"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/frg_filter__search_text_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/frg_filter__title"
+        android:layout_below="@id/frg_filter__title_container"
         android:layout_marginStart="@dimen/def_dimen"
         android:layout_marginTop="@dimen/def_dimen"
         android:layout_marginEnd="@dimen/def_dimen"
@@ -71,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="16dp"
-            android:layout_weight="0.6"
+            android:layout_weight="0.58"
             android:background="@drawable/white_rounded_background"
             android:orientation="vertical">
 
@@ -101,7 +120,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_weight="0.3"
+            android:layout_weight="0.42"
             android:background="@drawable/white_rounded_background"
             android:orientation="vertical">
 
@@ -117,7 +136,7 @@
                 android:textSize="18sp" />
 
             <com.google.android.material.slider.RangeSlider
-                android:id="@+id/rangeSlider"
+                android:id="@+id/frg_filter__price_range_slider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:valueFrom="500"
@@ -172,24 +191,24 @@
             android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/frg_filter__sorting_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
-            android:layout_weight="0.1"
-            android:padding="16dp" />
+            android:layout_weight="0.2"
+            android:padding="16dp"
+            tools:listitem="@layout/layout_sorting_list_item"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="24dp"
+            android:layout_margin="@dimen/big_dimen"
             android:background="@drawable/filter_save_btn_background"
             android:text="@string/save_filter_btn_text"
             android:textColor="#FFFFFF"
-
             android:textSize="18sp" />
 
     </LinearLayout>
-
 
 </RelativeLayout>
