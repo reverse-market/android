@@ -1,10 +1,12 @@
 package com.spbstu.reversemarket.sell.presentation
 
 import android.content.Context
+import android.os.SystemClock.sleep
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +17,6 @@ class TagsAdapter(
     var tags: List<String>,
     private val sellTagLayout: Int,
     private val func: KFunction0<Unit>? = null,
-    private val anim: Animation? = null,
     private val context: Context? = null,
 ) : RecyclerView.Adapter<TagsAdapter.TagViewHolder>() {
 
@@ -31,7 +32,7 @@ class TagsAdapter(
 
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
         holder.name.text = tags[position]
-        if (anim == null) {
+        if (context == null) {
             holder.tagBtn?.setOnClickListener {
                 val newTags = tags.toMutableList()
                 newTags.removeAt(position)
@@ -41,22 +42,21 @@ class TagsAdapter(
             }
         } else {
             holder.tagBtn?.setOnClickListener { it ->
-                anim.isFillEnabled = true;
-                anim.fillAfter = true;
+                val view =
+                    it.findViewById<ImageView>(R.id.layout_sorting_list_item__button_image)
+                val anim = AnimationUtils.loadAnimation(context, R.anim.rotate_item)
                 it.startAnimation(anim)
                 anim.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationRepeat(p0: Animation?) {
                     }
 
                     override fun onAnimationEnd(p0: Animation?) {
-                        val view =
-                            it.findViewById<ImageView>(R.id.layout_sorting_list_item__button_image)
-                        if (view.tag == "down") {
-                            view.setImageResource(R.drawable.ic_up_arrow)
-                            view.tag = "up"
-                        } else {
-                            view.setImageResource(R.drawable.ic_down_arrow)
+                        if (view.tag == "up") {
+                            it.animate().rotation(0f).start()
                             view.tag = "down"
+                        } else {
+                            it.animate().rotation(180f).start()
+                            view.tag = "up"
                         }
                     }
 
@@ -85,6 +85,10 @@ class TagsAdapter(
                 R.layout.layout_sorting_list_item -> {
                     tagBtn = view.findViewById(R.id.layout_sorting_list_item__button)
                     name = view.findViewById(R.id.layout_sorting_list_item__name)
+                }
+                R.layout.layout_add_tag -> {
+                    tagBtn = view.findViewById(R.id.layout_add_tag__add_btn)
+                    name = view.findViewById(R.id.layout_add_tag__text)
                 }
                 else -> name = view.findViewById(R.id.layout_product_tag__name)
             }

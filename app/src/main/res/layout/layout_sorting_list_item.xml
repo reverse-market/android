@@ -25,6 +25,7 @@
         android:background="@drawable/circle_black"
         android:layout_margin="@dimen/def_dimen"
         android:layout_alignParentEnd="true"
+        android:tag="down"
         >
 
         <ImageView
