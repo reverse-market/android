@@ -6,5 +6,6 @@
     <string name="title_profile">Profile</string>
     <string name="login_facebook">Login with Facebook</string>
     <string name="login_google">Login with Google</string>
-    <string name="fragment_login_logo_description">Logo</string>
+    <string name="fragment_login_logo_description" translatable="false">Logo</string>
+    <string name="price_title" >Price</string>
 </resources>

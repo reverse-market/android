@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tag">
+    <TextView
+        android:id="@+id/layout_product_tag__name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/small_dimen"
+        android:paddingBottom="@dimen/def_dimen"
+        android:layout_marginTop="@dimen/small_dimen"
+        android:layout_marginStart="@dimen/def_dimen"
+        android:layout_marginEnd="@dimen/def_dimen"
+        android:text="Кроссовки"
+        android:textColor="#2E2D2C"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        />
+
+</LinearLayout>
