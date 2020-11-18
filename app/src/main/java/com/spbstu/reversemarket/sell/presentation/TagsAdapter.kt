@@ -1,7 +1,6 @@
 package com.spbstu.reversemarket.sell.presentation
 
 import android.content.Context
-import android.os.SystemClock.sleep
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +13,18 @@ import com.spbstu.reversemarket.R
 import kotlin.reflect.KFunction0
 
 class TagsAdapter(
-    var tags: List<String>,
+    initTags: List<String>,
     private val sellTagLayout: Int,
-    private val func: KFunction0<Unit>? = null,
+    private val deleteFunc: KFunction0<Unit>? = null,
+    private val addFunc: ((String) -> Unit)? = null,
     private val context: Context? = null,
 ) : RecyclerView.Adapter<TagsAdapter.TagViewHolder>() {
+
+    var tags: List<String> = initTags
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(sellTagLayout, parent, false)
@@ -35,10 +41,12 @@ class TagsAdapter(
         if (context == null) {
             holder.tagBtn?.setOnClickListener {
                 val newTags = tags.toMutableList()
+                val tag = newTags[position]
                 newTags.removeAt(position)
                 tags = newTags
                 notifyDataSetChanged()
-                func?.invoke()
+                deleteFunc?.invoke()
+                addFunc?.invoke(tag)
             }
         } else {
             holder.tagBtn?.setOnClickListener { it ->

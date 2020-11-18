@@ -141,7 +141,7 @@
                 android:id="@+id/frg_filter__price_range_slider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:valueFrom="500"
+                android:valueFrom="0"
                 android:valueTo="100000"
                 app:values="@array/initial_range_slider_values"
                 app:trackColorActive="@color/colorFilterTitle"
@@ -202,6 +202,7 @@
             tools:listitem="@layout/layout_sorting_list_item"/>
 
         <Button
+            android:id="@+id/frg_filter__save_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

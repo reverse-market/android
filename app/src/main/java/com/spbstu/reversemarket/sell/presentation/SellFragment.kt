@@ -39,7 +39,6 @@ class SellFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         sellViewModel = ViewModelProvider(this).get(SellViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_sell, container, false)
         val toolbar: Toolbar = view.findViewById(R.id.frg_search_bar)
@@ -52,10 +51,14 @@ class SellFragment : Fragment() {
                 provideProducts(),
                 context
             )
+
+
+        val tags: List<String>? = arguments?.getStringArray("FILTER_TAGS")?.toList()
+
         tagsList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         tagsList.adapter =
             TagsAdapter(
-                provideTags(),
+                tags?: provideTags(),
                 R.layout.layout_removable_product_tag,
                 ::filterRecycler,
                 context = context
@@ -70,7 +73,12 @@ class SellFragment : Fragment() {
         searchText.setOnKeyListener(enterListener)
 
         filterBtn = view.findViewById(R.id.layout_toolbar_search__settings_btn)
-        filterBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.filterFragment, null))
+        filterBtn.setOnClickListener{
+            val args = Bundle()
+            val filterTags = (tagsList.adapter as TagsAdapter).tags
+            args.putStringArray("FILTER_TAGS", filterTags.toTypedArray())
+            Navigation.findNavController(view).navigate(R.id.filterFragment, args)
+        }
 
         return view
     }
