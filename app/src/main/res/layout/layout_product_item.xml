@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/huge_dimen"
+    android:layout_marginTop="@dimen/huge_dimen"
+    android:layout_marginEnd="@dimen/huge_dimen"
+    android:background="@color/colorAccent"
+    app:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/layout_product_item__name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/huge_dimen"
+            android:layout_marginTop="@dimen/huge_dimen"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/nike"
+            android:textColor="#2E2D2C"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/layout_product_item__full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_product_item__name"
+            android:layout_marginStart="@dimen/huge_dimen"
+            android:gravity="bottom"
+            android:lineSpacingExtra="3sp"
+            android:text="Air Force 1 Shadow White Yellow"
+            android:translationY="1.36sp" />
+
+        <TextView
+            android:id="@+id/layout_product_item__view_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_product_item__name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:text="150"
+            android:textColor="#828282"
+            app:drawableEndCompat="@drawable/ic_eye" />
+
+        <ImageView
+            android:id="@+id/layout_product_item__main_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/layout_product_item__full_name"
+            android:src="@drawable/nike" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/layout_product_item__tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_product_item__main_image"
+            android:layout_marginStart="@dimen/def_dimen"
+            android:layout_marginEnd="@dimen/def_dimen" />
+
+
+        <TextView
+            android:id="@+id/layout_product_item__description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_product_item__tags"
+            android:layout_marginStart="@dimen/def_dimen"
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:gravity="top"
+            android:lineSpacingExtra="3sp"
+            android:text="Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает..."
+            android:textColor="#828282"
+            android:textSize="13sp"
+            android:translationY="-1.36sp" />
+
+
+        <TextView
+            android:id="@+id/layout_product_item__price_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_product_item__description"
+            android:layout_marginStart="@dimen/def_dimen"
+            android:layout_marginTop="@dimen/def_dimen"
+            android:text="@string/price_title"
+            android:textColor="#828282"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/layout_product_item__price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_product_item__price_title"
+            android:layout_marginStart="@dimen/def_dimen"
+            android:text="$132.10"
+            android:textColor="#2E2D2C"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/layout_product_item__username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_product_item__description"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/def_dimen"
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:text="UserName"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/layout_product_item__date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_product_item__username"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/small_dimen"
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:text="20.09.2020"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

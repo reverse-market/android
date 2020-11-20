@@ -7,19 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_buy"
-        android:name="com.spbstu.reversemarket.sell.SellFragment"
-        android:label="@string/title_buy"
-        tools:layout="@layout/fragment_buy" />
+        android:name="com.spbstu.reversemarket.buy.BuyFragment"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_sell"
-        android:name="com.spbstu.reversemarket.profile.ProfileFragment"
-        android:label="@string/title_sell"
+        android:name="com.spbstu.reversemarket.sell.presentation.SellFragment"
         tools:layout="@layout/fragment_sell" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.spbstu.reversemarket.buy.BuyFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:name="com.spbstu.reversemarket.profile.ProfileFragment" />
 </navigation>
