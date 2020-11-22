@@ -11,10 +11,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
@@ -42,6 +44,14 @@ class SellFragment : Fragment() {
         val toolbar: Toolbar = view.findViewById(R.id.frg_search_bar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         productList = view.findViewById(R.id.frg_product_list)
+
+        productList.addOnItemTouchListener(RecyclerItemClickListener(productList,
+            object : RecyclerItemClickListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    findNavController().navigate(R.id.action_navigation_sell_to_navigation_product)
+                }
+            }))
+
         tagsList = view.findViewById(R.id.frg_tags_list)
         productList.layoutManager = LinearLayoutManager(context)
         productList.adapter =

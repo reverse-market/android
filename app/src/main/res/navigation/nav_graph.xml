@@ -13,9 +13,17 @@
     <fragment
         android:id="@+id/navigation_sell"
         android:name="com.spbstu.reversemarket.sell.presentation.SellFragment"
-        tools:layout="@layout/fragment_sell" />
+        tools:layout="@layout/fragment_sell" >
+        <action
+            android:id="@+id/action_navigation_sell_to_navigation_product"
+            app:destination="@id/navigation_product" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.spbstu.reversemarket.profile.ProfileFragment" />
+
+    <fragment
+        android:id="@+id/navigation_product"
+        android:name="com.spbstu.reversemarket.product.presentation.ProductFragment" />
 </navigation>
