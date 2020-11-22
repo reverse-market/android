@@ -12,7 +12,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_login_logo"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="56dp"
         android:contentDescription="@string/fragment_login_logo_description" />
 
         <Button
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_google_login_button"
             android:drawableStart="@drawable/ic_google_icon"
-            android:padding="15dp"
+            android:padding="@dimen/huge_dimen"
             android:text="@string/login_google"
             android:textColor="@color/colorBlack"
             android:textAllCaps="false"
@@ -45,7 +45,7 @@
             android:text="@string/login_facebook"
             android:textColor="@color/colorWhite"
             android:textAllCaps="false"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="72dp"
             android:elevation="@dimen/small_dimen"
             android:translationZ="@dimen/small_dimen"
             />
