@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_login"
     android:background="@drawable/login_background">
     <ImageView
         android:layout_width="wrap_content"
@@ -27,9 +28,9 @@
             android:text="@string/login_google"
             android:textColor="@color/colorBlack"
             android:textAllCaps="false"
-            android:layout_marginBottom="10dp"
-            android:elevation="5dp"
-            android:translationZ="5dp"
+            android:layout_marginBottom="@dimen/def_dimen"
+            android:elevation="@dimen/small_dimen"
+            android:translationZ="@dimen/small_dimen"
             />
         <Button
             android:id="@+id/frg_login__facebook_login_button"
@@ -40,12 +41,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_facebook_login_button"
             android:drawableStart="@drawable/ic_facebook_icon"
-            android:padding="15dp"
+            android:padding="@dimen/huge_dimen"
             android:text="@string/login_facebook"
             android:textColor="@color/colorWhite"
             android:textAllCaps="false"
             android:layout_marginBottom="70dp"
-            android:elevation="5dp"
-            android:translationZ="5dp"
+            android:elevation="@dimen/small_dimen"
+            android:translationZ="@dimen/small_dimen"
             />
 </androidx.constraintlayout.widget.ConstraintLayout>
