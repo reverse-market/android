@@ -26,9 +26,7 @@ class ProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
-        if (navView != null) {
-            navView.visibility = View.GONE
-        }
+        navView?.visibility = View.GONE
         productTabAdapter = ProductTabAdapter(this)
         viewPager = view.findViewById(R.id.layout_product_item__pager)
         viewPager.adapter = productTabAdapter
@@ -38,11 +36,9 @@ class ProductFragment : Fragment() {
         }.attach()
     }
 
-    override fun onDetach() {
+    override fun onDestroy() {
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
-        if (navView != null) {
-            navView.visibility = View.VISIBLE
-        }
-        super.onDetach()
+        navView?.visibility = View.VISIBLE
+        super.onDestroy()
     }
 }
