@@ -15,17 +15,13 @@ class BuyFragment : Fragment() {
     private lateinit var buyViewModel: BuyViewModel
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         buyViewModel = ViewModelProvider(this).get(BuyViewModel::class.java)
-        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
-        if (navView != null) {
-            navView.visibility = View.VISIBLE
-        }
+
         return inflater.inflate(R.layout.fragment_buy, container, false)
     }
 }

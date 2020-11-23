@@ -9,11 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class LoginFragment : Fragment() {
 
-    private lateinit var loginWithGoogleButton: Button
-    private lateinit var loginWithFacebookButton: Button
+    private var navigationView: BottomNavigationView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,16 +22,17 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
-        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
-        if (navView != null) {
-            navView.visibility = View.GONE
-        }
+        navigationView = activity?.findViewById(R.id.nav_view)
+        navigationView?.visibility = View.GONE
 
-        loginWithGoogleButton = view.findViewById(R.id.frg_login__google_login_button)
-        loginWithFacebookButton = view.findViewById(R.id.frg_login__facebook_login_button)
-        loginWithGoogleButton.setOnClickListener(loginWithGoogleListener)
-        loginWithFacebookButton.setOnClickListener(loginWithFacebookListener)
+        ((view.findViewById(R.id.frg_login__google_login_button)) as Button).setOnClickListener(loginWithGoogleListener)
+        ((view.findViewById(R.id.frg_login__facebook_login_button)) as Button).setOnClickListener(loginWithFacebookListener)
         return view
+    }
+
+    override fun onDestroy() {
+        navigationView?.visibility = View.VISIBLE
+        super.onDestroy()
     }
 
     private val loginWithGoogleListener = View.OnClickListener {
