@@ -6,5 +6,7 @@
     <string name="title_profile">Profile</string>
     <string name="login_facebook">Войти через Facebook</string>
     <string name="login_google">Войти через Google</string>
+    <string name="title_product">Продукт</string>
+    <string name="nike">Nike кроссовки</string>
     <string name="price_title" >Цена</string>
 </resources>
