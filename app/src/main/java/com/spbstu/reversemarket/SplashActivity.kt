@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun toMainScreen() {
         val intent = Intent(this, NavigationActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
     }
