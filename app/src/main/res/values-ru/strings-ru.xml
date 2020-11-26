@@ -4,10 +4,9 @@
     <string name="title_buy">Buy</string>
     <string name="title_sell">Sell</string>
     <string name="title_profile">Profile</string>
+    <string name="login_facebook">Войти через Facebook</string>
+    <string name="login_google">Войти через Google</string>
     <string name="title_product">Продукт</string>
     <string name="nike">Nike кроссовки</string>
-    <string name="price_title">Цена</string>
-    <string name="login_facebook">Login with Facebook</string>
-    <string name="login_google">Login with Google</string>
-    <string name="fragment_login_logo_description" translatable="false">Logo</string>
+    <string name="price_title" >Цена</string>
 </resources>
