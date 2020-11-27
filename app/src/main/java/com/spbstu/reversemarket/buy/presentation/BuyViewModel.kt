@@ -1,4 +1,4 @@
-package com.spbstu.reversemarket.buy
+package com.spbstu.reversemarket.buy.presentation
 
 import androidx.lifecycle.ViewModel
 

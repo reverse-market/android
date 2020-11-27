@@ -44,7 +44,7 @@ class CategoryFragment : Fragment() {
         }
         searchBtn = view.findViewById(R.id.layout_toolbar_search__full_btn)
         searchBtn.visibility = View.INVISIBLE
-        settingsBtn = view.findViewById(R.id.layout_toolbar_search__settings_btn)
+        settingsBtn = view.findViewById(R.id.layout_toolbar_search__btn)
         settingsBtn.visibility = View.INVISIBLE
 
         return view

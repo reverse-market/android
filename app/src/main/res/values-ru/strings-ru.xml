@@ -14,4 +14,5 @@
     <string name="filter_sorting_title">Сортировка</string>
     <string name="filter_selected_title">Выбранное</string>
     <string name="filter_price_title">Цена</string>
+    <string name="frg_buy_title">Мои объявления</string>
 </resources>

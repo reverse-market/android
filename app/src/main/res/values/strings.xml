@@ -15,4 +15,7 @@
     <string name="login_facebook">Login with Facebook</string>
     <string name="login_google">Login with Google</string>
     <string name="fragment_login_logo_description" translatable="false">Logo</string>
+
+    <string name="frg_buy_title">My announcement</string>
+
 </resources>
