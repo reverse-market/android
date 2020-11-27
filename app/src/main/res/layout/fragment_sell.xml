@@ -8,27 +8,25 @@
 
     <include
         android:id="@+id/frg_search_bar"
+        layout="@layout/layout_toolbar__search"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/layout_toolbar__search"/>
-
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frg_tags_list"
         android:layout_width="match_parent"
         android:layout_height="42dp"
+        android:layout_below="@id/frg_search_bar"
         android:background="#FFFFFF"
         android:paddingStart="@dimen/big_dimen"
-        android:paddingEnd="@dimen/big_dimen"
-        android:layout_below="@id/frg_search_bar"/>
+        android:paddingEnd="@dimen/big_dimen" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frg_product_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
+        android:layout_below="@id/frg_tags_list"
         android:layout_marginBottom="@dimen/big_dimen"
-        android:layout_below="@id/frg_tags_list"/>
-
+        android:overScrollMode="never" />
 
 </RelativeLayout>

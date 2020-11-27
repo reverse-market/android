@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
 
 class BuyFragment : Fragment() {
 
     private lateinit var buyViewModel: BuyViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

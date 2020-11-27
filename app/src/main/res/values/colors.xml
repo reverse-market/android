@@ -10,4 +10,7 @@
     <color name="colorFilterTitle">#2E2D2C</color>
     <color name="colorFilterSearchDefaultText">#828282</color>
 
+    <color name="productTitleColor">#2E2D2C</color>
+    <color name="colorBlack">#2E2D2C</color>
+    <color name="colorWhite">#ffffff</color>
 </resources>

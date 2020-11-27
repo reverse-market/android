@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="@dimen/huge_dimen"
     android:layout_marginTop="@dimen/huge_dimen"
     android:layout_marginEnd="@dimen/huge_dimen"
@@ -22,7 +23,7 @@
             android:layout_marginTop="@dimen/huge_dimen"
             android:gravity="center_vertical"
             android:lineSpacingExtra="3sp"
-            android:text="@string/nike"
+            tools:text="Кроссовки nike"
             android:textColor="#2E2D2C"
             android:textSize="16sp" />
 
