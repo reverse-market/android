@@ -8,5 +8,6 @@
     <dimen name="big_dimen">12dp</dimen>
     <dimen name="huge_dimen">16dp</dimen>
     <dimen name="x_huge_dimen">24dp</dimen>
+    <dimen name="xx_huge_dimen">36dp</dimen>
 
 </resources>

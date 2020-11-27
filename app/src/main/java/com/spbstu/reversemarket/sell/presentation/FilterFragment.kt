@@ -30,7 +30,6 @@ import com.spbstu.reversemarket.profile.ProfileViewModel
 
 class FilterFragment : Fragment() {
 
-    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var slider: RangeSlider
     private lateinit var backBtn: ImageView
     private lateinit var saveBtn: Button
@@ -50,7 +49,6 @@ class FilterFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_filter, container, false)
         activity?.findViewById<BottomNavigationView>(R.id.nav_view)?.visibility = View.GONE
         slider = view.findViewById(R.id.frg_filter__price_range_slider)
@@ -60,7 +58,6 @@ class FilterFragment : Fragment() {
         backBtn.setOnClickListener(toSellFragmentBackClickListener)
 
         prevTags = arguments?.getStringArray("FILTER_TAGS")?.toList()
-
         selectedTagsList = view.findViewById(R.id.frg_filter__selected_categories)
         selectedTagsList.layoutManager = LinearLayoutManager(context)
         selectedTagsList.adapter =
@@ -74,8 +71,6 @@ class FilterFragment : Fragment() {
         minPriceEditText.addTextChangedListener(provideEditTextListener(SLIDER_MIN_VALUE_INDEX))
         maxPriceEditText = view.findViewById(R.id.frg_filter__max_price)
         maxPriceEditText.addTextChangedListener(provideEditTextListener(SLIDER_MAX_VALUE_INDEX))
-
-
 
         sortingList = view.findViewById(R.id.frg_filter__sorting_list)
         sortingList.layoutManager =

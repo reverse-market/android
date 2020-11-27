@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Product
 
@@ -41,6 +42,7 @@ class SellFragment : Fragment() {
     ): View? {
         sellViewModel = ViewModelProvider(this).get(SellViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_sell, container, false)
+        activity?.findViewById<BottomNavigationView>(R.id.nav_view)?.visibility = View.VISIBLE
         val toolbar: Toolbar = view.findViewById(R.id.frg_search_bar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         productList = view.findViewById(R.id.frg_product_list)
@@ -53,7 +55,17 @@ class SellFragment : Fragment() {
             )
 
 
-        val tags: List<String>? = arguments?.getStringArray("FILTER_TAGS")?.toList()
+        categoryNameToolbar = view.findViewById(R.id.layout_toolbar_search__category_name)
+        categoryNameToolbar.setOnClickListener {
+            val args = Bundle()
+            args.putString(CategoryFragment.CATEGORY_NAV_PARAMETER, categoryNameToolbar.text.toString())
+            Navigation.findNavController(view).navigate(R.id.categoryFragment, args)
+        }
+
+        val tags = arguments?.getStringArray("FILTER_TAGS")?.toList()
+        arguments?.getString(CategoryFragment.CATEGORY_NAV_PARAMETER)?.run {
+            categoryNameToolbar.text = this
+        }
 
         tagsList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         tagsList.adapter =
@@ -63,8 +75,6 @@ class SellFragment : Fragment() {
                 ::filterRecycler,
                 context = context
             )
-
-        categoryNameToolbar = view.findViewById(R.id.layout_toolbar_search__category_name)
         searchTextBackground = view.findViewById(R.id.layout_toolbar_search_text__background)
         searchText = view.findViewById(R.id.layout_toolbar_search__text)
         searchButton = view.findViewById(R.id.layout_toolbar_search__button)
