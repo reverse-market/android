@@ -6,4 +6,6 @@
     <color name="productTitleColor">#2E2D2C</color>
     <color name="colorBlack">#2E2D2C</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorDisabled">#2E2D2C</color>
+    <color name="colorActive">#ffffff</color>
 </resources>
