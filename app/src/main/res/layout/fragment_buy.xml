@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/mainBackgroundColor"
-        android:layout_marginTop="@dimen/big_dimen"
         android:layout_below="@id/frg_buy__toolbar"
+        android:paddingBottom="@dimen/big_dimen"
         tools:listitem="@layout/layout_product_item" />
 
 </RelativeLayout>
