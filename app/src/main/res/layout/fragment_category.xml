@@ -17,8 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/mainBackgroundColor"
-        android:layout_marginTop="@dimen/big_dimen"
+        android:paddingTop="@dimen/big_dimen"
+        android:paddingBottom="@dimen/big_dimen"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_below="@id/frg_category__bar"
-        tools:listitem="@layout/layout_categories_item" />
+        tools:listitem="@layout/layout_categories_item"
+        android:overScrollMode="never" />
 
 </RelativeLayout>

@@ -4,18 +4,16 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexDirection
@@ -25,7 +23,6 @@ import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.slider.RangeSlider
 import com.spbstu.reversemarket.R
-import com.spbstu.reversemarket.profile.ProfileViewModel
 
 
 class FilterFragment : Fragment() {
@@ -59,12 +56,11 @@ class FilterFragment : Fragment() {
 
         prevTags = arguments?.getStringArray("FILTER_TAGS")?.toList()
         selectedTagsList = view.findViewById(R.id.frg_filter__selected_categories)
-        selectedTagsList.layoutManager = LinearLayoutManager(context)
         selectedTagsList.adapter =
             TagsAdapter(
-                prevTags?: provideSelectedList(),
+                prevTags ?: provideSelectedList(),
                 R.layout.layout_filter_selected_item,
-                addFunc = { str: String ->  addTag(addTagsList, str)},
+                addFunc = { str: String -> addTag(addTagsList, str) },
             )
 
         minPriceEditText = view.findViewById(R.id.frg_filter__min_price)
@@ -90,7 +86,7 @@ class FilterFragment : Fragment() {
             TagsAdapter(
                 provideAddTagsList(),
                 R.layout.layout_add_tag,
-                addFunc = { str: String ->  addTag(selectedTagsList, str)},
+                addFunc = { str: String -> addTag(selectedTagsList, str) },
             )
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
@@ -98,28 +94,7 @@ class FilterFragment : Fragment() {
         layoutManager.flexWrap = FlexWrap.WRAP
         addTagsList.layoutManager = layoutManager
 
-        searchOpenLayout.viewTreeObserver.addOnGlobalLayoutListener {
-            if (search.isFocused) {
-                if (keyboardShown(searchOpenLayout.rootView)) {
-                    searchButtonBackground.setBackgroundResource(R.drawable.search_background_filter)
-                    (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin =
-                        0
-                    searchOpenLayout.visibility = View.VISIBLE
-                    Log.d("keyboard", "keyboard UP")
-                } else {
-                    searchButtonBackground.setBackgroundResource(R.drawable.search_background)
-                    (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin =
-                        TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP,
-                            8f,
-                            resources.displayMetrics
-                        )
-                            .toInt()
-                    searchOpenLayout.visibility = View.GONE
-                    Log.d("keyboard", "keyboard Down")
-                }
-            }
-        }
+        searchOpenLayout.viewTreeObserver.addOnGlobalLayoutListener(focusListener)
 
         saveBtn = view.findViewById(R.id.frg_filter__save_btn)
         saveBtn.setOnClickListener(toSellFragmentSaveClickListener)
@@ -131,13 +106,13 @@ class FilterFragment : Fragment() {
         val args = Bundle()
         val filterTags = (selectedTagsList.adapter as TagsAdapter).tags
         args.putStringArray("FILTER_TAGS", filterTags.toTypedArray())
-        Navigation.findNavController(requireView()).navigate(R.id.navigation_sell, args)
+        findNavController(requireView()).navigate(R.id.navigation_sell, args)
     }
 
     private val toSellFragmentBackClickListener = View.OnClickListener {
         val args = Bundle()
         args.putStringArray("FILTER_TAGS", prevTags?.toTypedArray())
-        Navigation.findNavController(requireView()).navigate(R.id.navigation_sell, args)
+        findNavController(requireView()).navigate(R.id.navigation_sell, args)
     }
 
     private fun addTag(recycle: RecyclerView, tag: String) {
@@ -199,7 +174,8 @@ class FilterFragment : Fragment() {
             val value = num.trim().toFloat()
             println(value)
             if (value in SLIDER_LEFT_BOUND..SLIDER_RIGHT_BOUND
-                    && isRightSliderInvariant(sliderIndex, value)) {
+                && isRightSliderInvariant(sliderIndex, value)
+            ) {
                 if (sliderIndex == 0) {
                     slider.values = listOf(value, slider.values[1])
                 } else {
@@ -209,9 +185,24 @@ class FilterFragment : Fragment() {
         }
     }
 
-    private fun isRightSliderInvariant(sliderIndex: Int, value: Float)
-        = (sliderIndex == SLIDER_MIN_VALUE_INDEX && value <= slider.values[1]
-            || sliderIndex == SLIDER_MAX_VALUE_INDEX && value >= slider.values[0])
+    private fun isRightSliderInvariant(sliderIndex: Int, value: Float) =
+        (sliderIndex == SLIDER_MIN_VALUE_INDEX && value <= slider.values[1]
+                || sliderIndex == SLIDER_MAX_VALUE_INDEX && value >= slider.values[0])
+
+    private val focusListener = ViewTreeObserver.OnGlobalLayoutListener {
+        if (search.isFocused) {
+            if (keyboardShown(searchOpenLayout.rootView)) {
+                searchButtonBackground.setBackgroundResource(R.drawable.search_background_filter)
+                (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = 0
+                searchOpenLayout.visibility = View.VISIBLE
+            } else {
+                searchButtonBackground.setBackgroundResource(R.drawable.search_background)
+                (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin =
+                    resources.getDimension(R.dimen.def_dimen).toInt()
+                searchOpenLayout.visibility = View.GONE
+            }
+        }
+    }
 
     companion object {
         const val SLIDER_MIN_VALUE_INDEX = 0

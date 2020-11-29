@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:background="@drawable/tag"
     android:paddingStart="@dimen/small_dimen"
-    android:paddingEnd="@dimen/small_dimen">
+    android:paddingEnd="@dimen/small_dimen"
+    android:layout_marginEnd="@dimen/small_dimen"
+    android:elevation="1dp">
 
     <TextView
         android:id="@+id/layout_sorting_list_item__name"

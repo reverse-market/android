@@ -4,13 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import kotlin.reflect.KFunction0
+
 
 class TagsAdapter(
     initTags: List<String>,
@@ -52,26 +51,13 @@ class TagsAdapter(
             holder.tagBtn?.setOnClickListener { it ->
                 val view =
                     it.findViewById<ImageView>(R.id.layout_sorting_list_item__button_image)
-                val anim = AnimationUtils.loadAnimation(context, R.anim.rotate_item)
-                it.startAnimation(anim)
-                anim.setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationRepeat(p0: Animation?) {
-                    }
-
-                    override fun onAnimationEnd(p0: Animation?) {
-                        if (view.tag == "up") {
-                            it.animate().rotation(0f).start()
-                            view.tag = "down"
-                        } else {
-                            it.animate().rotation(180f).start()
-                            view.tag = "up"
-                        }
-                    }
-
-                    override fun onAnimationStart(p0: Animation?) {
-                    }
-
-                })
+                if (view.tag == "up") {
+                    view.animate().rotation(0f).start()
+                    view.tag = "down"
+                } else {
+                    view.animate().rotation(180f).start()
+                    view.tag = "up"
+                }
             }
         }
     }
