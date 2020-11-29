@@ -44,6 +44,7 @@ class BuyFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_buy, container, false)
         titleTextView = view.findViewById(R.id.layout_toolbar_search__category_name)
         titleTextView.setText(R.string.frg_buy_title)
+        titleTextView.setCompoundDrawables(null, null, null, null)
 
         productList = view.findViewById(R.id.frg_buy__list)
         productList.addOnItemTouchListener(
