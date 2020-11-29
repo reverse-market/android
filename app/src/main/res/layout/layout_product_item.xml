@@ -63,7 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/layout_product_item__main_image"
             android:layout_marginStart="@dimen/def_dimen"
-            android:layout_marginEnd="@dimen/def_dimen" />
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:overScrollMode="never"/>
 
 
         <TextView

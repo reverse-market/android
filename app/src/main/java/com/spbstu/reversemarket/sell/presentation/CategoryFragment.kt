@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Category
@@ -27,7 +26,6 @@ class CategoryFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_category, container, false)
         categoriesRecycle = view.findViewById(R.id.frg_category__list)
-        categoriesRecycle.layoutManager = LinearLayoutManager(context)
         categoriesRecycle.adapter = CategoryAdapter(
             provideCategories(),
             requireContext(),
@@ -37,10 +35,10 @@ class CategoryFragment : Fragment() {
         titleTextView.setOnClickListener {
             val args = Bundle()
             args.putString(CATEGORY_NAV_PARAMETER, titleTextView.text.toString())
-            Navigation.findNavController(view).navigate(R.id.navigation_sell, args)
+            findNavController(view).navigate(R.id.navigation_sell, args)
         }
-        arguments?.getString(CATEGORY_NAV_PARAMETER)?.run {
-            titleTextView.text = this
+        arguments?.getString(CATEGORY_NAV_PARAMETER)?.let {
+            titleTextView.text = it
         }
         searchBtn = view.findViewById(R.id.layout_toolbar_search__full_btn)
         searchBtn.visibility = View.INVISIBLE

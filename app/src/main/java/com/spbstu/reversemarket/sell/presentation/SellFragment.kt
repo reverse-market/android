@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,7 +55,6 @@ class SellFragment : Fragment() {
             }))
 
         tagsList = view.findViewById(R.id.frg_tags_list)
-        productList.layoutManager = LinearLayoutManager(context)
         productList.adapter =
             ProductsAdapter(
                 provideProducts(),
@@ -67,7 +65,7 @@ class SellFragment : Fragment() {
         categoryNameToolbar.setOnClickListener {
             val args = Bundle()
             args.putString(CategoryFragment.CATEGORY_NAV_PARAMETER, categoryNameToolbar.text.toString())
-            Navigation.findNavController(view).navigate(R.id.categoryFragment, args)
+            findNavController().navigate(R.id.categoryFragment, args)
         }
 
         val tags = arguments?.getStringArray("FILTER_TAGS")?.toList()
@@ -80,8 +78,7 @@ class SellFragment : Fragment() {
             TagsAdapter(
                 tags?: provideTags(),
                 R.layout.layout_removable_product_tag,
-                ::filterRecycler,
-                context = context
+                ::filterRecycler
             )
         searchTextBackground = view.findViewById(R.id.layout_toolbar_search_text__background)
         searchText = view.findViewById(R.id.layout_toolbar_search__text)
@@ -95,7 +92,7 @@ class SellFragment : Fragment() {
             val args = Bundle()
             val filterTags = (tagsList.adapter as TagsAdapter).tags
             args.putStringArray("FILTER_TAGS", filterTags.toTypedArray())
-            Navigation.findNavController(view).navigate(R.id.filterFragment, args)
+            findNavController().navigate(R.id.filterFragment, args)
         }
 
         return view
