@@ -20,18 +20,274 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <ScrollView
+        android:id="@+id/scroll_view_profile_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:elevation="@dimen/def_dimen">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:elevation="@dimen/def_dimen"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/profile_buttons_bar"
+                android:elevation="@dimen/small_dimen"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:translationZ="4dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    app:cardCornerRadius="250dp">
+
+                    <ImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_logo" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/profile_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="User Name"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/profile_user_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="reverse.market@gmail.com"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/profile_buttons_bar"
+                android:elevation="@dimen/small_dimen"
+                android:orientation="vertical"
+                android:translationZ="4dp">
+
+                <LinearLayout
+                    android:id="@+id/frg_profile__favorite_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/profile_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="start"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_add_to_fav" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="100"
+                        android:gravity="center_vertical|start"
+                        android:text="@string/favorites"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:rotation="270"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorBackground" />
+
+                <LinearLayout
+                    android:id="@+id/frg_profile__orders_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/profile_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="start"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_sell_default" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="100"
+                        android:gravity="center_vertical|start"
+                        android:text="@string/orders"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:rotation="270"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorBackground" />
+
+                <LinearLayout
+                    android:id="@+id/frg_profile__settings_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/profile_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="start"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_add_to_fav" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="100"
+                        android:gravity="center_vertical|start"
+                        android:text="@string/settings"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:rotation="270"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_arrow" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/profile_buttons_bar"
+                android:elevation="@dimen/small_dimen"
+                android:orientation="vertical"
+                android:translationZ="4dp">
+
+                <LinearLayout
+                    android:id="@+id/frg_profile__sign_out_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/profile_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="start"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_add_to_fav" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="100"
+                        android:gravity="center_vertical|start"
+                        android:text="@string/sign_out"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:rotation="270"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_arrow" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
