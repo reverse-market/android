@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Reverse Market</string>
     <string name="title_activity_navigation">MainActivity</string>
-    <string name="title_buy">Buy</string>
-    <string name="title_sell">Sell</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_buy">Купить</string>
+    <string name="title_sell">Продать</string>
+    <string name="title_profile">Профиль</string>
     <string name="login_facebook">Войти через Facebook</string>
     <string name="login_google">Войти через Google</string>
     <string name="title_product">Продукт</string>
