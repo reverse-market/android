@@ -15,4 +15,7 @@
     <string name="settings">Настройки</string>
     <string name="sign_out">Выход</string>
     <string name="settings_label">Настройки</string>
+    <string name="settings_photos_label">Фото</string>
+    <string name="settings_address_label">Адрес</string>
+    <string name="settings_name_label">Имя</string>
 </resources>
