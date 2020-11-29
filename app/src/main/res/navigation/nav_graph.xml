@@ -25,7 +25,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.spbstu.reversemarket.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_login"
@@ -41,4 +45,13 @@
     <fragment
         android:id="@+id/navigation_product"
         android:name="com.spbstu.reversemarket.product.presentation.ProductFragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.spbstu.reversemarket.profile.settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 </navigation>
