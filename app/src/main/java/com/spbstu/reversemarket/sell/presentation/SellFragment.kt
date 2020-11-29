@@ -82,8 +82,7 @@ class SellFragment : Fragment() {
             TagsAdapter(
                 tags?: provideTags(),
                 R.layout.layout_removable_product_tag,
-                ::filterRecycler,
-                context = context
+                ::filterRecycler
             )
         searchTextBackground = view.findViewById(R.id.layout_toolbar_search_text__background)
         searchText = view.findViewById(R.id.layout_toolbar_search__text)
