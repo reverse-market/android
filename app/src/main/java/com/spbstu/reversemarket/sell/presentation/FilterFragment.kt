@@ -1,5 +1,6 @@
 package com.spbstu.reversemarket.sell.presentation
 
+import android.app.Activity
 import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
@@ -8,10 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.widget.Button
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.ImageView
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,8 +35,9 @@ class FilterFragment : Fragment() {
     private lateinit var minPriceEditText: EditText
     private lateinit var maxPriceEditText: EditText
     private lateinit var search: EditText
-    private lateinit var searchButtonBackground: FrameLayout
+    private lateinit var searchButtonBackground: RelativeLayout
     private lateinit var searchOpenLayout: View
+    private lateinit var closeBtn: ImageView
     private var prevTags: List<String>? = null
 
 
@@ -81,6 +81,9 @@ class FilterFragment : Fragment() {
         searchOpenLayout = view.findViewById(R.id.frg_filter_selected_tags)
         searchButtonBackground = view.findViewById(R.id.frg_filter__search_text_background)
         search = view.findViewById(R.id.frg_filter__toolbar_search__text)
+        closeBtn = view.findViewById(R.id.frg_filter__toolbar_search_close_btn)
+        closeBtn.setOnClickListener { closeKeyboard() }
+
         addTagsList = view.findViewById(R.id.layout_selected_tags__new_tags)
         addTagsList.adapter =
             TagsAdapter(
@@ -170,9 +173,7 @@ class FilterFragment : Fragment() {
 
         override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
             val num: String = s.toString()
-            println(num)
             val value = num.trim().toFloat()
-            println(value)
             if (value in SLIDER_LEFT_BOUND..SLIDER_RIGHT_BOUND
                 && isRightSliderInvariant(sliderIndex, value)
             ) {
@@ -192,16 +193,32 @@ class FilterFragment : Fragment() {
     private val focusListener = ViewTreeObserver.OnGlobalLayoutListener {
         if (search.isFocused) {
             if (keyboardShown(searchOpenLayout.rootView)) {
-                searchButtonBackground.setBackgroundResource(R.drawable.search_background_filter)
-                (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = 0
-                searchOpenLayout.visibility = View.VISIBLE
+                openSearchView()
             } else {
-                searchButtonBackground.setBackgroundResource(R.drawable.search_background)
-                (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin =
-                    resources.getDimension(R.dimen.def_dimen).toInt()
-                searchOpenLayout.visibility = View.GONE
+                closeSearchView()
             }
         }
+    }
+
+    private fun openSearchView() {
+        searchButtonBackground.setBackgroundResource(R.drawable.search_background_filter)
+        (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = 0
+        searchOpenLayout.visibility = View.VISIBLE
+        closeBtn.visibility = View.VISIBLE
+    }
+
+    private fun closeSearchView() {
+        searchButtonBackground.setBackgroundResource(R.drawable.search_background)
+        (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin =
+            resources.getDimension(R.dimen.def_dimen).toInt()
+        searchOpenLayout.visibility = View.GONE
+        closeBtn.visibility = View.GONE
+    }
+
+    private fun closeKeyboard() {
+        val imm =
+            activity?.applicationContext!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 
     companion object {
