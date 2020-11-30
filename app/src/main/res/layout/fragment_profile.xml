@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scroll_view_profile_content"
+        android:id="@+id/frg_profile__scroll_view_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="@dimen/def_dimen">
@@ -36,7 +36,7 @@
             android:paddingBottom="40dp">
 
             <LinearLayout
-                android:id="@+id/profile_info"
+                android:id="@+id/frg_profile__profile_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -53,7 +53,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/profile_user_name"
+                    android:id="@+id/frg_profile__user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -63,7 +63,7 @@
                     tools:text="User Name" />
 
                 <TextView
-                    android:id="@+id/profile_user_email"
+                    android:id="@+id/frg_profile__user_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -85,7 +85,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/frg_profile__avatar"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:elevation="9dp"
@@ -98,7 +98,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:id="@+id/profile_menu_layout"
+                android:id="@+id/frg_profile__menu_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -111,7 +111,7 @@
                 android:translationZ="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile_info">
+                app:layout_constraintTop_toBottomOf="@id/frg_profile__profile_info">
 
                 <LinearLayout
                     android:id="@+id/frg_profile__favorite_button"
@@ -144,7 +144,7 @@
                         android:textSize="18sp" />
 
                     <ImageView
-                        android:id="@+id/profile_favorite_alert"
+                        android:id="@+id/frg_profile__favorite_alert"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
@@ -200,7 +200,7 @@
                         android:textSize="18sp" />
 
                     <ImageView
-                        android:id="@+id/profile_orders_alert"
+                        android:id="@+id/frg_profile__orders_alert"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
@@ -256,7 +256,7 @@
                         android:textSize="18sp" />
 
                     <ImageView
-                        android:id="@+id/profile_settings_alert"
+                        android:id="@+id/frg_profile__settings_alert"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
@@ -291,7 +291,7 @@
                 android:orientation="vertical"
                 android:translationZ="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile_menu_layout">
+                app:layout_constraintTop_toBottomOf="@id/frg_profile__menu_layout">
 
                 <LinearLayout
                     android:id="@+id/frg_profile__sign_out_button"
