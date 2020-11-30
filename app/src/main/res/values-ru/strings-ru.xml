@@ -9,4 +9,9 @@
     <string name="title_product">Продукт</string>
     <string name="nike">Nike кроссовки</string>
     <string name="price_title" >Цена</string>
+
+    <string name="favorites">Избранное</string>
+    <string name="orders">Заказы</string>
+    <string name="settings">Настройки</string>
+    <string name="sign_out">Выход</string>
 </resources>
