@@ -7,9 +7,13 @@
     <string name="login_facebook">Войти через Facebook</string>
     <string name="login_google">Войти через Google</string>
     <string name="title_product">Продукт</string>
-    <string name="nike">Nike кроссовки</string>
     <string name="price_title" >Цена</string>
 
+    <string name="fragment_filter_title">ФИЛЬТР</string>
+    <string name="save_filter_btn_text">СОХРАНИТЬ ФИЛЬТР</string>
+    <string name="filter_sorting_title">Сортировка</string>
+    <string name="filter_selected_title">Выбранное</string>
+    <string name="filter_price_title">Цена</string>
     <string name="favorites">Избранное</string>
     <string name="orders">Заказы</string>
     <string name="settings">Настройки</string>

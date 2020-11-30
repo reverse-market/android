@@ -2,21 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:background="#F1F1F1"
-        tools:context=".sell.presentation.SellFragment"
-        android:layout_height="wrap_content" />
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/mainBackgroundColor"
+    tools:context=".sell.presentation.SellFragment">
 
     <include
         android:id="@+id/frg_search_bar"
         layout="@layout/layout_toolbar__search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frg_tags_list"
@@ -25,7 +20,9 @@
         android:layout_below="@id/frg_search_bar"
         android:background="#FFFFFF"
         android:paddingStart="@dimen/big_dimen"
-        android:paddingEnd="@dimen/big_dimen" />
+        android:paddingEnd="@dimen/big_dimen"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:overScrollMode="never"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frg_product_list"
@@ -33,7 +30,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/frg_tags_list"
         android:layout_marginBottom="@dimen/big_dimen"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:overScrollMode="never" />
-
 
 </RelativeLayout>

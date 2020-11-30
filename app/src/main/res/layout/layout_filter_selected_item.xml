@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selected_filter_item_background">
+
+    <TextView
+        android:id="@+id/layout_filter_selected_item__text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Обувь"
+        android:textColor="@color/colorFilterTitle"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/layout_filter_selected_item__delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="8dp"
+        android:src="@drawable/ic_delete_tag_image" />
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/mainBackgroundColor"-->
+<!--        android:layout_below="@id/layout_filter_selected_item__text"/>-->
+
+</RelativeLayout>

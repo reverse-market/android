@@ -4,9 +4,14 @@
     <string name="title_buy">Buy</string>
     <string name="title_sell">Sell</string>
     <string name="title_profile">Profile</string>
-    <string name="title_product">Продукт</string>
-    <string name="nike">Nike кроссовки</string>
-    <string name="price_title">Цена</string>
+    <string name="title_product">Product</string>
+    <string name="price_title">Price</string>
+
+    <string name="fragment_filter_title">FILTER</string>
+    <string name="save_filter_btn_text">SAVE FILTER</string>
+    <string name="filter_sorting_title">Sorting</string>
+    <string name="filter_selected_title">Selected</string>
+    <string name="filter_price_title">Price</string>
     <string name="login_facebook">Login with Facebook</string>
     <string name="login_google">Login with Google</string>
     <string name="fragment_login_logo_description" translatable="false">Logo</string>
