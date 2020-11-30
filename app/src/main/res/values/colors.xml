@@ -15,4 +15,6 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorDisabled">#2E2D2C</color>
     <color name="colorActive">#ffffff</color>
+    <color name="colorBackground">#F1F1F1</color>
+    <color name="colorGray">#878787</color>
 </resources>

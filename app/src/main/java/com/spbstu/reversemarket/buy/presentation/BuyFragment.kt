@@ -7,22 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Product
 import com.spbstu.reversemarket.sell.presentation.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
-import com.spbstu.reversemarket.sell.presentation.TagsAdapter
 import com.spbstu.reversemarket.utils.Utils
+import com.spbstu.reversemarket.utils.Utils.Companion.changeKeyboardState
+import com.spbstu.reversemarket.utils.Utils.Companion.closeSearchView
+import com.spbstu.reversemarket.utils.Utils.Companion.showSearchView
 
 class BuyFragment : Fragment() {
 
@@ -30,8 +28,9 @@ class BuyFragment : Fragment() {
     private lateinit var titleTextView: TextView
     private lateinit var productList: RecyclerView
     private lateinit var searchButton: FrameLayout
-    private lateinit var searchTextBackground: FrameLayout
+    private lateinit var searchTextBackground: RelativeLayout
     private lateinit var searchText: EditText
+    private lateinit var searchCloseBtn: ImageView
     private lateinit var addNewButton: ImageView
 
 
@@ -67,8 +66,18 @@ class BuyFragment : Fragment() {
 
         searchButton.setOnClickListener(searchButtonListener)
         searchText.setOnKeyListener(Utils(::filterRecycler).enterListener)
+
+        searchCloseBtn = view.findViewById(R.id.layout_toolbar__search_close_btn)
+        searchCloseBtn.setOnClickListener {
+            closeSearchView(titleTextView, searchTextBackground, searchCloseBtn, activity)
+        }
         addNewButton = view.findViewById(R.id.layout_toolbar_search__btn)
-        addNewButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_add))
+        addNewButton.setImageDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_add
+            )
+        )
         return view
     }
 
@@ -100,16 +109,9 @@ class BuyFragment : Fragment() {
         listOf("Adidas", "Черный", "Кроссовки", "Adidas", "Черный", "Кроссовки")
 
 
-    private val searchButtonListener = View.OnClickListener  {
+    private val searchButtonListener = View.OnClickListener {
         if (titleTextView.visibility == View.VISIBLE) {
-            titleTextView.visibility = View.GONE
-            searchTextBackground.visibility = View.VISIBLE
-            val anim = AnimationUtils.loadAnimation(activity?.applicationContext, R.anim.scale_search)
-            searchTextBackground.startAnimation(anim)
-            val imm =
-                activity?.applicationContext!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-            searchText.requestFocus()
+            showSearchView(titleTextView, searchTextBackground, searchText, searchCloseBtn, activity)
         } else {
             filterRecycler()
         }

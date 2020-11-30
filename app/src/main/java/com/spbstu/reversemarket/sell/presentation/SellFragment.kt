@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -31,8 +28,9 @@ class SellFragment : Fragment() {
     private lateinit var tagsList: RecyclerView
     private lateinit var searchButton: FrameLayout
     private lateinit var categoryNameToolbar: TextView
-    private lateinit var searchTextBackground: FrameLayout
+    private lateinit var searchTextBackground: RelativeLayout
     private lateinit var searchText: EditText
+    private lateinit var searchCloseBtn: ImageView
     private lateinit var filterBtn: ImageView
 
     override fun onCreateView(
@@ -87,6 +85,11 @@ class SellFragment : Fragment() {
         searchButton.setOnClickListener(searchButtonListener)
         searchText.setOnKeyListener(Utils(::filterRecycler).enterListener)
 
+        searchCloseBtn = view.findViewById(R.id.layout_toolbar__search_close_btn)
+        searchCloseBtn.setOnClickListener {
+            Utils.closeSearchView(categoryNameToolbar, searchTextBackground, searchCloseBtn, activity)
+        }
+
         filterBtn = view.findViewById(R.id.layout_toolbar_search__btn)
         filterBtn.setOnClickListener{
             val args = Bundle()
@@ -136,16 +139,15 @@ class SellFragment : Fragment() {
         (productList.adapter as ProductsAdapter).products = filter
     }
 
-    private val searchButtonListener = View.OnClickListener  {
+    private val searchButtonListener = View.OnClickListener {
         if (categoryNameToolbar.visibility == View.VISIBLE) {
-            categoryNameToolbar.visibility = View.GONE
-            searchTextBackground.visibility = View.VISIBLE
-            val anim = AnimationUtils.loadAnimation(activity?.applicationContext, R.anim.scale_search)
-            searchTextBackground.startAnimation(anim)
-            val imm =
-                activity?.applicationContext!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-            searchText.requestFocus()
+            Utils.showSearchView(
+                categoryNameToolbar,
+                searchTextBackground,
+                searchText,
+                searchCloseBtn,
+                activity
+            )
         } else {
             filterRecycler()
         }
