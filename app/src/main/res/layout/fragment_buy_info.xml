@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBackgroundColor"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/frg_buy_info__title_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="9dp">
+        android:background="@color/colorWhite"
+        android:elevation="20dp">
 
         <TextView
             android:id="@+id/frg_buy_info__title"
@@ -28,6 +30,9 @@
             android:id="@+id/frg_buy_info__back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:background="@drawable/white_rounded_background"
             android:padding="@dimen/huge_dimen"
             android:src="@drawable/ic_arrow" />
 
@@ -37,7 +42,7 @@
         android:id="@+id/frg_buy_info__scroll_view_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/mainBackgroundColor"
+        android:background="@color/colorWhite"
         android:elevation="@dimen/def_dimen">
 
         <LinearLayout
@@ -59,9 +64,11 @@
                 android:id="@+id/frg_buy_info__add_image_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/big_dimen"
+                android:layout_marginStart="@dimen/x_huge_dimen"
                 android:layout_marginTop="@dimen/small_dimen"
-                android:src="@drawable/ic_add_image"/>
+                android:background="@drawable/shadows"
+                android:elevation="3dp"
+                android:src="@drawable/ic_add_image" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,14 +84,14 @@
                 android:id="@+id/frg_buy_info__description_text"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@drawable/white_rounded_background"
                 android:layout_marginStart="@dimen/x_huge_dimen"
-                android:layout_marginEnd="@dimen/x_huge_dimen"
                 android:layout_marginTop="@dimen/small_dimen"
-                android:padding="@dimen/def_dimen"
-                android:hint="@string/description_hint"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:background="@drawable/white_rounded_background"
+                android:elevation="10dp"
                 android:gravity="top"
-                android:elevation="10dp"/>
+                android:hint="@string/description_hint"
+                android:padding="@dimen/def_dimen" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,17 +107,17 @@
                 android:id="@+id/frg_buy_info__price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_rounded_background"
                 android:layout_marginStart="@dimen/x_huge_dimen"
-                android:layout_marginEnd="@dimen/x_huge_dimen"
                 android:layout_marginTop="@dimen/small_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:background="@drawable/white_rounded_background"
+                android:drawableStart="@drawable/ic_ruble"
+                android:elevation="10dp"
+                android:gravity="top"
+                android:hint="@string/price_hint"
                 android:padding="@dimen/def_dimen"
                 android:paddingStart="@dimen/big_dimen"
-                android:paddingEnd="@dimen/big_dimen"
-                android:hint="@string/price_hint"
-                android:gravity="top"
-                android:drawableStart="@drawable/ic_ruble"
-                android:elevation="10dp"/>
+                android:paddingEnd="@dimen/big_dimen" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -126,24 +133,84 @@
                 android:id="@+id/frg_buy_info__amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_rounded_background"
-                android:layout_marginTop="@dimen/small_dimen"
                 android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/small_dimen"
                 android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:background="@drawable/white_rounded_background"
+                android:elevation="10dp"
+                android:gravity="top"
+                android:hint="@string/amount_hint"
                 android:padding="@dimen/def_dimen"
                 android:paddingStart="@dimen/huge_dimen"
-                android:paddingEnd="@dimen/huge_dimen"
-                android:hint="@string/amount_hint"
-                android:gravity="top"
-                android:elevation="10dp"/>
+                android:paddingEnd="@dimen/huge_dimen" />
 
             <include
                 android:id="@+id/frg_buy_info__address"
-                android:layout_width="wrap_content"
+                layout="@layout/layout_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include
+                android:id="@+id/frg_but_info__search_text_background"
+                layout="@layout/layout_search"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_address" />
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/big_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen" />
+
+            <include
+                android:id="@+id/frg_but_info__selected_tags"
+                layout="@layout/layout_selected_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="@dimen/huge_dimen"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:background="@drawable/white_rounded_background"
+                android:elevation="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="24dp"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/filter_selected_title"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/frg_filter__selected_categories"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/layout_filter_selected_item" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/frg_filter__save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/x_huge_dimen"
+                android:background="@drawable/filter_save_btn_background"
+                android:text="@string/create"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
         </LinearLayout>
-
     </ScrollView>
 </LinearLayout>

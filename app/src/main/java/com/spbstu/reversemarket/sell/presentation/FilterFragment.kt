@@ -23,6 +23,8 @@ import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.slider.RangeSlider
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.utils.AddSearchViewUtils
+import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.Utils.Companion.changeKeyboardState
 
 
@@ -82,8 +84,8 @@ class FilterFragment : Fragment() {
 
         searchOpenLayout = view.findViewById(R.id.frg_filter_selected_tags)
         searchButtonBackground = view.findViewById(R.id.frg_filter__search_text_background)
-        search = view.findViewById(R.id.frg_filter__toolbar_search__text)
-        closeBtn = view.findViewById(R.id.frg_filter__toolbar_search_close_btn)
+        search = view.findViewById(R.id.layout_search__toolbar_search__text)
+        closeBtn = view.findViewById(R.id.layout_search__toolbar_search_close_btn)
         closeBtn.setOnClickListener { changeKeyboardState(activity) }
 
         addTagsList = view.findViewById(R.id.layout_selected_tags__new_tags)
@@ -99,7 +101,15 @@ class FilterFragment : Fragment() {
         layoutManager.flexWrap = FlexWrap.WRAP
         addTagsList.layoutManager = layoutManager
 
-        searchOpenLayout.viewTreeObserver.addOnGlobalLayoutListener(focusListener)
+        searchOpenLayout.viewTreeObserver.addOnGlobalLayoutListener(
+            AddSearchViewUtils.getFocusListener(
+                search,
+                searchButtonBackground,
+                searchOpenLayout,
+                closeBtn,
+                resources.getDimension(R.dimen.def_dimen).toInt()
+            )
+        )
 
         saveBtn = view.findViewById(R.id.frg_filter__save_btn)
         saveBtn.setOnClickListener(toSellFragmentSaveClickListener)
@@ -118,23 +128,6 @@ class FilterFragment : Fragment() {
         val args = Bundle()
         args.putStringArray("FILTER_TAGS", prevTags?.toTypedArray())
         findNavController(requireView()).navigate(R.id.navigation_sell, args)
-    }
-
-    private fun addTag(recycle: RecyclerView, tag: String) {
-        val adapter = (recycle.adapter as TagsAdapter)
-        val list = adapter.tags.toMutableList()
-        list.add(tag)
-        adapter.tags = list
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun keyboardShown(rootView: View): Boolean {
-        val softKeyboardHeight = 100
-        val r = Rect()
-        rootView.getWindowVisibleDisplayFrame(r)
-        val dm = rootView.resources.displayMetrics
-        val heightDiff: Int = rootView.bottom - r.bottom
-        return heightDiff > softKeyboardHeight * dm.density
     }
 
     private fun provideSorting(): List<String> = listOf("Цена", "Просмотры", "Дата")
@@ -191,31 +184,6 @@ class FilterFragment : Fragment() {
     private fun isRightSliderInvariant(sliderIndex: Int, value: Float) =
         (sliderIndex == SLIDER_MIN_VALUE_INDEX && value <= slider.values[1]
                 || sliderIndex == SLIDER_MAX_VALUE_INDEX && value >= slider.values[0])
-
-    private val focusListener = ViewTreeObserver.OnGlobalLayoutListener {
-        if (search.isFocused) {
-            if (keyboardShown(searchOpenLayout.rootView)) {
-                openSearchView()
-            } else {
-                closeSearchView()
-            }
-        }
-    }
-
-    private fun openSearchView() {
-        searchButtonBackground.setBackgroundResource(R.drawable.search_background_filter)
-        (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = 0
-        searchOpenLayout.visibility = View.VISIBLE
-        closeBtn.visibility = View.VISIBLE
-    }
-
-    private fun closeSearchView() {
-        searchButtonBackground.setBackgroundResource(R.drawable.search_background)
-        (searchButtonBackground.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin =
-            resources.getDimension(R.dimen.def_dimen).toInt()
-        searchOpenLayout.visibility = View.GONE
-        closeBtn.visibility = View.GONE
-    }
 
     companion object {
         const val SLIDER_MIN_VALUE_INDEX = 0
