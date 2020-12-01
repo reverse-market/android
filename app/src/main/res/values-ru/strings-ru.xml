@@ -32,4 +32,7 @@
     <string name="amount_hint">Введите количество товара…</string>
     <string name="address_title">Адрес</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sold">Проданные</string>
+    <string name="bought">Купленные</string>
 </resources>

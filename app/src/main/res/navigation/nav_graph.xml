@@ -70,6 +70,7 @@
     <fragment
         android:id="@+id/navigation_product"
         android:name="com.spbstu.reversemarket.product.presentation.ProductFragment" />
+
     <fragment
         android:id="@+id/buyInfoFragment"
         android:name="com.spbstu.reversemarket.buy.presentation.BuyInfoFragment"
@@ -78,4 +79,10 @@
             android:id="@+id/action_buyInfoFragment_to_navigation_buy"
             app:destination="@id/navigation_buy" />
     </fragment>
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.spbstu.reversemarket.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>

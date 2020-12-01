@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/item_sold__image_card"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/item_sold__image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:src="@tools:sample/avatars" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/item_sold__title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="#2E2D2C"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/item_sold__image_card"
+                app:layout_constraintTop_toTopOf="@id/item_sold__image_card"
+                tools:text="Nike кроссовки" />
+
+            <TextView
+                android:id="@+id/item_sold__sub_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="#828282"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_sold__image_card"
+                app:layout_constraintTop_toBottomOf="@id/item_sold__title"
+                tools:text="Air Force 1 Shadow White Yellow" />
+
+            <TextView
+                android:id="@+id/item_sold__amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="#2E2D2C"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/item_sold__image_card"
+                app:layout_constraintTop_toBottomOf="@id/item_sold__sub_title"
+                tools:text="1" />
+
+            <ImageView
+                android:id="@+id/item_sold__currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_rouble"
+                app:layout_constraintStart_toEndOf="@id/item_sold__image_card"
+                app:layout_constraintTop_toBottomOf="@id/item_sold__amount" />
+
+            <TextView
+                android:id="@+id/item_sold__price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textColor="#2E2D2C"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/item_sold__currency"
+                app:layout_constraintTop_toBottomOf="@id/item_sold__amount"
+                tools:text="12000" />
+
+            <TextView
+                android:id="@+id/item_sold__date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#828282"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="01.02.2000" />
+
+            <ImageView
+                android:id="@+id/item_sold__notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_red_notification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>
