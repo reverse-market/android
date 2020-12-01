@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/colorFilterTitle</color>
+    <color name="colorPrimary">@color/colorText</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
     <color name="mainBackgroundColor">#F1F1F1</color>
 
     <!-- Filter fragment colors   -->
-    <color name="colorFilterTitle">#2E2D2C</color>
+    <color name="colorText">#2E2D2C</color>
     <color name="colorFilterSearchDefaultText">#828282</color>
 
     <color name="productTitleColor">#2E2D2C</color>

@@ -18,9 +18,13 @@
     <string name="fragment_login_logo_description" translatable="false">Logo</string>
 
     <string name="frg_buy_title">My announcement</string>
+    <string name="buy_info_title">Creating announcement</string>
 
     <string name="favorites">Favorites</string>
     <string name="orders">Orders</string>
     <string name="settings">Settings</string>
     <string name="sign_out">Sign out</string>
+
+    <string name="photo_title">Photo</string>
+    <string name="description_title">Description</string>
 </resources>

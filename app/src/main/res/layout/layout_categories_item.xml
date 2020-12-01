@@ -14,11 +14,11 @@
         android:id="@+id/layout_categories_item__name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/xx_huge_dimen"
+        android:padding="@dimen/xxx_huge_dimen"
         android:lineSpacingExtra="5sp"
         android:textSize="30sp"
         android:background="@drawable/category_background"
-        android:textColor="@color/colorFilterTitle"
+        android:textColor="@color/colorText"
         android:textAllCaps="true" />
 
 

@@ -17,9 +17,14 @@
     <string name="filter_price_title">Цена</string>
 
     <string name="frg_buy_title">Мои объявления</string>
+    <string name="buy_info_title">Создание объявления</string>
 
     <string name="favorites">Избранное</string>
     <string name="orders">Заказы</string>
     <string name="settings">Настройки</string>
     <string name="sign_out">Выход</string>
+
+    <string name="photo_title">Фото</string>
+    <string name="description_title">Описание</string>
+
 </resources>

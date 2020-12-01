@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
@@ -78,6 +79,10 @@ class BuyFragment : Fragment() {
                 R.drawable.ic_add
             )
         )
+
+        view.findViewById<ImageView>(R.id.layout_toolbar_search__btn).setOnClickListener {
+            findNavController().navigate(R.id.buyInfoFragment)
+        }
         return view
     }
 

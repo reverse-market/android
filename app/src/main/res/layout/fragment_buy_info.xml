@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackgroundColor"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/frg_buy_info__title_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="9dp">
+
+        <TextView
+            android:id="@+id/frg_buy_info__title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:padding="@dimen/def_dimen"
+            android:text="@string/buy_info_title"
+            android:textAllCaps="true"
+            android:textColor="@color/colorText"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/frg_buy_info__back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/huge_dimen"
+            android:src="@drawable/ic_arrow" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/frg_buy_info__scroll_view_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/def_dimen">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/huge_dimen"
+                android:text="@string/photo_title"
+                android:textAllCaps="true"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/frg_buy_info__add_image_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/big_dimen"
+                android:layout_marginTop="@dimen/small_dimen"
+                android:src="@drawable/ic_add_image"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/huge_dimen"
+                android:text="@string/description_title"
+                android:textAllCaps="true"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/white_rounded_background"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:elevation="10dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
