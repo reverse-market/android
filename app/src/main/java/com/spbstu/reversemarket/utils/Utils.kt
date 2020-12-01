@@ -11,9 +11,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import com.spbstu.reversemarket.R
-import kotlin.reflect.KFunction0
 
-class Utils(private val filterRecycler: KFunction0<Unit>) {
+class Utils(private val filterRecycler: () -> Unit) {
 
     val enterListener = View.OnKeyListener { v, keyCode, event ->
         if ((event.action == KeyEvent.ACTION_DOWN) &&
