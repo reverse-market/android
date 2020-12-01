@@ -66,4 +66,9 @@
     <fragment
         android:id="@+id/navigation_product"
         android:name="com.spbstu.reversemarket.product.presentation.ProductFragment" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.spbstu.reversemarket.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>
