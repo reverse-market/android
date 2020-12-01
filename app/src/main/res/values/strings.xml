@@ -27,4 +27,10 @@
 
     <string name="photo_title">Photo</string>
     <string name="description_title">Description</string>
+    <string name="description_hint">Tell us something about this product…</string>
+    <string name="price_hint">Enter the price…</string>
+    <string name="amount_title">Amount</string>
+    <string name="amount_hint">Enter product amount…</string>
+    <string name="address_title">Address</string>
+
 </resources>

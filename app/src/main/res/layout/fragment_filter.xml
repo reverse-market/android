@@ -71,7 +71,7 @@
             android:padding="@dimen/def_dimen"
             android:paddingStart="@dimen/xxx_huge_dimen"
             android:paddingEnd="@dimen/xxx_huge_dimen"
-            android:textColor="@color/colorFilterSearchDefaultText"
+            android:textColor="@color/colorTextGray"
             android:textCursorDrawable="@drawable/search_black_cursor"
             android:textSize="16sp" />
 

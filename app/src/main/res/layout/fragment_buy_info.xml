@@ -37,11 +37,12 @@
         android:id="@+id/frg_buy_info__scroll_view_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/mainBackgroundColor"
         android:elevation="@dimen/def_dimen">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -72,13 +73,75 @@
                 android:textColor="@color/colorText"
                 android:textSize="18sp" />
 
-            <TextView
+            <EditText
+                android:id="@+id/frg_buy_info__description_text"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/white_rounded_background"
                 android:layout_marginStart="@dimen/x_huge_dimen"
                 android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/small_dimen"
+                android:padding="@dimen/def_dimen"
+                android:hint="@string/description_hint"
+                android:gravity="top"
                 android:elevation="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/huge_dimen"
+                android:text="@string/price_title"
+                android:textAllCaps="true"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/frg_buy_info__price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_background"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/small_dimen"
+                android:padding="@dimen/def_dimen"
+                android:paddingStart="@dimen/big_dimen"
+                android:paddingEnd="@dimen/big_dimen"
+                android:hint="@string/price_hint"
+                android:gravity="top"
+                android:drawableStart="@drawable/ic_ruble"
+                android:elevation="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/huge_dimen"
+                android:text="@string/amount_title"
+                android:textAllCaps="true"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/frg_buy_info__amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_background"
+                android:layout_marginTop="@dimen/small_dimen"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:padding="@dimen/def_dimen"
+                android:paddingStart="@dimen/huge_dimen"
+                android:paddingEnd="@dimen/huge_dimen"
+                android:hint="@string/amount_hint"
+                android:gravity="top"
+                android:elevation="10dp"/>
+
+            <include
+                android:id="@+id/frg_buy_info__address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_address" />
 
         </LinearLayout>
 

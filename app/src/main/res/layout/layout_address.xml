@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x_huge_dimen"
+        android:layout_marginTop="@dimen/huge_dimen"
+        android:text="@string/address_title"
+        android:textAllCaps="true"
+        android:textColor="@color/colorText"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/layout_address__add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/big_dimen"
+            android:layout_marginTop="@dimen/small_dimen"
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:src="@drawable/ic_add_image" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/layout_address_list"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            tools:listitem="@layout/layout_address_item"/>
+
+    </LinearLayout>
+
+</LinearLayout>

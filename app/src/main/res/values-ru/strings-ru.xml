@@ -26,5 +26,10 @@
 
     <string name="photo_title">Фото</string>
     <string name="description_title">Описание</string>
+    <string name="description_hint">Расскажи что-нибудь о товаре…</string>
+    <string name="price_hint">Введите цену…</string>
+    <string name="amount_title">Количество</string>
+    <string name="amount_hint">Введите количество товара…</string>
+    <string name="address_title">Адрес</string>
 
 </resources>

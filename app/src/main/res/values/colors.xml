@@ -8,7 +8,7 @@
 
     <!-- Filter fragment colors   -->
     <color name="colorText">#2E2D2C</color>
-    <color name="colorFilterSearchDefaultText">#828282</color>
+    <color name="colorTextGray">#828282</color>
 
     <color name="productTitleColor">#2E2D2C</color>
     <color name="colorBlack">#2E2D2C</color>
