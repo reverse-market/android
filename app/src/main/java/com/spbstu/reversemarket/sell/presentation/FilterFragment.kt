@@ -25,7 +25,7 @@ import com.google.android.material.slider.RangeSlider
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.utils.AddSearchViewUtils
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
-import com.spbstu.reversemarket.utils.Utils.Companion.changeKeyboardState
+import com.spbstu.reversemarket.utils.Utils.Companion.closeKeyboard
 
 
 class FilterFragment : Fragment() {
@@ -86,7 +86,7 @@ class FilterFragment : Fragment() {
         searchButtonBackground = view.findViewById(R.id.frg_filter__search_text_background)
         search = view.findViewById(R.id.layout_search__toolbar_search__text)
         closeBtn = view.findViewById(R.id.layout_search__toolbar_search_close_btn)
-        closeBtn.setOnClickListener { changeKeyboardState(activity) }
+        closeBtn.setOnClickListener { closeKeyboard(activity, search) }
 
         addTagsList = view.findViewById(R.id.layout_selected_tags__new_tags)
         addTagsList.adapter =
@@ -116,6 +116,10 @@ class FilterFragment : Fragment() {
         return view
     }
 
+    override fun onStop() {
+        closeKeyboard(activity, search)
+        super.onStop()
+    }
 
     private val toSellFragmentSaveClickListener = View.OnClickListener {
         val args = Bundle()
