@@ -15,7 +15,7 @@
         android:layout_marginTop="56dp"
         android:contentDescription="@string/fragment_login_logo_description" />
 
-        <Button
+        <android.widget.Button
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/frg_login__facebook_login_button"
@@ -32,7 +32,7 @@
             android:elevation="@dimen/small_dimen"
             android:translationZ="@dimen/small_dimen"
             />
-        <Button
+        <android.widget.Button
             android:id="@+id/frg_login__facebook_login_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
