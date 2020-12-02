@@ -86,7 +86,7 @@ class SellFragment : Fragment() {
 
         searchCloseBtn = view.findViewById(R.id.layout_toolbar__search_close_btn)
         searchCloseBtn.setOnClickListener {
-            Utils.closeSearchView(categoryNameToolbar, searchTextBackground, searchCloseBtn, activity)
+            Utils.closeSearchView(categoryNameToolbar, searchTextBackground, searchCloseBtn, searchText, activity)
         }
 
         filterBtn = view.findViewById(R.id.layout_toolbar_search__btn)

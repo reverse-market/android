@@ -14,9 +14,8 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.spbstu.reversemarket.R
-import kotlin.reflect.KFunction0
 
-class Utils(private val filterRecycler: KFunction0<Unit>) {
+class Utils(private val filterRecycler: () -> Unit) {
 
     val enterListener = View.OnKeyListener { v, keyCode, event ->
         if ((event.action == KeyEvent.ACTION_DOWN) &&
@@ -28,10 +27,16 @@ class Utils(private val filterRecycler: KFunction0<Unit>) {
     }
 
     companion object {
-        fun changeKeyboardState(activity: FragmentActivity?) {
+        fun closeKeyboard(activity: FragmentActivity?, editText: EditText) {
             val imm =
                 activity?.applicationContext!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+            imm.hideSoftInputFromWindow(editText.windowToken, 0)
+        }
+
+        private fun openKeyboard(activity: FragmentActivity?) {
+            val imm =
+                activity?.applicationContext!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         }
 
         fun showSearchView(titleTextView: TextView,
@@ -43,19 +48,20 @@ class Utils(private val filterRecycler: KFunction0<Unit>) {
             searchTextBackground.visibility = View.VISIBLE
             val anim = AnimationUtils.loadAnimation(activity?.applicationContext, R.anim.scale_search)
             searchTextBackground.startAnimation(anim)
-            changeKeyboardState(activity)
+            openKeyboard(activity);
             searchText.requestFocus()
             searchCloseBtn.visibility = View.VISIBLE
         }
 
         fun closeSearchView(titleTextView: TextView,
-                                    searchTextBackground: RelativeLayout,
-                                    searchCloseBtn: ImageView,
-                                    activity: FragmentActivity?) {
+                            searchTextBackground: RelativeLayout,
+                            searchCloseBtn: ImageView,
+                            searchText: EditText,
+                            activity: FragmentActivity?) {
             searchTextBackground.visibility = View.GONE
             titleTextView.visibility = View.VISIBLE
             searchCloseBtn.visibility = View.GONE
-            changeKeyboardState(activity)
+            closeKeyboard(activity, searchText)
         }
 
         fun changeImage(imageView: ImageView, drawableId: Int, context: Context) {

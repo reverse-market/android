@@ -70,7 +70,7 @@ class BuyInfoFragment : Fragment() {
         searchButtonBackground = view.findViewById(R.id.frg_but_info__search_text_background)
         search = view.findViewById(R.id.layout_search__toolbar_search__text)
         closeBtn = view.findViewById(R.id.layout_search__toolbar_search_close_btn)
-        closeBtn.setOnClickListener { Utils.changeKeyboardState(activity) }
+        closeBtn.setOnClickListener { Utils.closeKeyboard(activity, search) }
 
         addTagsList = view.findViewById(R.id.layout_selected_tags__new_tags)
         addTagsList.adapter =

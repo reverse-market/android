@@ -66,7 +66,7 @@ class BuyFragment : Fragment() {
 
         searchCloseBtn = view.findViewById(R.id.layout_toolbar__search_close_btn)
         searchCloseBtn.setOnClickListener {
-            closeSearchView(titleTextView, searchTextBackground, searchCloseBtn, activity)
+            closeSearchView(titleTextView, searchTextBackground, searchCloseBtn, searchText, activity)
         }
         addNewButton = view.findViewById(R.id.layout_toolbar_search__btn)
         addNewButton.setImageDrawable(
