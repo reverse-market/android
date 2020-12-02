@@ -1,6 +1,5 @@
 package com.spbstu.reversemarket.sell.presentation
 
-import android.app.Activity
 import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
@@ -9,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.slider.RangeSlider
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.utils.Utils.Companion.closeKeyboard
 
 
 class FilterFragment : Fragment() {
@@ -82,7 +84,7 @@ class FilterFragment : Fragment() {
         searchButtonBackground = view.findViewById(R.id.frg_filter__search_text_background)
         search = view.findViewById(R.id.frg_filter__toolbar_search__text)
         closeBtn = view.findViewById(R.id.frg_filter__toolbar_search_close_btn)
-        closeBtn.setOnClickListener { closeKeyboard() }
+        closeBtn.setOnClickListener { closeKeyboard(activity, search) }
 
         addTagsList = view.findViewById(R.id.layout_selected_tags__new_tags)
         addTagsList.adapter =
@@ -104,6 +106,10 @@ class FilterFragment : Fragment() {
         return view
     }
 
+    override fun onStop() {
+        closeKeyboard(activity, search)
+        super.onStop()
+    }
 
     private val toSellFragmentSaveClickListener = View.OnClickListener {
         val args = Bundle()
@@ -213,12 +219,6 @@ class FilterFragment : Fragment() {
             resources.getDimension(R.dimen.def_dimen).toInt()
         searchOpenLayout.visibility = View.GONE
         closeBtn.visibility = View.GONE
-    }
-
-    private fun closeKeyboard() {
-        val imm =
-            activity?.applicationContext!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 
     companion object {

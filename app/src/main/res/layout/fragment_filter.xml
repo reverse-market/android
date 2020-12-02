@@ -65,11 +65,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/search_background"
-            android:hint="Поиск"
+            android:hint="@string/searchHint"
             android:inputType="text"
             android:maxLines="1"
             android:padding="@dimen/def_dimen"
             android:paddingStart="@dimen/xx_huge_dimen"
+            android:paddingEnd="@dimen/xx_huge_dimen"
             android:textColor="@color/colorFilterSearchDefaultText"
             android:textCursorDrawable="@drawable/search_black_cursor"
             android:textSize="16sp" />

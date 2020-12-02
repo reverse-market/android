@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_buy"
-        android:name="com.spbstu.reversemarket.buy.BuyFragment"
+        android:name="com.spbstu.reversemarket.buy.presentation.BuyFragment"
         android:label="@string/title_buy"
         tools:layout="@layout/fragment_buy" />
 

@@ -7,6 +7,7 @@
     <string name="title_product">Product</string>
     <string name="price_title">Price</string>
 
+    <string name="searchHint">search</string>
     <string name="fragment_filter_title">FILTER</string>
     <string name="save_filter_btn_text">SAVE FILTER</string>
     <string name="filter_sorting_title">Sorting</string>
@@ -15,6 +16,8 @@
     <string name="login_facebook">Login with Facebook</string>
     <string name="login_google">Login with Google</string>
     <string name="fragment_login_logo_description" translatable="false">Logo</string>
+
+    <string name="frg_buy_title">My announcement</string>
 
     <string name="favorites">Favorites</string>
     <string name="orders">Orders</string>
