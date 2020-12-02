@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.utils
 
 import android.app.Activity
+import android.content.Context
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -9,6 +10,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.spbstu.reversemarket.R
 import kotlin.reflect.KFunction0
@@ -53,6 +56,15 @@ class Utils(private val filterRecycler: KFunction0<Unit>) {
             titleTextView.visibility = View.VISIBLE
             searchCloseBtn.visibility = View.GONE
             changeKeyboardState(activity)
+        }
+
+        fun changeImage(imageView: ImageView, drawableId: Int, context: Context) {
+            imageView.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    drawableId
+                )
+            )
         }
     }
 }

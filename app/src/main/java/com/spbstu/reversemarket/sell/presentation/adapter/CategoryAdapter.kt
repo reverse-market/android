@@ -1,13 +1,11 @@
-package com.spbstu.reversemarket.sell.presentation
+package com.spbstu.reversemarket.sell.presentation.adapter
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Category

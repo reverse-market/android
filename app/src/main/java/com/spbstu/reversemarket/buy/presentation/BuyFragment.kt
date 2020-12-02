@@ -1,12 +1,9 @@
 package com.spbstu.reversemarket.buy.presentation
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -16,10 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Product
-import com.spbstu.reversemarket.sell.presentation.ProductsAdapter
+import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
 import com.spbstu.reversemarket.utils.Utils
-import com.spbstu.reversemarket.utils.Utils.Companion.changeKeyboardState
 import com.spbstu.reversemarket.utils.Utils.Companion.closeSearchView
 import com.spbstu.reversemarket.utils.Utils.Companion.showSearchView
 

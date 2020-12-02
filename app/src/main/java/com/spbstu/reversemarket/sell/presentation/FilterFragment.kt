@@ -1,13 +1,11 @@
 package com.spbstu.reversemarket.sell.presentation
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -23,6 +21,7 @@ import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.slider.RangeSlider
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.AddSearchViewUtils
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.Utils.Companion.changeKeyboardState

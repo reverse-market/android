@@ -13,6 +13,7 @@
         <action
             android:id="@+id/action_navigation_buy_to_buyInfoFragment"
             app:destination="@id/buyInfoFragment" />
+
     </fragment>
 
     <fragment
@@ -85,4 +86,8 @@
         android:name="com.spbstu.reversemarket.orders.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/sellInfoFragment"
+        android:name="com.spbstu.reversemarket.sell.presentation.SellInfoFragment"
+        android:label="SellInfoFragment" />
 </navigation>

@@ -7,27 +7,27 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/frg_buy_info__title_container"
+        android:id="@+id/frg_sell_info__title_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:elevation="20dp">
 
         <TextView
-            android:id="@+id/frg_buy_info__title"
+            android:id="@+id/frg_sell_info__title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:padding="@dimen/def_dimen"
-            android:text="@string/buy_info_title"
+            android:text="@string/sell_request"
             android:textAllCaps="true"
             android:textColor="@color/colorText"
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/frg_buy_info__back_btn"
+            android:id="@+id/frg_sell_info__back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -39,7 +39,7 @@
     </RelativeLayout>
 
     <ScrollView
-        android:id="@+id/frg_buy_info__scroll_view_content"
+        android:id="@+id/frg_sell_info__scroll_view_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
@@ -51,68 +51,46 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/frg_buy_info__information"
+                android:id="@+id/frg_sell_info__information"
                 layout="@layout/layout_new_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <include
-                android:id="@+id/frg_but_info__search_text_background"
-                layout="@layout/layout_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/x_huge_dimen"
-                android:layout_marginTop="@dimen/big_dimen"
-                android:layout_marginEnd="@dimen/x_huge_dimen" />
-
-            <include
-                android:id="@+id/frg_but_info__selected_tags"
-                layout="@layout/layout_selected_tags"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/x_huge_dimen"
-                android:layout_marginEnd="@dimen/x_huge_dimen"
-                android:visibility="gone" />
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="@dimen/huge_dimen"
+                android:id="@+id/frg_sell_info__checkbox_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/def_dimen"
+                android:layout_marginBottom="@dimen/big_dimen"
                 android:layout_marginStart="@dimen/x_huge_dimen"
-                android:layout_marginEnd="@dimen/x_huge_dimen"
-                android:background="@drawable/white_rounded_background"
-                android:elevation="10dp"
-                android:orientation="vertical">
+                android:layout_marginEnd="@dimen/x_huge_dimen">
+
+                <ImageView
+                    android:id="@+id/frg_sell_info__checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="save"
+                    android:src="@drawable/ic_checkbox"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:elevation="24dp"
-                    android:gravity="center"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:text="@string/filter_selected_title"
+                    android:textSize="16sp"
+                    android:layout_marginStart="@dimen/small_dimen"
+                    android:layout_marginEnd="@dimen/small_dimen"
                     android:textColor="@color/colorText"
-                    android:textSize="18sp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/frg_filter__selected_categories"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:overScrollMode="never"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/layout_filter_selected_item" />
+                    android:text="@string/save_template"/>
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/frg_filter__save_btn"
+                android:id="@+id/frg_sell_info__save_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/x_huge_dimen"
                 android:background="@drawable/filter_save_btn_background"
-                android:text="@string/create"
+                android:text="@string/suggest"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
