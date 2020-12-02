@@ -1,12 +1,9 @@
 package com.spbstu.reversemarket.buy.presentation
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -18,7 +15,6 @@ import com.spbstu.reversemarket.sell.domain.model.Product
 import com.spbstu.reversemarket.sell.presentation.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
 import com.spbstu.reversemarket.utils.Utils
-import com.spbstu.reversemarket.utils.Utils.Companion.changeKeyboardState
 import com.spbstu.reversemarket.utils.Utils.Companion.closeSearchView
 import com.spbstu.reversemarket.utils.Utils.Companion.showSearchView
 
@@ -69,7 +65,7 @@ class BuyFragment : Fragment() {
 
         searchCloseBtn = view.findViewById(R.id.layout_toolbar__search_close_btn)
         searchCloseBtn.setOnClickListener {
-            closeSearchView(titleTextView, searchTextBackground, searchCloseBtn, activity)
+            closeSearchView(titleTextView, searchTextBackground, searchCloseBtn, searchText, activity)
         }
         addNewButton = view.findViewById(R.id.layout_toolbar_search__btn)
         addNewButton.setImageDrawable(
