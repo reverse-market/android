@@ -7,9 +7,9 @@
 
     <include
         android:id="@+id/frg_buy__toolbar"
+        layout="@layout/layout_toolbar__search"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/layout_toolbar__search"/>
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frg_buy__list"

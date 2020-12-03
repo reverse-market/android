@@ -25,7 +25,7 @@
             android:gravity="center"
             android:padding="@dimen/small_dimen"
             android:text="@string/fragment_filter_title"
-            android:textColor="@color/colorFilterTitle"
+            android:textColor="@color/colorText"
             android:textSize="21sp" />
 
         <ImageView
@@ -38,54 +38,15 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <include
         android:id="@+id/frg_filter__search_text_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/frg_filter__title_container"
         android:layout_marginStart="@dimen/def_dimen"
-        android:layout_marginTop="@dimen/def_dimen"
         android:layout_marginEnd="@dimen/def_dimen"
         android:layout_marginBottom="@dimen/def_dimen"
-        android:background="@drawable/search_background"
-        android:elevation="50dp"
-        android:tag="close"
-        android:visibility="visible">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="40dp"
-            android:padding="@dimen/def_dimen"
-            android:src="@drawable/ic_search"
-            android:layout_alignParentStart="true"/>
-
-        <EditText
-            android:id="@+id/frg_filter__toolbar_search__text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/search_background"
-            android:hint="@string/searchHint"
-            android:inputType="text"
-            android:maxLines="1"
-            android:padding="@dimen/def_dimen"
-            android:paddingStart="@dimen/xx_huge_dimen"
-            android:paddingEnd="@dimen/xx_huge_dimen"
-            android:textColor="@color/colorFilterSearchDefaultText"
-            android:textCursorDrawable="@drawable/search_black_cursor"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/frg_filter__toolbar_search_close_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="40dp"
-            android:padding="@dimen/def_dimen"
-            android:src="@drawable/ic_close_product"
-            android:layout_alignParentEnd="true"
-            android:visibility="gone"/>
-
-    </RelativeLayout>
+        layout="@layout/layout_search"/>
 
     <include
         android:id="@+id/frg_filter_selected_tags"
@@ -107,7 +68,6 @@
             android:id="@+id/frg_filter_selected_and_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/frg_filter__search_text_background"
             android:background="@color/mainBackgroundColor"
             android:orientation="vertical">
 
@@ -127,7 +87,7 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:text="@string/filter_selected_title"
-                    android:textColor="@color/colorFilterTitle"
+                    android:textColor="@color/colorText"
                     android:textSize="18sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -159,7 +119,7 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:text="@string/filter_price_title"
-                    android:textColor="@color/colorFilterTitle"
+                    android:textColor="@color/colorText"
                     android:textSize="18sp" />
 
                 <com.google.android.material.slider.RangeSlider
@@ -169,8 +129,8 @@
                     android:valueFrom="0"
                     android:valueTo="100000"
                     app:haloColor="@color/mainBackgroundColor"
-                    app:thumbColor="@color/colorFilterTitle"
-                    app:trackColorActive="@color/colorFilterTitle"
+                    app:thumbColor="@color/colorText"
+                    app:trackColorActive="@color/colorText"
                     app:trackColorInactive="@color/mainBackgroundColor"
                     app:values="@array/initial_range_slider_values" />
 
@@ -213,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/filter_sorting_title"
-                android:textColor="@color/colorFilterTitle"
+                android:textColor="@color/colorText"
                 android:textSize="18sp" />
 
             <androidx.recyclerview.widget.RecyclerView
