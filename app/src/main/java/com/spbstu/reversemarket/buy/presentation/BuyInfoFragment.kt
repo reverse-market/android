@@ -10,13 +10,15 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.buy.domain.Address
-import com.spbstu.reversemarket.sell.presentation.TagsAdapter
+import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
+import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.NO_MARGIN_FLAG
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.getFocusListener
@@ -24,6 +26,7 @@ import com.spbstu.reversemarket.utils.Utils
 
 class BuyInfoFragment : Fragment() {
 
+    private lateinit var photosList: RecyclerView
     private lateinit var addressList: RecyclerView
     private lateinit var search: EditText
     private lateinit var searchButtonBackground: RelativeLayout
@@ -41,6 +44,13 @@ class BuyInfoFragment : Fragment() {
         view.findViewById<ImageView>(R.id.frg_buy_info__back_btn).setOnClickListener {
             findNavController().navigate(R.id.navigation_buy)
         }
+
+        photosList = view.findViewById(R.id.layout_new_product__photo_list)
+        photosList.adapter = PhotoAdapter(
+            provideUrlList(),
+            requireContext(),
+            Glide.with(this)
+        )
 
         addressList = view.findViewById(R.id.layout_address_list)
         addressList.adapter = AddressAdapter(
@@ -87,6 +97,8 @@ class BuyInfoFragment : Fragment() {
 
         return view
     }
+
+    private fun provideUrlList(): List<String> = listOf("null")
 
     private fun provideAddTagsList(): List<String> = listOf(
         "Кроссовки",

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Product
-import com.spbstu.reversemarket.sell.presentation.ProductsAdapter
+import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
 import com.spbstu.reversemarket.utils.Utils
 import com.spbstu.reversemarket.utils.Utils.Companion.closeSearchView

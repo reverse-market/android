@@ -1,12 +1,9 @@
 package com.spbstu.reversemarket.sell.presentation
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -18,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Product
+import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
+import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.Utils
 
 
@@ -74,7 +73,7 @@ class SellFragment : Fragment() {
         tagsList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         tagsList.adapter =
             TagsAdapter(
-                tags?: provideTags(),
+                tags ?: provideTags(),
                 R.layout.layout_removable_product_tag,
                 ::filterRecycler
             )

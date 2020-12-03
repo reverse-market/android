@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Category
+import com.spbstu.reversemarket.sell.presentation.adapter.CategoryAdapter
 
 class CategoryFragment : Fragment() {
 
@@ -26,11 +27,12 @@ class CategoryFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_category, container, false)
         categoriesRecycle = view.findViewById(R.id.frg_category__list)
-        categoriesRecycle.adapter = CategoryAdapter(
-            provideCategories(),
-            requireContext(),
-            ::provideCategoryClickListener
-        )
+        categoriesRecycle.adapter =
+            CategoryAdapter(
+                provideCategories(),
+                requireContext(),
+                ::provideCategoryClickListener
+            )
         titleTextView = view.findViewById(R.id.layout_toolbar_search__category_name)
         titleTextView.setOnClickListener {
             val args = Bundle()

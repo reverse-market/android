@@ -1,6 +1,5 @@
 package com.spbstu.reversemarket.utils
 
-import android.content.res.Resources
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
-import com.spbstu.reversemarket.sell.presentation.TagsAdapter
+import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 
 class AddSearchViewUtils {
 

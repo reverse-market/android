@@ -1,4 +1,4 @@
-package com.spbstu.reversemarket.sell.presentation
+package com.spbstu.reversemarket.sell.presentation.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
