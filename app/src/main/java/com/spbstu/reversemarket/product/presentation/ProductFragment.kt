@@ -23,8 +23,10 @@ class ProductFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_product, container, false)
+        return inflater.inflate(R.layout.fragment_product, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         changeViewOptions()
         //hide bottom nav
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
@@ -42,13 +44,6 @@ class ProductFragment : Fragment() {
         layout_toolbar_product__close.setOnClickListener {
             findNavController().navigateUp()
         }
-        return view
-    }
-
-    override fun onDestroy() {
-        val navView: BottomNavigationView? = requireActivity().findViewById(R.id.nav_view)
-        navView?.visibility = View.VISIBLE
-        super.onDestroy()
     }
 
     private fun changeViewOptions() {
@@ -62,4 +57,11 @@ class ProductFragment : Fragment() {
             }
         }
     }
+
+    override fun onDestroy() {
+        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
+        navView?.visibility = View.VISIBLE
+        super.onDestroy()
+    }
+
 }
