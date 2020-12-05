@@ -28,14 +28,8 @@
         tools:listitem="@layout/layout_address_add_item" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x_huge_dimen"
-        android:layout_marginTop="@dimen/huge_dimen"
         android:text="@string/description_title"
-        android:textAllCaps="true"
-        android:textColor="@color/colorText"
-        android:textSize="18sp" />
+        style="@style/editTextTitleStyle"/>
 
     <EditText
         android:id="@+id/layout_new_product__description_text"
@@ -51,57 +45,26 @@
         android:padding="@dimen/def_dimen" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x_huge_dimen"
-        android:layout_marginTop="@dimen/huge_dimen"
         android:text="@string/price_title"
-        android:textAllCaps="true"
-        android:textColor="@color/colorText"
-        android:textSize="18sp" />
+        style="@style/editTextTitleStyle"/>
 
     <EditText
         android:id="@+id/layout_new_product__price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x_huge_dimen"
-        android:layout_marginTop="@dimen/small_dimen"
-        android:layout_marginEnd="@dimen/x_huge_dimen"
-        android:background="@drawable/white_rounded_background"
-        android:drawableStart="@drawable/ic_ruble"
-        android:elevation="10dp"
-        android:gravity="top"
         android:hint="@string/price_hint"
         android:inputType="numberDecimal"
-        android:padding="@dimen/def_dimen"
-        android:paddingStart="@dimen/big_dimen"
-        android:paddingEnd="@dimen/big_dimen" />
+        android:elevation="10dp"
+        style="@style/editTextStyle" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x_huge_dimen"
-        android:layout_marginTop="@dimen/huge_dimen"
         android:text="@string/amount_title"
-        android:textAllCaps="true"
-        android:textColor="@color/colorText"
-        android:textSize="18sp" />
+        style="@style/editTextTitleStyle"/>
 
     <EditText
         android:id="@+id/layout_new_product__amount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x_huge_dimen"
-        android:layout_marginTop="@dimen/small_dimen"
-        android:layout_marginEnd="@dimen/x_huge_dimen"
-        android:background="@drawable/white_rounded_background"
-        android:elevation="10dp"
-        android:gravity="top"
         android:hint="@string/amount_hint"
         android:inputType="numberDecimal"
-        android:padding="@dimen/def_dimen"
-        android:paddingStart="@dimen/huge_dimen"
-        android:paddingEnd="@dimen/huge_dimen" />
+        android:elevation="10dp"
+        style="@style/editTextStyle" />
 
     <include
         android:id="@+id/frg_buy_info__address"

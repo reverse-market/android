@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/frg_address__title_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/def_dimen"
+        android:elevation="20dp">
+
+        <TextView
+            android:id="@+id/frg_address__title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/def_dimen"
+            android:layout_marginTop="@dimen/def_dimen"
+            android:layout_marginEnd="@dimen/def_dimen"
+            android:gravity="center"
+            android:padding="@dimen/small_dimen"
+            android:text="@string/address_title"
+            android:textAllCaps="true"
+            android:textColor="@color/colorText"
+            android:textSize="21sp" />
+
+        <ImageView
+            android:id="@+id/frg_address__back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/big_dimen"
+            android:layout_marginTop="@dimen/xx_huge_dimen"
+            android:rotation="270"
+            android:src="@drawable/ic_arrow" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/frg_address__scroll_view_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:elevation="@dimen/def_dimen">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/naming"
+                style="@style/editTextTitleStyle"/>
+
+            <EditText
+                android:id="@+id/frg_address__naming"
+                android:hint="@string/naming_hint"
+                android:inputType="text"
+                android:elevation="10dp"
+                style="@style/editTextStyle"/>
+
+            <TextView
+                android:text="@string/region"
+                style="@style/editTextTitleStyle" />
+
+            <EditText
+                android:id="@+id/frg_address__region"
+                android:hint="@string/region_hint"
+                android:inputType="text"
+                android:elevation="10dp"
+                style="@style/editTextStyle" />
+
+            <TextView
+                android:text="@string/city"
+                style="@style/editTextTitleStyle" />
+
+            <EditText
+                android:id="@+id/frg_address__city"
+                android:hint="@string/city_hint"
+                android:inputType="text"
+                android:elevation="10dp"
+                style="@style/editTextStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:text="@string/house"
+                        style="@style/editTextTitleStyle"/>
+
+                    <EditText
+                        android:id="@+id/frg_address__house"
+                        android:hint="@string/house_hint"
+                        android:inputType="numberSigned"
+                        android:elevation="10dp"
+                        style="@style/editTextStyle"
+                        android:layout_marginBottom="@dimen/def_dimen"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:text="@string/building"
+                        style="@style/editTextTitleStyle"/>
+
+                    <EditText
+                        android:id="@+id/frg_address__building"
+                        android:hint="@string/building_hint"
+                        android:inputType="numberSigned"
+                        android:elevation="10dp"
+                        style="@style/editTextStyle"
+                        android:layout_marginBottom="@dimen/def_dimen"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:text="@string/flat"
+                        style="@style/editTextTitleStyle"/>
+
+                    <EditText
+                        android:id="@+id/frg_address__flat"
+                        android:hint="@string/flat_hint"
+                        android:inputType="numberSigned"
+                        android:elevation="10dp"
+                        style="@style/editTextStyle"
+                        android:layout_marginBottom="@dimen/def_dimen"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:text="@string/index"
+                        style="@style/editTextTitleStyle"/>
+
+                    <EditText
+                        android:id="@+id/frg_address__index"
+                        android:hint="@string/index_hint"
+                        android:inputType="numberSigned"
+                        android:elevation="10dp"
+                        style="@style/editTextStyle"
+                        android:layout_marginBottom="@dimen/def_dimen"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:text="@string/name"
+                style="@style/editTextTitleStyle"/>
+
+            <EditText
+                android:id="@+id/frg_address__name"
+                android:hint="@string/name_hint"
+                android:inputType="text"
+                android:elevation="10dp"
+                style="@style/editTextStyle"/>
+
+            <TextView
+                android:text="@string/surname"
+                style="@style/editTextTitleStyle"/>
+
+            <EditText
+                android:id="@+id/frg_address__surname"
+                android:hint="@string/surname_hint"
+                android:inputType="text"
+                android:elevation="10dp"
+                style="@style/editTextStyle" />
+
+            <TextView
+                android:text="@string/father_name"
+                style="@style/editTextTitleStyle"/>
+
+            <EditText
+                android:id="@+id/frg_address__father_name"
+                android:hint="@string/father_name_hint"
+                android:inputType="text"
+                android:elevation="10dp"
+                style="@style/editTextStyle"/>
+
+            <Button
+                android:id="@+id/frg_address__save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/x_huge_dimen"
+                android:background="@drawable/filter_save_btn_background"
+                android:text="@string/save"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

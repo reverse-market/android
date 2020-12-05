@@ -37,6 +37,28 @@
     <string name="sell_request">Заявка на продажу</string>
     <string name="favorite">Избранное</string>
 
+    <string name="naming">Название</string>
+    <string name="naming_hint">Введите краткое название…</string>
+    <string name="region">Регион</string>
+    <string name="region_hint">Регион…</string>
+    <string name="save">Сохранить</string>
+    <string name="city">Город</string>
+    <string name="city_hint">Город, Посёлок, Деревня…</string>
+    <string name="house">Дом</string>
+    <string name="house_hint">Дом…</string>
+    <string name="building">Корпус</string>
+    <string name="building_hint">Корпус…</string>
+    <string name="flat">Квартира</string>
+    <string name="flat_hint">Квартира…</string>
+    <string name="index">Индекс</string>
+    <string name="index_hint">Индекс…</string>
+    <string name="name">Имя</string>
+    <string name="name_hint">Имя…</string>
+    <string name="surname">Фамилия</string>
+    <string name="surname_hint">Фамилия…</string>
+    <string name="father_name">Отчество</string>
+    <string name="father_name_hint">Отчество…</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sold">Проданные</string>
     <string name="bought">Купленные</string>

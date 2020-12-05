@@ -1,17 +1,22 @@
 package com.spbstu.reversemarket.buy.presentation
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.address.AddressFragment
 import com.spbstu.reversemarket.buy.domain.Address
 
 class AddressAdapter(
     initTags: List<Address>,
-    private val listener: (Int) -> Unit
+    private val listener: (Int) -> Unit,
+    private val backNavigation: Int
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var addresses: List<Address> = initTags
@@ -44,6 +49,12 @@ class AddressAdapter(
                 name.text = addresses[position - 1].name
                 editBtn.setOnClickListener { listener(position) }
             }
+        } else {
+            (holder as AddViewHolder).addBtn.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt(AddressFragment.BACK_NAVIGATION, backNavigation)
+                findNavController(it).navigate(R.id.addressFragment, bundle)
+            }
         }
     }
 
@@ -54,6 +65,8 @@ class AddressAdapter(
         var name: TextView = view.findViewById(R.id.layout_address_item__name)
     }
 
-    class AddViewHolder(view: View) : RecyclerView.ViewHolder(view) {}
+    class AddViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var addBtn: ImageView = view.findViewById(R.id.layout_address__add_btn)
+    }
 
 }
