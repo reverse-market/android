@@ -1,4 +1,4 @@
-package com.spbstu.reversemarket.sell.presentation
+package com.spbstu.reversemarket.sell.presentation.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -44,7 +44,8 @@ class ProductsAdapter(
         holder.productTags.adapter =
             TagsAdapter(
                 products[position].tags,
-                R.layout.layout_product_tag
+                R.layout.layout_product_tag,
+                context = context
             )
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW

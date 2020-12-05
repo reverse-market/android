@@ -7,15 +7,27 @@
 
     <fragment
         android:id="@+id/navigation_buy"
-        android:name="com.spbstu.reversemarket.buy.BuyFragment"
+        android:name="com.spbstu.reversemarket.buy.presentation.BuyFragment"
         android:label="@string/title_buy"
-        tools:layout="@layout/fragment_buy" />
+        tools:layout="@layout/fragment_buy" >
+        <action
+            android:id="@+id/action_navigation_buy_to_buyInfoFragment"
+            app:destination="@id/buyInfoFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_sell"
         android:name="com.spbstu.reversemarket.sell.presentation.SellFragment"
         android:label="@string/title_sell"
         tools:layout="@layout/fragment_sell">
+        <action
+            android:id="@+id/action_navigation_sell_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_navigation_sell_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+
         <action
             android:id="@+id/action_navigation_sell_to_navigation_product"
             app:destination="@id/navigation_product" />
@@ -29,6 +41,24 @@
         <action
             android:id="@+id/action_navigation_profile_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.spbstu.reversemarket.sell.presentation.FilterFragment"
+        android:label="FilterFragment">
+        <action
+            android:id="@+id/action_filterFragment_to_navigation_sell"
+            app:destination="@id/navigation_sell" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.spbstu.reversemarket.sell.presentation.CategoryFragment"
+        android:label="CategoryFragment">
+        <action
+            android:id="@+id/action_categoryFragment_to_navigation_sell"
+            app:destination="@id/navigation_sell" />
     </fragment>
 
     <fragment
@@ -54,4 +84,24 @@
             android:id="@+id/action_settingsFragment_to_navigation_profile"
             app:destination="@id/navigation_profile" />
     </fragment>
+
+    <fragment
+        android:id="@+id/buyInfoFragment"
+        android:name="com.spbstu.reversemarket.buy.presentation.BuyInfoFragment"
+        android:label="BuyInfoFragment" >
+        <action
+            android:id="@+id/action_buyInfoFragment_to_navigation_buy"
+            app:destination="@id/navigation_buy" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.spbstu.reversemarket.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/sellInfoFragment"
+        android:name="com.spbstu.reversemarket.sell.presentation.SellInfoFragment"
+        android:label="SellInfoFragment" />
+
 </navigation>

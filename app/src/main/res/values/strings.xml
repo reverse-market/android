@@ -4,19 +4,48 @@
     <string name="title_buy">Buy</string>
     <string name="title_sell">Sell</string>
     <string name="title_profile">Profile</string>
-    <string name="title_product">Продукт</string>
-    <string name="nike">Nike кроссовки</string>
-    <string name="price_title">Цена</string>
+    <string name="title_product">Product</string>
+    <string name="price_title">Price</string>
+
+    <string name="searchHint">search</string>
+    <string name="fragment_filter_title">FILTER</string>
+    <string name="save_filter_btn_text">SAVE FILTER</string>
+    <string name="filter_sorting_title">Sorting</string>
+    <string name="filter_selected_title">Selected</string>
+    <string name="filter_price_title">Price</string>
     <string name="login_facebook">Login with Facebook</string>
     <string name="login_google">Login with Google</string>
     <string name="fragment_login_logo_description" translatable="false">Logo</string>
+
+    <string name="frg_buy_title">My announcement</string>
+    <string name="buy_info_title">Creating announcement</string>
 
     <string name="favorites">Favorites</string>
     <string name="orders">Orders</string>
     <string name="settings">Settings</string>
     <string name="sign_out">Sign out</string>
+
     <string name="settings_label">Settings</string>
     <string name="settings_photos_label">Photos</string>
     <string name="settings_address_label">Adress</string>
     <string name="settings_name_label">Name</string>
+
+
+    <string name="photo_title">Photo</string>
+    <string name="description_title">Description</string>
+    <string name="description_hint">Tell us something about this product…</string>
+    <string name="price_hint">Enter the price…</string>
+    <string name="amount_title">Amount</string>
+    <string name="amount_hint">Enter product amount…</string>
+    <string name="address_title">Address</string>
+    <string name="create">Create</string>
+    <string name="suggest">Suggest</string>
+    <string name="save_template">Save template</string>
+    <string name="sell_request">Sell request</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sold">Sold</string>
+    <string name="bought">Bought</string>
+
 </resources>
