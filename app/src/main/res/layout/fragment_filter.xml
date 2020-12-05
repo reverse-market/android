@@ -191,6 +191,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/big_dimen"
+                android:paddingTop="@dimen/def_dimen"
+                android:paddingBottom="@dimen/def_dimen"
                 android:background="@drawable/filter_save_btn_background"
                 android:text="@string/save_filter_btn_text"
                 android:textColor="#FFFFFF"

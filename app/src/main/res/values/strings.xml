@@ -29,7 +29,8 @@
     <string name="settings_photos_label">Photos</string>
     <string name="settings_address_label">Adress</string>
     <string name="settings_name_label">Name</string>
-
+    <string name="settings_name_hint">Enter your name...</string>
+    <string name="save_settings">Save</string>
 
     <string name="photo_title">Photo</string>
     <string name="description_title">Description</string>

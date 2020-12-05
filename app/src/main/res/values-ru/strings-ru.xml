@@ -28,6 +28,8 @@
     <string name="settings_photos_label">Фото</string>
     <string name="settings_address_label">Адрес</string>
     <string name="settings_name_label">Имя</string>
+    <string name="settings_name_hint">Введите ваше имя...</string>
+    <string name="save_settings">Сохранить</string>
 
     <string name="photo_title">Фото</string>
     <string name="description_title">Описание</string>

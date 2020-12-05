@@ -56,78 +56,67 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="24dp"
             android:paddingBottom="40dp">
 
-            <TextView
+            <include
+                android:id="@+id/frg_settings__photos"
+                layout="@layout/layout_photos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/huge_dimen"
-                android:layout_marginEnd="@dimen/huge_dimen"
-                android:layout_marginBottom="@dimen/huge_dimen"
-                android:gravity="start|center_vertical"
-                android:text="@string/settings_photos_label"
-                android:textColor="@color/colorBlack"
-                android:textSize="22sp" />
+                android:layout_height="wrap_content" />
 
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="24dp"
-                android:background="@drawable/settings_photo_rectangle"
-                android:elevation="@dimen/small_dimen"
-                android:src="@drawable/ic_logo" />
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="24dp"
-                android:background="@drawable/settings_photo_rectangle"
-                android:elevation="@dimen/small_dimen"
-                android:src="@drawable/ic_plus_circle" />
-
+            <include
+                android:id="@+id/frg_settings__address"
+                layout="@layout/layout_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/huge_dimen"
-                android:layout_marginEnd="@dimen/huge_dimen"
-                android:layout_marginBottom="@dimen/huge_dimen"
-                android:gravity="start|center_vertical"
-                android:text="@string/settings_address_label"
-                android:textColor="@color/colorBlack"
-                android:textSize="22sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/huge_dimen"
-                android:layout_marginEnd="@dimen/huge_dimen"
-                android:layout_marginBottom="@dimen/huge_dimen"
-                android:gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/huge_dimen"
                 android:text="@string/settings_name_label"
-                android:textColor="@color/colorBlack"
-                android:textSize="22sp" />
+                android:textAllCaps="true"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/settings_name_field"
+                android:id="@+id/frg_settings__name_field"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/rounded_input_field"
-                android:elevation="@dimen/small_dimen"
-                android:layout_marginBottom="@dimen/huge_dimen"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x_huge_dimen"
+                android:layout_marginTop="@dimen/small_dimen"
+                android:layout_marginBottom="@dimen/big_dimen"
+                android:layout_marginEnd="@dimen/x_huge_dimen"
+                android:background="@drawable/white_rounded_background"
+                android:elevation="@dimen/def_dimen"
+                android:gravity="top"
+                android:hint="@string/settings_name_hint"
                 android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textAlignment="textStart"
-                android:textCursorDrawable="@drawable/search_black_cursor"
+                android:padding="@dimen/def_dimen"
+                android:paddingStart="@dimen/huge_dimen"
+                android:paddingEnd="@dimen/huge_dimen"
                 android:textSize="18sp" />
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/frg_settings__save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/x_huge_dimen"
+        android:paddingTop="@dimen/def_dimen"
+        android:paddingBottom="@dimen/def_dimen"
+        android:background="@drawable/filter_save_btn_background"
+        android:text="@string/save_settings"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
