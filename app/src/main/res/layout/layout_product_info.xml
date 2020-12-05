@@ -1,79 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_product_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_product_info"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:padding="10dp">
+
     <TextView
         android:id="@+id/layout_product_info__description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="моргенштернчший репер моргенштерн лучший репер"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="моргенштерн лучший репер моргенштерн лучший репер
-                моргенштерн лучший репер моргенштерн лучший репер моргенштерн лучший репер
-моргенштерн лучший репер моргенштерн лучший репер
-                моргенштерн лучший репер моргенштерн лучший репер моргенштерн лучший репер
-моргенштерн лучший репер моргенштерн лучший репер
-                моргенштерн лучший репер моргенштерн лучший репер моргенштерн лучший репер
-моргенштерн лучший репер моргенштерн лучший репер
-                моргенштерн лучший репер моргенштерн лучший репер моргенштерн лучший репер
-моргенштерн лучший репер моргенштерн лучший репер
-                моргенштерн лучший репер моргенштерн лучший репер моргенштерн лучший репер"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/layout_product_info__price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="Ценв"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_product_info__description"
-        tools:text="цена"
-        />
+        app:layout_constraintTop_toBottomOf="@id/layout_product_info__description" />
 
     <TextView
         android:id="@+id/layout_product_info__amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Количество"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_product_info__price"
-        tools:text="количество"
-        />
+        app:layout_constraintTop_toBottomOf="@id/layout_product_info__price" />
+
+    <TextView
+        android:id="@+id/layout_product_info__date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дата"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_product_info__amount" />
+
     <TextView
         android:id="@+id/layout_product_info__tags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Теги"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_product_info__amount"
-        tools:text="теги"
-        />
+        app:layout_constraintTop_toBottomOf="@id/layout_product_info__date" />
 
-    <TextView
-        android:id="@+id/layout_product_info__price_number"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_product_info__description"
-        tools:text="150"
-        />
+        android:layout_marginStart="@dimen/def_dimen"
+        android:layout_marginEnd="@dimen/def_dimen"
+        android:overScrollMode="never"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_product_info__tags" />
 
-    <TextView
-        android:id="@+id/layout_product_info__amount_number"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_product_info__price_number"
-        tools:text="1"
-        />
-    <TextView
-        android:id="@+id/layout_product_info__tags_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_product_info__amount_number"
-        tools:text="12.12.12"
-        />
+        app:layout_constraintTop_toBottomOf="@id/layout_product_info__description">
+
+        <TextView
+            android:id="@+id/layout_product_info__price_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="150"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_product_info__description" />
+
+        <TextView
+            android:id="@+id/layout_product_info__amount_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_product_info__price_number" />
+
+        <TextView
+            android:id="@+id/layout_product_info__date_numbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12.12.12"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_product_info__amount_number" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

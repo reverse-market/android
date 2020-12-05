@@ -40,4 +40,6 @@
     <string name="sold">Проданные</string>
     <string name="bought">Купленные</string>
 
+    <string name="sell_button">Продать</string>
+
 </resources>
