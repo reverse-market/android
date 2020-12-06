@@ -59,7 +59,7 @@
                 android:id="@+id/frg_address__naming"
                 android:hint="@string/naming_hint"
                 android:inputType="text"
-                android:elevation="10dp"
+                android:elevation="4dp"
                 style="@style/editTextStyle"/>
 
             <TextView
@@ -70,7 +70,7 @@
                 android:id="@+id/frg_address__region"
                 android:hint="@string/region_hint"
                 android:inputType="text"
-                android:elevation="10dp"
+                android:elevation="4dp"
                 style="@style/editTextStyle" />
 
             <TextView
@@ -81,7 +81,7 @@
                 android:id="@+id/frg_address__city"
                 android:hint="@string/city_hint"
                 android:inputType="text"
-                android:elevation="10dp"
+                android:elevation="4dp"
                 style="@style/editTextStyle" />
 
             <LinearLayout
@@ -103,7 +103,7 @@
                         android:id="@+id/frg_address__house"
                         android:hint="@string/house_hint"
                         android:inputType="numberSigned"
-                        android:elevation="10dp"
+                        android:elevation="4dp"
                         style="@style/editTextStyle"
                         android:layout_marginBottom="@dimen/def_dimen"/>
                 </LinearLayout>
@@ -122,7 +122,7 @@
                         android:id="@+id/frg_address__building"
                         android:hint="@string/building_hint"
                         android:inputType="numberSigned"
-                        android:elevation="10dp"
+                        android:elevation="4dp"
                         style="@style/editTextStyle"
                         android:layout_marginBottom="@dimen/def_dimen"/>
                 </LinearLayout>
@@ -148,7 +148,7 @@
                         android:id="@+id/frg_address__flat"
                         android:hint="@string/flat_hint"
                         android:inputType="numberSigned"
-                        android:elevation="10dp"
+                        android:elevation="4dp"
                         style="@style/editTextStyle"
                         android:layout_marginBottom="@dimen/def_dimen"/>
                 </LinearLayout>
@@ -167,7 +167,7 @@
                         android:id="@+id/frg_address__index"
                         android:hint="@string/index_hint"
                         android:inputType="numberSigned"
-                        android:elevation="10dp"
+                        android:elevation="4dp"
                         style="@style/editTextStyle"
                         android:layout_marginBottom="@dimen/def_dimen"/>
                 </LinearLayout>
@@ -182,7 +182,7 @@
                 android:id="@+id/frg_address__name"
                 android:hint="@string/name_hint"
                 android:inputType="text"
-                android:elevation="10dp"
+                android:elevation="4dp"
                 style="@style/editTextStyle"/>
 
             <TextView
@@ -193,7 +193,7 @@
                 android:id="@+id/frg_address__surname"
                 android:hint="@string/surname_hint"
                 android:inputType="text"
-                android:elevation="10dp"
+                android:elevation="4dp"
                 style="@style/editTextStyle" />
 
             <TextView
@@ -204,7 +204,7 @@
                 android:id="@+id/frg_address__father_name"
                 android:hint="@string/father_name_hint"
                 android:inputType="text"
-                android:elevation="10dp"
+                android:elevation="4dp"
                 style="@style/editTextStyle"/>
 
             <Button
