@@ -10,7 +10,6 @@
     android:layout_marginEnd="@dimen/def_dimen"
     android:layout_marginBottom="@dimen/def_dimen"
     android:background="@drawable/search_background"
-    android:elevation="50dp"
     android:tag="close"
     android:visibility="visible">
 
