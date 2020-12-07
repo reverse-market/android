@@ -13,6 +13,7 @@ import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.sell.domain.model.Product
 import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
+import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : Fragment() {
 
@@ -32,10 +33,15 @@ class FavoriteFragment : Fragment() {
                 context
             )
 
-        view.findViewById<ImageView>(R.id.frg_favorite__back_btn).setOnClickListener {
-            findNavController().navigate(R.id.navigation_profile)
-        }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        frg_favorite__back_btn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun provideProducts(): List<Product> = listOf(
