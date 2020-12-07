@@ -43,6 +43,29 @@
     <string name="suggest">Suggest</string>
     <string name="save_template">Save template</string>
     <string name="sell_request">Sell request</string>
+    <string name="favorite">Favorite</string>
+
+    <string name="naming">Naming</string>
+    <string name="naming_hint">Enter a short name…</string>
+    <string name="region">Region</string>
+    <string name="region_hint">Region…</string>
+    <string name="save">Save</string>
+    <string name="city">City</string>
+    <string name="city_hint">City, Town, Village…</string>
+    <string name="house">House</string>
+    <string name="house_hint">House…</string>
+    <string name="building">Building</string>
+    <string name="building_hint">Building…</string>
+    <string name="flat">Flat</string>
+    <string name="flat_hint">Flat…</string>
+    <string name="index">Index</string>
+    <string name="index_hint">Index…</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Name…</string>
+    <string name="surname">Surname</string>
+    <string name="surname_hint">Surname…</string>
+    <string name="father_name">Father name</string>
+    <string name="father_name_hint">Father name…</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

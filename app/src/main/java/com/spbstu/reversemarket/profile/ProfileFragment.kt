@@ -27,6 +27,10 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.settingsFragment)
         }
 
+        view.findViewById<LinearLayout>(R.id.frg_profile__favorite_button).setOnClickListener {
+            findNavController().navigate(R.id.favoriteFragment)
+        }
+
         return view
     }
 }

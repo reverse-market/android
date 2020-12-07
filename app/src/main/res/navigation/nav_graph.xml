@@ -39,6 +39,9 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" >
         <action
+            android:id="@+id/action_navigation_profile_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+        <action
             android:id="@+id/action_navigation_profile_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
@@ -92,6 +95,9 @@
         <action
             android:id="@+id/action_buyInfoFragment_to_navigation_buy"
             app:destination="@id/navigation_buy" />
+        <action
+            android:id="@+id/action_buyInfoFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
     </fragment>
 
     <fragment
@@ -99,9 +105,34 @@
         android:name="com.spbstu.reversemarket.orders.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
+
     <fragment
         android:id="@+id/sellInfoFragment"
         android:name="com.spbstu.reversemarket.sell.presentation.SellInfoFragment"
-        android:label="SellInfoFragment" />
+        android:label="SellInfoFragment" >
+        <action
+            android:id="@+id/action_sellInfoFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.spbstu.reversemarket.favorite.FavoriteFragment"
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.spbstu.reversemarket.address.AddressFragment"
+        android:label="AddressFragment" >
+        <action
+            android:id="@+id/action_addressFragment_to_sellInfoFragment"
+            app:destination="@id/sellInfoFragment" />
+        <action
+            android:id="@+id/action_addressFragment_to_buyInfoFragment"
+            app:destination="@id/buyInfoFragment" />
+    </fragment>
 </navigation>

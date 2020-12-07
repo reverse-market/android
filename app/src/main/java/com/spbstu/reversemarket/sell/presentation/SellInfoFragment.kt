@@ -39,7 +39,8 @@ class SellInfoFragment : Fragment() {
         addressList = view.findViewById(R.id.layout_address_list)
         addressList.adapter = AddressAdapter(
             provideAddresses(),
-            ::provideAddressClickListener
+            ::provideAddressClickListener,
+            R.id.sellInfoFragment
         )
 
         saveTemplateCheckBox = view.findViewById(R.id.frg_sell_info__checkbox)
