@@ -66,4 +66,29 @@ dependencies {
     // glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // dagger
+    implementation "com.google.dagger:dagger:2.30.1"
+    implementation "com.google.dagger:dagger-android-support:2.30.1"
+    kapt "com.google.dagger:dagger-compiler:2.27"
+    kapt "com.google.dagger:dagger-android-processor:2.27"
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+
+    // okhttp
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+    // rx
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+
+    // preferences
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
+    // google sign in
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
 }

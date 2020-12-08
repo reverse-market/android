@@ -69,7 +69,7 @@
 
     <fragment
         android:id="@+id/navigation_login"
-        android:name="com.spbstu.reversemarket.login.LoginFragment"
+        android:name="com.spbstu.reversemarket.login.presentation.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_navigation_login_to_navigation_buy"

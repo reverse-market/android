@@ -1,52 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_login"
-    android:background="@drawable/login_background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_login_logo"
         android:layout_marginTop="56dp"
-        android:contentDescription="@string/fragment_login_logo_description" />
+        android:contentDescription="@string/fragment_login_logo_description"
+        android:src="@drawable/ic_login_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <android.widget.Button
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/frg_login__facebook_login_button"
-            android:id="@+id/frg_login__google_login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_google_login_button"
-            android:drawableStart="@drawable/ic_google_icon"
-            android:padding="@dimen/huge_dimen"
-            android:text="@string/login_google"
-            android:textColor="@color/colorBlack"
-            android:textAllCaps="false"
-            android:layout_marginBottom="@dimen/def_dimen"
-            android:elevation="@dimen/small_dimen"
-            android:translationZ="@dimen/small_dimen"
-            />
-        <android.widget.Button
-            android:id="@+id/frg_login__facebook_login_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_facebook_login_button"
-            android:drawableStart="@drawable/ic_facebook_icon"
-            android:padding="@dimen/huge_dimen"
-            android:text="@string/login_facebook"
-            android:textColor="@color/colorWhite"
-            android:textAllCaps="false"
-            android:layout_marginBottom="72dp"
-            android:elevation="@dimen/small_dimen"
-            android:translationZ="@dimen/small_dimen"
-            />
+    <android.widget.Button
+        android:id="@+id/frg_login__google_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_google_login_button"
+        android:clickable="false"
+        android:drawableStart="@drawable/ic_google_icon"
+        android:elevation="@dimen/small_dimen"
+        android:padding="@dimen/huge_dimen"
+        android:text="@string/login_google"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBlack"
+        android:translationZ="@dimen/small_dimen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
