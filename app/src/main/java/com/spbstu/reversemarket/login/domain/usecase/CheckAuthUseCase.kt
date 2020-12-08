@@ -1,13 +1,12 @@
 package com.spbstu.reversemarket.login.domain.usecase
 
-import android.util.Log
-import com.spbstu.reversemarket.login.data.api.LoginApi
+import com.spbstu.reversemarket.login.domain.repository.LoginRepository
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
-class CheckAuthUseCase @Inject constructor(private val loginApi: LoginApi) {
+class CheckAuthUseCase @Inject constructor(private val loginRepository: LoginRepository) {
     operator fun invoke(): Observable<Boolean> {
-        return loginApi.checkAuth()
+        return loginRepository.check()
             .map {
                 it.code() == 200
             }
