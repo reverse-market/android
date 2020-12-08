@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="100dp"
+    android:background="@drawable/white_rounded_background"
+    android:layout_marginEnd="@dimen/big_dimen"
+    android:layout_marginStart="@dimen/small_dimen"
+    android:layout_marginTop="@dimen/small_dimen"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/layout_address_item__address_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginTop="@dimen/def_dimen"
+        android:text="Мой адрес"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/layout_address_item__edit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/def_dimen"
+        android:src="@drawable/ic_edit"/>
+
+    <TextView
+        android:id="@+id/layout_address_item__address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginTop="@dimen/small_dimen"
+        android:text="Ленинградская область, г. Санкт-Петербург, Невский просп. д.28, кв. 1, 190000"
+        android:textColor="@color/colorTextGray"
+        android:textSize="12sp"
+        android:layout_below="@id/layout_address_item__address_name"/>
+
+    <TextView
+        android:id="@+id/layout_address_item__name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginTop="@dimen/small_dimen"
+        android:layout_marginBottom="@dimen/small_dimen"
+        android:text="Иванов Иван Иванович"
+        android:textColor="@color/colorTextGray"
+        android:textSize="12sp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

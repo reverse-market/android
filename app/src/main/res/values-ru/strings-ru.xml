@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Reverse Market</string>
+    <string name="title_activity_navigation">MainActivity</string>
+    <string name="title_buy">Купить</string>
+    <string name="title_sell">Продать</string>
+    <string name="title_profile">Профиль</string>
+    <string name="login_facebook">Войти через Facebook</string>
+    <string name="login_google">Войти через Google</string>
+    <string name="title_product">Продукт</string>
+    <string name="price_title" >Цена</string>
+
+    <string name="searchHint">Поиск</string>
+    <string name="fragment_filter_title">ФИЛЬТР</string>
+    <string name="save_filter_btn_text">СОХРАНИТЬ ФИЛЬТР</string>
+    <string name="filter_sorting_title">Сортировка</string>
+    <string name="filter_selected_title">Выбранное</string>
+    <string name="filter_price_title">Цена</string>
+
+    <string name="frg_buy_title">Мои объявления</string>
+    <string name="buy_info_title">Создание объявления</string>
+
+    <string name="favorites">Избранное</string>
+    <string name="orders">Заказы</string>
+    <string name="settings">Настройки</string>
+    <string name="sign_out">Выход</string>
+
+    <string name="settings_label">Настройки</string>
+    <string name="settings_photos_label">Фото</string>
+    <string name="settings_address_label">Адрес</string>
+    <string name="settings_name_label">Имя</string>
+    <string name="settings_name_hint">Введите ваше имя...</string>
+    <string name="save_settings">Сохранить</string>
+
+    <string name="photo_title">Фото</string>
+    <string name="description_title">Описание</string>
+    <string name="description_hint">Расскажи что-нибудь о товаре…</string>
+    <string name="price_hint">Введите цену…</string>
+    <string name="amount_title">Количество</string>
+    <string name="amount_hint">Введите количество товара…</string>
+    <string name="address_title">Адрес</string>
+    <string name="create">Создать</string>
+    <string name="suggest">Предложить</string>
+    <string name="save_template">Сохранить шаблон</string>
+    <string name="sell_request">Заявка на продажу</string>
+    <string name="favorite">Избранное</string>
+
+    <string name="naming">Название</string>
+    <string name="naming_hint">Введите краткое название…</string>
+    <string name="region">Регион</string>
+    <string name="region_hint">Регион…</string>
+    <string name="save">Сохранить</string>
+    <string name="city">Город</string>
+    <string name="city_hint">Город, Посёлок, Деревня…</string>
+    <string name="house">Дом</string>
+    <string name="house_hint">Дом…</string>
+    <string name="building">Корпус</string>
+    <string name="building_hint">Корпус…</string>
+    <string name="flat">Квартира</string>
+    <string name="flat_hint">Квартира…</string>
+    <string name="index">Индекс</string>
+    <string name="index_hint">Индекс…</string>
+    <string name="name">Имя</string>
+    <string name="name_hint">Имя…</string>
+    <string name="surname">Фамилия</string>
+    <string name="surname_hint">Фамилия…</string>
+    <string name="father_name">Отчество</string>
+    <string name="father_name_hint">Отчество…</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sold">Проданные</string>
+    <string name="bought">Купленные</string>
+
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/frg_buy_info__photos"
+        layout="@layout/layout_photos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="@string/description_title"
+        style="@style/editTextTitleStyle"/>
+
+    <EditText
+        android:id="@+id/layout_new_product__description_text"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="@dimen/x_huge_dimen"
+        android:layout_marginTop="@dimen/small_dimen"
+        android:layout_marginEnd="@dimen/x_huge_dimen"
+        android:background="@drawable/white_rounded_background"
+        android:elevation="10dp"
+        android:gravity="top"
+        android:hint="@string/description_hint"
+        android:padding="@dimen/def_dimen" />
+
+    <TextView
+        android:text="@string/price_title"
+        style="@style/editTextTitleStyle"/>
+
+    <EditText
+        android:id="@+id/layout_new_product__price"
+        android:hint="@string/price_hint"
+        android:inputType="numberDecimal"
+        android:elevation="10dp"
+        style="@style/editTextStyle" />
+
+    <TextView
+        android:text="@string/amount_title"
+        style="@style/editTextTitleStyle"/>
+
+    <EditText
+        android:id="@+id/layout_new_product__amount"
+        android:hint="@string/amount_hint"
+        android:inputType="numberDecimal"
+        android:elevation="10dp"
+        style="@style/editTextStyle" />
+
+    <include
+        android:id="@+id/frg_buy_info__address"
+        layout="@layout/layout_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

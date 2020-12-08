@@ -1,24 +1,18 @@
-package com.spbstu.reversemarket.buy
+package com.spbstu.reversemarket.product.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.spbstu.reversemarket.R
 
-class BuyFragment : Fragment() {
-
-    private lateinit var buyViewModel: BuyViewModel
-
+class BestOfferTabFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        buyViewModel = ViewModelProvider(this).get(BuyViewModel::class.java)
-
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.layout_best_offer, container, false)
     }
 }

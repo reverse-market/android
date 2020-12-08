@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tag"
+    android:paddingStart="@dimen/small_dimen"
+    android:paddingEnd="@dimen/small_dimen"
+    android:orientation="horizontal"
+    android:layout_marginBottom="@dimen/def_dimen">
+
+    <TextView
+        android:id="@+id/layout_add_tag__text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:paddingTop="@dimen/def_dimen"
+        android:text="Кроссовки"
+        android:textColor="#2E2D2C"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+
+    <ImageView
+        android:id="@+id/layout_add_tag__add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/def_dimen"
+        android:src="@drawable/ic_add" />
+
+
+</LinearLayout>
