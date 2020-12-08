@@ -71,5 +71,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sold">Sold</string>
     <string name="bought">Bought</string>
+    <string name="server_client_id" translatable="false">1011272468065-4d5befdc86q57f3oohisd600k3dkthuh.apps.googleusercontent.com</string>
 
 </resources>
