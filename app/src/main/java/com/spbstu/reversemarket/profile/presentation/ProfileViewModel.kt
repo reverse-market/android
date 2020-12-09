@@ -1,5 +1,6 @@
 package com.spbstu.reversemarket.profile.presentation
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 @FeatureScope
-class ProfileViewModel @Inject constructor(private val userApi: UserApi) :
+class ProfileViewModel @Inject constructor(
+    private val userApi: UserApi,
+    private val sharedPreferences: SharedPreferences
+) :
     ViewModel() {
     private lateinit var userData: MutableLiveData<User>
 
@@ -24,9 +28,15 @@ class ProfileViewModel @Inject constructor(private val userApi: UserApi) :
         return userData
     }
 
+    fun signOut() {
+        sharedPreferences.edit().putString("token", "").apply()
+    }
+
     private fun loadUser() {
         userApi.getUser().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnError {
+            }
             .subscribe {
                 if (it.code() == 200) {
                     userData.value = it.body()!!.toDomainModel()
