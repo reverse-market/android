@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 
 class AddSearchViewUtils {
@@ -17,7 +17,7 @@ class AddSearchViewUtils {
         const val NO_MARGIN_FLAG = -1
 
         private fun openSearchView(
-            searchButtonBackground: RelativeLayout,
+            searchButtonBackground: View,
             searchOpenLayout: View,
             closeBtn: ImageView,
             margin: Int
@@ -31,7 +31,7 @@ class AddSearchViewUtils {
         }
 
         private fun closeSearchView(
-            searchButtonBackground: RelativeLayout,
+            searchButtonBackground: View,
             searchOpenLayout: View,
             closeBtn: ImageView,
             margin: Int
@@ -53,7 +53,7 @@ class AddSearchViewUtils {
             return heightDiff > softKeyboardHeight * dm.density
         }
 
-        fun addTag(recycle: RecyclerView, tag: String) {
+        fun addTag(recycle: RecyclerView, tag: Tag) {
             val adapter = (recycle.adapter as TagsAdapter)
             val list = adapter.tags.toMutableList()
             list.add(tag)
@@ -63,7 +63,7 @@ class AddSearchViewUtils {
 
         fun getFocusListener(
             search: EditText,
-            searchButtonBackground: RelativeLayout,
+            searchButtonBackground: View,
             searchOpenLayout: View,
             closeBtn: ImageView,
             margin: Int

@@ -17,6 +17,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.buy.domain.Address
+import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.NO_MARGIN_FLAG
@@ -64,7 +65,7 @@ class BuyInfoFragment : Fragment() {
             TagsAdapter(
                 provideSelectedList(),
                 R.layout.layout_filter_selected_item,
-                addFunc = { str: String -> addTag(addTagsList, str) },
+                addFunc = { tag: Tag -> addTag(addTagsList, tag) },
             )
 
         searchOpenLayout = view.findViewById(R.id.frg_but_info__selected_tags)
@@ -78,7 +79,7 @@ class BuyInfoFragment : Fragment() {
             TagsAdapter(
                 provideAddTagsList(),
                 R.layout.layout_add_tag,
-                addFunc = { str: String -> addTag(selectedTagsList, str) },
+                addFunc = { tag: Tag -> addTag(selectedTagsList, tag) },
             )
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
@@ -101,21 +102,21 @@ class BuyInfoFragment : Fragment() {
 
     private fun provideUrlList(): List<String> = listOf("null")
 
-    private fun provideAddTagsList(): List<String> = listOf(
-        "Кроссовки",
-        "Костюмы",
-        "Брюки",
-        "Джинсы",
-        "Шорты",
-        "Носки",
-        "Куртки",
-        "Пальто",
-        "Футболки",
-        "Плавки"
+    private fun provideAddTagsList(): List<Tag> = listOf(
+        Tag(0, "Кроссовки"),
+        Tag(0, "Костюмы"),
+        Tag(0, "Брюки"),
+        Tag(0, "Джинсы"),
+        Tag(0, "Шорты"),
+        Tag(0, "Носки"),
+        Tag(0, "Куртки"),
+        Tag(0, "Пальто"),
+        Tag(0, "Футболки"),
+        Tag(0, "Плавки")
     )
 
-    private fun provideSelectedList(): List<String> =
-        listOf("Обувь", "Кроссовки", "Санкт-Петербург")
+    private fun provideSelectedList(): List<Tag> =
+        listOf(Tag(0, "Обувь"), Tag(0, "Кроссовки"), Tag(0, "Санкт-Петербург"))
 
     private fun provideAddresses(): List<Address> = listOf(
         Address(

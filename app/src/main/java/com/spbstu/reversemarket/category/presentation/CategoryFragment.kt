@@ -16,10 +16,10 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
         super.onViewCreated(view, savedInstanceState)
         layout_toolbar_search__category_name.setOnClickListener {
             val args = Bundle()
-            args.putString(CATEGORY_NAV_PARAMETER, layout_toolbar_search__category_name.text.toString())
+            args.putString(CATEGORY_NAME, layout_toolbar_search__category_name.text.toString())
             findNavController().navigate(R.id.navigation_sell, args)
         }
-        arguments?.getString(CATEGORY_NAV_PARAMETER)?.let {
+        arguments?.getString(CATEGORY_NAME)?.let {
             layout_toolbar_search__category_name.text = it
         }
         layout_toolbar_search__full_btn.visibility = View.INVISIBLE
@@ -40,12 +40,15 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
 
     private fun provideCategoryClickListener(position: Int) {
         val args = Bundle()
+        val categoryId = (frg_category__list.adapter as CategoryAdapter).categories[position].id
         val categoryName = (frg_category__list.adapter as CategoryAdapter).categories[position].name
-        args.putString(CATEGORY_NAV_PARAMETER, categoryName)
+        args.putInt(CATEGORY_ID, categoryId)
+        args.putString(CATEGORY_NAME, categoryName)
         findNavController().navigate(R.id.navigation_sell, args)
     }
 
     companion object {
-        const val CATEGORY_NAV_PARAMETER = "CATEGORY"
+        const val CATEGORY_NAME = "CATEGORY"
+        const val CATEGORY_ID = "CATEGORY"
     }
 }

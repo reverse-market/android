@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.sell.domain.model.Product
 import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
@@ -67,8 +68,19 @@ class FavoriteFragment : Fragment() {
         ),
     )
 
-    fun provideProductTags(): List<String> = listOf("Кроссовки", "Желтый")
-    fun provideProductTags2(): List<String> =
-        listOf("Adidas", "Черный", "Кроссовки", "Adidas", "Черный", "Кроссовки")
+    fun provideProductTags(): List<Tag> = listOf(
+        Tag(0, "Кроссовки"),
+        Tag(0, "Желтый")
+    )
+
+    fun provideProductTags2(): List<Tag> =
+        listOf(
+            Tag(0, "Adidas"),
+            Tag(0, "Черный"),
+            Tag(0, "Кроссовки"),
+            Tag(0, "Adidas"),
+            Tag(0, "Черный"),
+            Tag(0, "Кроссовки")
+        )
 
 }

@@ -2,6 +2,7 @@ package com.spbstu.reversemarket.utils
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -10,10 +11,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.filter.data.model.Tag
+import com.spbstu.reversemarket.filter.presentation.FilterFragment
 
 class Utils(private val filterRecycler: () -> Unit) {
 
@@ -71,6 +73,26 @@ class Utils(private val filterRecycler: () -> Unit) {
                     drawableId
                 )
             )
+        }
+
+        fun initPrevTags(arguments: Bundle?): MutableList<Tag> {
+            val tagsId = arguments?.getIntArray(FilterFragment.FILTER_TAGS_IDS)?.toList()
+            val tagsName = arguments?.getStringArray(FilterFragment.FILTER_TAGS_NAME)?.toList()
+            val prevTags: MutableList<Tag> = mutableListOf()
+            val bound = (tagsId?.size ?: 0) - 1
+            for (i in 0..bound) {
+                prevTags.add(Tag(tagsId!![i], tagsName!![i]))
+            }
+            return prevTags
+        }
+
+        fun provideTagsBundle(tags: List<Tag>): Bundle {
+            val args = Bundle()
+            val filterTagsId = tags.map { it.id }
+            val filterTagsName = tags.map { it.name }
+            args.putIntArray(FilterFragment.FILTER_TAGS_IDS, filterTagsId.toIntArray())
+            args.putStringArray(FilterFragment.FILTER_TAGS_NAME, filterTagsName.toTypedArray())
+            return args
         }
     }
 }

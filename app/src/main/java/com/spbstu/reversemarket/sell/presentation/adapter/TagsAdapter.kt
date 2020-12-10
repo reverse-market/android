@@ -8,18 +8,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.filter.data.model.Tag
 import kotlin.reflect.KFunction0
 
 
 class TagsAdapter(
-    initTags: List<String>,
+    initTags: List<Tag>,
     private val sellTagLayout: Int,
     private val deleteFunc: KFunction0<Unit>? = null,
-    private val addFunc: ((String) -> Unit)? = null,
+    private val addFunc: ((Tag) -> Unit)? = null,
     private val context: Context? = null,
 ) : RecyclerView.Adapter<TagsAdapter.TagViewHolder>() {
 
-    var tags: List<String> = initTags
+    var tags: List<Tag> = initTags
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -36,7 +37,7 @@ class TagsAdapter(
     override fun getItemCount(): Int = tags.size
 
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
-        holder.name.text = tags[position]
+        holder.name.text = tags[position].name
         if (context == null) {
             holder.tagBtn?.setOnClickListener {
                 val newTags = tags.toMutableList()
