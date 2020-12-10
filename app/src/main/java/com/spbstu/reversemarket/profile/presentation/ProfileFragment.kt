@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
+import com.spbstu.reversemarket.di.NetworkModule
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_profile) {
@@ -37,7 +38,7 @@ class ProfileFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_pr
             frg_profile__user_name.text = it.name
             frg_profile__user_email.text = it.email
             Glide.with(this)
-                .load(it.photo)
+                .load(NetworkModule.DATA_BASE_URL + it.photo)
                 .centerCrop()
                 .into(frg_profile__avatar)
         })
