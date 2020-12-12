@@ -43,7 +43,6 @@ class ProductFragment : Fragment() {
         //hide bottom nav
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
         navView?.visibility = View.GONE
-        initFields()
         //setup view pager
         productTabAdapter = ProductTabAdapter(this, provideDescriptionBundle())
         viewPager = view.findViewById(R.id.layout_product_item__pager)
@@ -57,13 +56,10 @@ class ProductFragment : Fragment() {
         layout_toolbar_product__close.setOnClickListener {
             findNavController().navigateUp()
         }
+        initFields()
     }
 
     private fun initFields() {
-        productId = requireArguments().getInt(PRODUCT_ID)
-        frg_product_name.text = requireArguments().getString(PRODUCT_NAME)
-        frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
-        frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
     }
 
     private fun provideDescriptionBundle(): Bundle {
