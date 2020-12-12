@@ -11,6 +11,8 @@ import com.spbstu.reversemarket.login.di.LoginModule
 import com.spbstu.reversemarket.login.presentation.LoginFragment
 import com.spbstu.reversemarket.sell.di.SellModule
 import com.spbstu.reversemarket.sell.presentation.SellFragment
+import com.spbstu.reversemarket.profile.di.ProfileModule
+import com.spbstu.reversemarket.profile.presentation.ProfileFragment
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -27,6 +29,10 @@ abstract class FragmentBuildersModule {
     abstract fun contributeLoginFragment(): LoginFragment
 
     @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeProfileFragment(): ProfileFragment
+
+    @FeatureScope
     @ContributesAndroidInjector(modules = [CategoryModule::class])
     abstract fun contributeCategoryFragment(): CategoryFragment
 
@@ -37,4 +43,5 @@ abstract class FragmentBuildersModule {
     @FeatureScope
     @ContributesAndroidInjector(modules = [SellModule::class])
     abstract fun contributeSellFragment(): SellFragment
+
 }
