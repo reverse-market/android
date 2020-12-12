@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.sell.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.spbstu.reversemarket.filter.data.model.Tag
 
 data class Request(
     @SerializedName("id")
@@ -22,7 +23,7 @@ data class Request(
     @SerializedName("date")
     val date: String,
     @SerializedName("tags")
-    val tags: List<Int>,
+    val tags: List<Tag>,
     @SerializedName("best_proposal")
     val bestProposal: Int,
     @SerializedName("is_favorite")

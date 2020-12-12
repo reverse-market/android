@@ -30,6 +30,10 @@ import kotlinx.android.synthetic.main.layout_selected_tags.*
 class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filter) {
 
     private var prevTags: MutableList<Tag> = mutableListOf()
+    private var categoryId: Int = 0
+    private var priceFrom: Int = 0
+    private var priceTo = 100000
+    private var sort = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,6 +88,34 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
             )
         )
         frg_filter__save_btn.setOnClickListener(toSellFragmentSaveClickListener)
+        initParams()
+    }
+
+    private fun initParams() {
+        priceFrom = requireArguments().getInt(PRICE_FROM)
+        priceTo = requireArguments().getInt(PRICE_TO)
+        sort = requireArguments().getString(SORT)!!
+        categoryId = requireArguments().getInt(CATEGORY_ID)
+        frg_filter__min_price.setText(priceFrom.toString())
+        frg_filter__max_price.setText(priceTo.toString())
+        parseSort(sort)
+    }
+
+    private fun parseSort(sort: String) {
+        val spaceIndex = sort.indexOf("_")
+        val sortType = sort.substring(0, spaceIndex)
+        (frg_filter__sorting_list.adapter as TagsAdapter).isAsc =
+            sort.substring(spaceIndex + 1) == "asc"
+        (frg_filter__sorting_list.adapter as TagsAdapter).selectedItem = mapSortToIndex(sortType)
+    }
+
+    private fun mapSortToIndex(str: String): Int {
+        return when(str) {
+            SORTING_PRICE_SELECTED_STRING -> SORTING_PRICE_SELECTED
+            SORTING_VIEWS_SELECTED_STRING -> SORTING_VIEWS_SELECTED
+            SORTING_DATE_SELECTED_STRING -> SORTING_DATE_SELECTED
+            else -> -1
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -100,11 +132,39 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
 
     private val toSellFragmentSaveClickListener = View.OnClickListener {
         val filterTags = (frg_filter__selected_categories.adapter as TagsAdapter).tags
-        findNavController(requireView()).navigate(R.id.navigation_sell, provideTagsBundle(filterTags))
+        val bundle = provideTagsBundle(filterTags)
+        addSortingParamsToBundle(bundle)
+        findNavController(requireView()).navigate(R.id.navigation_sell, bundle)
     }
 
     private val toSellFragmentBackClickListener = View.OnClickListener {
-        findNavController(requireView()).navigate(R.id.navigation_sell, provideTagsBundle(prevTags))
+        val bundle = provideTagsBundle(prevTags)
+        bundle.putInt(PRICE_FROM, priceFrom)
+        bundle.putInt(PRICE_TO, priceTo)
+        bundle.putString(SORT, sort)
+        findNavController(requireView()).navigate(R.id.navigation_sell, bundle)
+    }
+
+    private fun addSortingParamsToBundle(bundle: Bundle) {
+        val from = frg_filter__min_price.text.toString()
+        val to = frg_filter__max_price.text.toString()
+        bundle.putInt(PRICE_FROM, if (from.isEmpty()) SLIDER_LEFT_BOUND else from.toInt())
+        bundle.putInt(PRICE_TO, if (from.isEmpty()) SLIDER_MAX_VALUE_INDEX else to.toInt())
+        val sort = getSortingParam()
+        bundle.putString(SORT, sort)
+    }
+
+
+
+    private fun getSortingParam(): String {
+        val adapter = (frg_filter__sorting_list.adapter as TagsAdapter)
+        val sort = when (adapter.selectedItem) {
+            SORTING_PRICE_SELECTED -> "price_"
+            SORTING_VIEWS_SELECTED -> "views_"
+            SORTING_DATE_SELECTED -> "date_"
+            else -> "wrong"
+        }
+        return sort + if (adapter.isAsc) "asc" else "desc"
     }
 
     private fun provideSorting(): List<Tag> =
@@ -142,38 +202,29 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
 
     private fun provideEditTextListener(sliderIndex: Int) =
         object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-            }
+            override fun afterTextChanged(p0: Editable?) {}
 
-            override fun beforeTextChanged(
-                p0: CharSequence?,
-                p1: Int,
-                p2: Int,
-                p3: Int
-            ) {
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            override fun onTextChanged(
-                s: CharSequence?,
-                p1: Int,
-                p2: Int,
-                p3: Int
-            ) {
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val num: String = s.toString()
-                val value = num.trim().toFloat()
-                if (value in SLIDER_LEFT_BOUND..SLIDER_RIGHT_BOUND
-                    && isRightSliderInvariant(sliderIndex, value)
-                ) {
-                    if (sliderIndex == 0) {
-                        frg_filter__price_range_slider.values = listOf(
-                            value,
-                            frg_filter__price_range_slider.values[1]
-                        )
-                    } else {
-                        frg_filter__price_range_slider.values = listOf(
-                            frg_filter__price_range_slider.values[0],
-                            value
-                        )
+                val trimmedNum = num.trim()
+                if (trimmedNum.isNotEmpty()) {
+                    val value = trimmedNum.toFloat()
+                    if ((value >= SLIDER_LEFT_BOUND && value <= SLIDER_RIGHT_BOUND)
+                        && isRightSliderInvariant(sliderIndex, value)
+                    ) {
+                        if (sliderIndex == 0) {
+                            frg_filter__price_range_slider.values = listOf(
+                                value,
+                                frg_filter__price_range_slider.values[1]
+                            )
+                        } else {
+                            frg_filter__price_range_slider.values = listOf(
+                                frg_filter__price_range_slider.values[0],
+                                value
+                            )
+                        }
                     }
                 }
             }
@@ -189,9 +240,18 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
     companion object {
         const val SLIDER_MIN_VALUE_INDEX = 0
         const val SLIDER_MAX_VALUE_INDEX = 1
-        const val SLIDER_LEFT_BOUND = 0.0
-        const val SLIDER_RIGHT_BOUND = 100000.0
+        const val SLIDER_LEFT_BOUND = 0
+        const val SLIDER_RIGHT_BOUND = 100000
         const val FILTER_TAGS_IDS = "FILTER_TAGS_IDS"
         const val FILTER_TAGS_NAME = "FILTER_TAGS_NAME"
+        const val PRICE_FROM = "PRICE_FROM"
+        const val PRICE_TO = "PRICE_TO"
+        const val SORT = "SORT"
+        const val SORTING_PRICE_SELECTED = 0
+        const val SORTING_VIEWS_SELECTED = 1
+        const val SORTING_DATE_SELECTED = 2
+        const val SORTING_PRICE_SELECTED_STRING = "price"
+        const val SORTING_VIEWS_SELECTED_STRING = "views"
+        const val SORTING_DATE_SELECTED_STRING = "date"
     }
 }

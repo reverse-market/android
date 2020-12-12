@@ -11,11 +11,11 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.spbstu.reversemarket.R
-import com.spbstu.reversemarket.sell.domain.model.Product
+import com.spbstu.reversemarket.sell.data.model.Request
 
 
 class ProductsAdapter(
-    initProducts: List<Product>,
+    initRequests: List<Request>,
     private val context: Context?
 ) : RecyclerView.Adapter<ProductsAdapter.TagViewHolder>() {
 
@@ -27,23 +27,23 @@ class ProductsAdapter(
         )
     }
 
-    var products: List<Product> = initProducts
+    var requests: List<Request> = initRequests
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
 
-    override fun getItemCount(): Int = products.size
+    override fun getItemCount(): Int = requests.size
 
 
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
-        holder.name.text = products[position].name
-        holder.fullName.text = products[position].fullName
-        holder.viewAmount.text = products[position].viewAmount.toString()
+        holder.name.text = requests[position].name
+        holder.fullName.text = requests[position].itemName
+        holder.viewAmount.text = requests[position].quantity.toString()
         holder.productTags.adapter =
             TagsAdapter(
-                products[position].tags,
+                requests[position].tags,
                 R.layout.layout_product_tag,
                 context = context
             )
@@ -52,10 +52,10 @@ class ProductsAdapter(
         layoutManager.justifyContent = JustifyContent.FLEX_START
         layoutManager.flexWrap = FlexWrap.WRAP
         holder.productTags.layoutManager = layoutManager
-        holder.productDescription.text = products[position].description
-        holder.price.text = products[position].price
-        holder.userName.text = products[position].username
-        holder.date.text = products[position].date
+        holder.productDescription.text = requests[position].description
+        holder.price.text = requests[position].price.toString()
+        holder.userName.text = requests[position].userName
+        holder.date.text = requests[position].date
     }
 
     class TagViewHolder(view: View) : RecyclerView.ViewHolder(view) {

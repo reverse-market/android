@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,7 +13,8 @@ import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment.Companion.CATEGORY_ID
 import com.spbstu.reversemarket.filter.data.model.Tag
-import com.spbstu.reversemarket.sell.domain.model.Product
+import com.spbstu.reversemarket.filter.presentation.FilterFragment
+import com.spbstu.reversemarket.sell.data.model.Request
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.Utils
@@ -24,6 +26,11 @@ import kotlinx.android.synthetic.main.layout_toolbar__search.*
 class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
 
     private var categoryId: Int = 0
+    private var priceFrom: Int = 0
+    private var priceTo = 100000
+    private var sort = "price_desc"
+    private var page = 0
+    private var size = 20
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +48,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         )
         frg_product_list.adapter =
             ProductsAdapter(
-                provideProducts(),
+                emptyList(),
                 context
             )
 
@@ -55,22 +62,16 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         }
 
         val tags = initPrevTags(arguments)
-        arguments?.getString(CategoryFragment.CATEGORY_NAME)?.run {
-            layout_toolbar_search__category_name.text = this
-        }
-        arguments?.getInt(CategoryFragment.CATEGORY_ID)?.run {
-            categoryId = this
-        }
+        initFilterParams()
 
         frg_tags_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         frg_tags_list.adapter =
             TagsAdapter(
                 tags,
                 R.layout.layout_removable_product_tag,
-                ::filterRecycler
             )
         layout_toolbar_search__button.setOnClickListener(searchButtonListener)
-        layout_toolbar_search__text.setOnKeyListener(Utils(::filterRecycler).enterListener)
+        layout_toolbar_search__text.setOnKeyListener(Utils(::refreshData).enterListener)
 
         layout_toolbar__search_close_btn.setOnClickListener {
             Utils.closeSearchView(
@@ -86,30 +87,78 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             val filterTags = (frg_tags_list.adapter as TagsAdapter).tags
             val args = provideTagsBundle(filterTags)
             args.putInt(CATEGORY_ID, categoryId)
+            addSortingParamsToBundle(args)
             findNavController().navigate(R.id.filterFragment, args)
         }
     }
 
-    private fun provideProducts(): List<Product> = listOf(
-        Product(
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.getRequests(
+            page,
+            size,
+            categoryId,
+            (frg_tags_list.adapter as TagsAdapter).tags,
+            priceFrom,
+            priceTo,
+            sort
+        ).observe(viewLifecycleOwner) {
+            (frg_product_list.adapter as ProductsAdapter).requests = it
+        }
+    }
+
+    private fun addSortingParamsToBundle(bundle: Bundle) {
+        bundle.putInt(FilterFragment.PRICE_FROM, priceFrom)
+        bundle.putInt(FilterFragment.PRICE_TO, priceTo)
+        bundle.putString(FilterFragment.SORT, sort)
+    }
+
+    private fun initFilterParams() {
+        arguments?.getString(CategoryFragment.CATEGORY_NAME)?.run {
+            layout_toolbar_search__category_name.text = this
+        }
+        arguments?.getInt(CATEGORY_ID)?.run {
+            categoryId = this
+        }
+        arguments?.getInt(FilterFragment.PRICE_FROM)?.run {
+            priceFrom = this
+        }
+        arguments?.getInt(FilterFragment.PRICE_TO)?.run {
+            priceTo = this
+        }
+        arguments?.getString(FilterFragment.SORT)?.run {
+            sort = this
+        }
+    }
+
+    private fun provideProducts(): List<Request> = listOf(
+        Request(
+            1,
             "Nike кроссовки",
             "Air Force 1 Shadow White Yellow",
-            150,
-            provideProductTags(),
             "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
-            "$132.10",
+            emptyList(),
+            150,
+            1,
             "zvladn7",
-            "03.10.20"
+            "03.10.20",
+            provideProductTags(),
+            3,
+            false
         ),
-        Product(
-            "Adidas кроссовки",
-            "Yeezy boost 500",
-            524,
-            provideProductTags2(),
-            "Кроссовки Yeezy 500 от Yeezy. Закругленный носок, шнуровка спереди, сетчатые вставки и резиновая подошва в рубчик. Черный цвет.",
-            "Р42000",
+        Request(
+            1,
+            "Nike кроссовки",
+            "Air Force 1 Shadow White Yellow",
+            "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
+            emptyList(),
+            42000,
+            1,
             "zvladn7",
-            "02.10.20"
+            "02.10.20",
+            provideProductTags2(),
+            5,
+            false
         ),
     )
 
@@ -128,15 +177,6 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             Tag(0, "Кроссовки")
         )
 
-    private fun filterRecycler() {
-        val text = layout_toolbar_search__text.text.toString().trim().toLowerCase()
-        val filter = provideProducts().filter {
-            (it.name.contains(text, true) || it.fullName.contains(text, true))
-                    && (frg_tags_list.adapter as TagsAdapter).tags.intersect(it.tags).isNotEmpty()
-        }
-        (frg_product_list.adapter as ProductsAdapter).products = filter
-    }
-
     private val searchButtonListener = View.OnClickListener {
         if (layout_toolbar_search__category_name.visibility == View.VISIBLE) {
             Utils.showSearchView(
@@ -147,8 +187,21 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
                 activity
             )
         } else {
-            filterRecycler()
+            refreshData()
         }
+    }
+
+    private fun refreshData() {
+        viewModel.refreshSearch(
+            page,
+            size,
+            categoryId,
+            (frg_tags_list.adapter as TagsAdapter).tags,
+            priceFrom,
+            priceTo,
+            sort,
+            layout_toolbar_search__text.text.toString()
+        )
     }
 
 }

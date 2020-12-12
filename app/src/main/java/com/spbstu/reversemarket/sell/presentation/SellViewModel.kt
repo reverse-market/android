@@ -25,13 +25,25 @@ class SellViewModel @Inject constructor(
         priceFrom: Int,
         priceTo: Int,
         sort: String,
-        search: String
     ): LiveData<List<Request>> {
         if (!this::requestData.isInitialized) {
             requestData = MutableLiveData()
-            loadRequests(page, size, category, tags, priceFrom, priceTo, sort, search)
+            loadRequests(page, size, category, tags, priceFrom, priceTo, sort, "")
         }
         return requestData
+    }
+
+    fun refreshSearch(
+        page: Int,
+        size: Int,
+        category: Int,
+        tags: List<Tag>,
+        priceFrom: Int,
+        priceTo: Int,
+        sort: String,
+        search: String
+    ) {
+        loadRequests(page, size, category, tags, priceFrom, priceTo, sort, search)
     }
 
     private fun loadRequests(
