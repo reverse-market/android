@@ -7,6 +7,7 @@
     android:layout_marginStart="@dimen/huge_dimen"
     android:layout_marginTop="@dimen/huge_dimen"
     android:layout_marginEnd="@dimen/huge_dimen"
+    android:layout_marginBottom="@dimen/smallest_dimen"
     android:background="@color/colorAccent"
     app:cardCornerRadius="5dp">
 
@@ -56,7 +57,6 @@
             android:layout_below="@id/layout_product_item__full_name"
             android:src="@drawable/nike" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/layout_product_item__tags"
             android:layout_width="match_parent"
@@ -65,7 +65,6 @@
             android:layout_marginStart="@dimen/def_dimen"
             android:layout_marginEnd="@dimen/def_dimen"
             android:overScrollMode="never"/>
-
 
         <TextView
             android:id="@+id/layout_product_item__description"

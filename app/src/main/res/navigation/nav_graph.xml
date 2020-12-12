@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_buy_to_buyInfoFragment"
             app:destination="@id/buyInfoFragment" />
+        <action
+            android:id="@+id/action_navigation_buy_to_navigation_product"
+            app:destination="@id/navigation_product" />
 
     </fragment>
 
@@ -80,7 +83,11 @@
 
     <fragment
         android:id="@+id/navigation_product"
-        android:name="com.spbstu.reversemarket.product.presentation.ProductFragment" />
+        android:name="com.spbstu.reversemarket.product.presentation.ProductFragment" >
+        <action
+            android:id="@+id/action_navigation_product_to_sellInfoFragment"
+            app:destination="@id/sellInfoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
