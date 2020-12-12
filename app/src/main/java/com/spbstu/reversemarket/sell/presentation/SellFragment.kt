@@ -14,6 +14,13 @@ import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment.Companion.CATEGORY_ID
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_DATE
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_DESCRIPTION
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_ITEM_NAME
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_NAME
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_PRICE
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_QUANTITY
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_TAGS_NAME
 import com.spbstu.reversemarket.sell.data.model.Request
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
@@ -42,13 +49,13 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             RecyclerItemClickListener(frg_product_list,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
-                        findNavController().navigate(R.id.action_navigation_sell_to_navigation_product)
+                        navigateToItem(position)
                     }
                 })
         )
         frg_product_list.adapter =
             ProductsAdapter(
-                emptyList(),
+                provideProducts(),
                 context
             )
 
@@ -105,6 +112,27 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         ).observe(viewLifecycleOwner) {
             (frg_product_list.adapter as ProductsAdapter).requests = it
         }
+    }
+
+    private fun navigateToItem(position: Int) {
+        val request = (frg_product_list.adapter as ProductsAdapter).requests[position]
+        findNavController().navigate(
+            R.id.action_navigation_sell_to_navigation_product,
+            formItemArgs(request)
+        )
+    }
+
+    private fun formItemArgs(request: Request): Bundle {
+        val args = Bundle()
+        args.putInt(PRODUCT_NAME, request.id)
+        args.putString(PRODUCT_NAME, request.name)
+        args.putString(PRODUCT_ITEM_NAME, request.itemName)
+        args.putString(PRODUCT_DESCRIPTION, request.description)
+        args.putInt(PRODUCT_PRICE, request.price)
+        args.putInt(PRODUCT_QUANTITY, request.quantity)
+        args.putString(PRODUCT_DATE, request.date)
+        args.putStringArray(PRODUCT_TAGS_NAME, request.tags.map { it.name }.toTypedArray())
+        return args
     }
 
     private fun addSortingParamsToBundle(bundle: Bundle) {
