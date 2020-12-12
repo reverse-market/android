@@ -17,7 +17,6 @@ import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.P
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_QUANTITY
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_TAGS_NAME
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
-import kotlinx.android.synthetic.main.fragment_sell.*
 import kotlinx.android.synthetic.main.layout_product_info.*
 
 class DescriptionTabFragment(private val bundle: Bundle) : Fragment() {

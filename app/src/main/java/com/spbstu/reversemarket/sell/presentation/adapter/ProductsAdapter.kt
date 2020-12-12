@@ -40,7 +40,6 @@ class ProductsAdapter(
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
         holder.name.text = requests[position].name
         holder.fullName.text = requests[position].itemName
-        holder.viewAmount.text = requests[position].quantity.toString()
         holder.productTags.adapter =
             TagsAdapter(
                 requests[position].tags,
@@ -61,7 +60,6 @@ class ProductsAdapter(
     class TagViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.layout_product_item__name)
         val fullName: TextView = view.findViewById(R.id.layout_product_item__full_name)
-        val viewAmount: TextView = view.findViewById(R.id.layout_product_item__view_amount)
         val productTags: RecyclerView = view.findViewById(R.id.layout_product_item__tags)
         val productDescription: TextView = view.findViewById(R.id.layout_product_item__description)
         val price: TextView = view.findViewById(R.id.layout_product_item__price)

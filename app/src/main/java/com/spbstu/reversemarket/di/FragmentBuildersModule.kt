@@ -9,6 +9,8 @@ import com.spbstu.reversemarket.filter.di.FilterModule
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
 import com.spbstu.reversemarket.login.di.LoginModule
 import com.spbstu.reversemarket.login.presentation.LoginFragment
+import com.spbstu.reversemarket.product.di.ProductModule
+import com.spbstu.reversemarket.product.presentation.BestOfferTabFragment
 import com.spbstu.reversemarket.sell.di.SellModule
 import com.spbstu.reversemarket.sell.presentation.SellFragment
 import com.spbstu.reversemarket.profile.di.ProfileModule
@@ -43,5 +45,9 @@ abstract class FragmentBuildersModule {
     @FeatureScope
     @ContributesAndroidInjector(modules = [SellModule::class])
     abstract fun contributeSellFragment(): SellFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProductModule::class])
+    abstract fun contributeBestOfferFragment(): BestOfferTabFragment
 
 }

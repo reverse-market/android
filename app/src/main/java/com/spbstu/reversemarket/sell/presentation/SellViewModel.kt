@@ -42,8 +42,9 @@ class SellViewModel @Inject constructor(
         priceTo: Int,
         sort: String,
         search: String
-    ) {
+    ): LiveData<List<Request>> {
         loadRequests(page, size, category, tags, priceFrom, priceTo, sort, search)
+        return requestData
     }
 
     private fun loadRequests(

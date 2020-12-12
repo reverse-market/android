@@ -14,8 +14,10 @@ import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment.Companion.CATEGORY_ID
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_PROPOSAL_ID
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_DATE
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_DESCRIPTION
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_ID
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_ITEM_NAME
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_NAME
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_PRICE
@@ -124,7 +126,8 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
 
     private fun formItemArgs(request: Request): Bundle {
         val args = Bundle()
-        args.putInt(PRODUCT_NAME, request.id)
+        args.putInt(PRODUCT_ID, request.id)
+        args.putInt(PRODUCT_PROPOSAL_ID, request.bestProposal)
         args.putString(PRODUCT_NAME, request.name)
         args.putString(PRODUCT_ITEM_NAME, request.itemName)
         args.putString(PRODUCT_DESCRIPTION, request.description)
@@ -229,7 +232,10 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             priceTo,
             sort,
             layout_toolbar_search__text.text.toString()
-        )
+        ).observe(viewLifecycleOwner) {
+            (frg_product_list.adapter as ProductsAdapter).requests = it
+            (frg_product_list.adapter as ProductsAdapter).notifyDataSetChanged()
+        }
     }
 
 }

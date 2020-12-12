@@ -74,5 +74,9 @@
     <string name="sold">Sold</string>
     <string name="bought">Bought</string>
     <string name="server_client_id" translatable="false">1011272468065-4d5befdc86q57f3oohisd600k3dkthuh.apps.googleusercontent.com</string>
+    <string name="date_title">Date</string>
+    <string name="tags_title">Tags</string>
+    <string name="description_tab">description</string>
+    <string name="best_proposal_tab">best proposal</string>
 
 </resources>

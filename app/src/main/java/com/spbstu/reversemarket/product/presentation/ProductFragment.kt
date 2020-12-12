@@ -21,6 +21,7 @@ class ProductFragment : Fragment() {
 
     companion object {
         const val PRODUCT_ID = "PRODUCT_ID"
+        const val PRODUCT_PROPOSAL_ID = "PRODUCT_BEST_PROPOSAL_ID"
         const val PRODUCT_NAME = "PRODUCT_NAME"
         const val PRODUCT_ITEM_NAME = "PRODUCT_ITEM_NAME"
         const val PRODUCT_DESCRIPTION = "PRODUCT_DESCRIPTION"
@@ -43,8 +44,9 @@ class ProductFragment : Fragment() {
         //hide bottom nav
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
         navView?.visibility = View.GONE
+        initFields()
         //setup view pager
-        productTabAdapter = ProductTabAdapter(this, provideDescriptionBundle())
+        productTabAdapter = ProductTabAdapter(this, provideDescriptionBundle(), requireContext())
         viewPager = view.findViewById(R.id.layout_product_item__pager)
         viewPager.adapter = productTabAdapter
         //setup tab layout
@@ -60,11 +62,16 @@ class ProductFragment : Fragment() {
     }
 
     private fun initFields() {
+        productId = requireArguments().getInt(PRODUCT_ID)
+        frg_product_name.text = requireArguments().getString(PRODUCT_NAME)
+        frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
+        frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
     }
 
     private fun provideDescriptionBundle(): Bundle {
         var bundle = Bundle()
         bundle.putInt(PRODUCT_ID, requireArguments().getInt(PRODUCT_ID))
+        bundle.putIntArray(PRODUCT_PROPOSAL_ID, intArrayOf(requireArguments().getInt(PRODUCT_PROPOSAL_ID)))
         bundle.putString(PRODUCT_DESCRIPTION, requireArguments().getString(PRODUCT_DESCRIPTION))
         bundle.putInt(PRODUCT_PRICE, requireArguments().getInt(PRODUCT_PRICE))
         bundle.putInt(PRODUCT_QUANTITY, requireArguments().getInt(PRODUCT_QUANTITY))

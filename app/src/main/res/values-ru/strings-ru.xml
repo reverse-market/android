@@ -71,5 +71,9 @@
     <string name="bought">Купленные</string>
 
     <string name="sell_button">Продать</string>
+    <string name="date_title">Дата</string>
+    <string name="tags_title">Теги</string>
+    <string name="description_tab">описание</string>
+    <string name="best_proposal_tab">лучшее предложение</string>
 
 </resources>
