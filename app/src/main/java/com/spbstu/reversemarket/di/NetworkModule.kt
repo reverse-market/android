@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.di
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -29,8 +30,10 @@ class NetworkModule {
     fun provideOkHttpClient(sharedPreferences: SharedPreferences): OkHttpClient {
         val tokenInterceptor = Interceptor {
             val original = it.request()
+            Log.d("WWWW", "${it.call().request()}")
 
             val jwt: String? = sharedPreferences.getString("token", null)
+            Log.d("WWWW", "Token: $jwt")
             val request = original.newBuilder()
                 .addHeader("Authorization", "Bearer $jwt")
                 .build()

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.spbstu.reversemarket.di.scope.FeatureScope
 import com.spbstu.reversemarket.login.data.model.SignInBody
 import com.spbstu.reversemarket.login.domain.usecase.CheckAuthUseCase
 import com.spbstu.reversemarket.login.domain.usecase.SignInUseCase
@@ -11,6 +12,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
+@FeatureScope
 class LoginViewModel @Inject constructor(
     private val authUseCase: CheckAuthUseCase,
     private val signInUseCase: SignInUseCase,

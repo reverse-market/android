@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
@@ -46,6 +47,10 @@ class SellInfoFragment : Fragment() {
         saveTemplateCheckBox = view.findViewById(R.id.frg_sell_info__checkbox)
         saveTemplateCheckBoxBackground = view.findViewById(R.id.frg_sell_info__checkbox_background)
         saveTemplateCheckBoxBackground.setOnClickListener { changeCheckBoxState() }
+
+        (view.findViewById(R.id.frg_sell_info__back_btn) as ImageView).setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         return view
     }
