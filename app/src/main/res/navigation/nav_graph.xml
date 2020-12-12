@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.spbstu.reversemarket.sell.presentation.CategoryFragment"
+        android:name="com.spbstu.reversemarket.category.presentation.CategoryFragment"
         android:label="CategoryFragment">
         <action
             android:id="@+id/action_categoryFragment_to_navigation_sell"
