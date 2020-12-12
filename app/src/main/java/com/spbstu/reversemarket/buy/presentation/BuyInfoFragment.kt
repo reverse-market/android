@@ -55,7 +55,7 @@ class BuyInfoFragment : Fragment() {
 
         addressList = view.findViewById(R.id.layout_address_list)
         addressList.adapter = AddressAdapter(
-            provideAddresses(),
+            emptyList(),
             ::provideAddressClickListener,
             R.id.buyInfoFragment
         )

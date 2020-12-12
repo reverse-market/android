@@ -87,7 +87,9 @@ class ProductFragment : Fragment() {
             frg_product_sell_button.visibility = View.GONE
         } else {
             frg_product_sell_button.setOnClickListener {
-                findNavController().navigate(R.id.action_navigation_product_to_sellInfoFragment)
+                var args = Bundle()
+                args.putInt(PRODUCT_ID, productId)
+                findNavController().navigate(R.id.action_navigation_product_to_sellInfoFragment, args)
             }
         }
     }

@@ -55,33 +55,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:id="@+id/frg_sell_info__checkbox_background"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/x_huge_dimen"
-                android:layout_marginTop="@dimen/def_dimen"
-                android:layout_marginEnd="@dimen/x_huge_dimen"
-                android:layout_marginBottom="@dimen/big_dimen">
-
-                <ImageView
-                    android:id="@+id/frg_sell_info__checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_checkbox"
-                    android:tag="save" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_dimen"
-                    android:layout_marginEnd="@dimen/small_dimen"
-                    android:text="@string/save_template"
-                    android:textColor="@color/colorText"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
             <Button
                 android:id="@+id/frg_sell_info__save_btn"
                 android:layout_width="match_parent"

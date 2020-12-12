@@ -5,6 +5,7 @@ import com.spbstu.reversemarket.profile.domain.model.Address
 
 fun AddressBodyWithId.toDomainModel(): Address = Address(
     id,
+    name,
     region,
     city,
     street,
@@ -20,6 +21,8 @@ fun AddressBodyWithId.toDomainModel(): Address = Address(
 data class AddressBodyWithId(
     @SerializedName("id")
     val id: Int,
+    @SerializedName("name")
+    val name: String,
     @SerializedName("region")
     val region: String,
     @SerializedName("city")

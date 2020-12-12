@@ -15,6 +15,8 @@ import com.spbstu.reversemarket.sell.di.SellModule
 import com.spbstu.reversemarket.sell.presentation.SellFragment
 import com.spbstu.reversemarket.profile.di.ProfileModule
 import com.spbstu.reversemarket.profile.presentation.ProfileFragment
+import com.spbstu.reversemarket.sell.di.SellInfoModule
+import com.spbstu.reversemarket.sell.presentation.SellInfoFragment
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -45,6 +47,10 @@ abstract class FragmentBuildersModule {
     @FeatureScope
     @ContributesAndroidInjector(modules = [SellModule::class])
     abstract fun contributeSellFragment(): SellFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [SellInfoModule::class])
+    abstract fun contributeSellInfoFragment(): SellInfoFragment
 
     @FeatureScope
     @ContributesAndroidInjector(modules = [ProductModule::class])
