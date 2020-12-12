@@ -47,7 +47,7 @@ class BuyFragment : Fragment() {
             RecyclerItemClickListener(productList,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
-//                        findNavController().navigate(R.id.action_navigation_sell_to_navigation_product)
+                        findNavController().navigate(R.id.action_navigation_buy_to_navigation_product)
                     }
                 })
         )

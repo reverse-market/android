@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.sell.domain.model.Product
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
