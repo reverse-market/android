@@ -22,7 +22,7 @@ data class Favorite(
     @SerializedName("date")
     val date: String,
     @SerializedName("tags")
-    val tags: List<Int>,
+    val tags: List<String>,
     @SerializedName("best_proposal")
     val bestProposal: Int,
     @SerializedName("is_favorite")
