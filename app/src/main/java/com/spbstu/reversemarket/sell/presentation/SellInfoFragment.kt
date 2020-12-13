@@ -30,6 +30,7 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
             Glide.with(this)
         )
 
+        layout_address_list.visibility = View.GONE
         layout_address_list.adapter = AddressAdapter(
             emptyList(),
             ::provideAddressClickListener,
