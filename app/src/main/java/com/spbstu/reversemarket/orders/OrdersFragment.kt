@@ -3,6 +3,7 @@ package com.spbstu.reversemarket.orders
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.spbstu.reversemarket.R
 import kotlinx.android.synthetic.main.fragment_orders.*
 
@@ -16,6 +17,10 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
             ), requireContext()
         )
         frg_orders__tab_layout.setupWithViewPager(frg_orders__pager)
+
+        frg_orders__back.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }
