@@ -16,7 +16,8 @@ import com.spbstu.reversemarket.sell.data.model.Request
 
 class ProductsAdapter(
     initRequests: List<Request>,
-    private val context: Context?
+    private val context: Context?,
+    private val onClick: ((Request) -> Unit)? = null
 ) : RecyclerView.Adapter<ProductsAdapter.TagViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
@@ -55,6 +56,9 @@ class ProductsAdapter(
         holder.price.text = requests[position].price.toString()
         holder.userName.text = requests[position].userName
         holder.date.text = requests[position].date
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(requests[position])
+        }
     }
 
     class TagViewHolder(view: View) : RecyclerView.ViewHolder(view) {

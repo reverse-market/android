@@ -15,6 +15,7 @@ class PhotoAdapter(
     initTags: List<String>,
     private val context: Context,
     private val glide: RequestManager,
+    private val onClick: (() -> Unit)? = null
 ) : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
     var urls: List<String> = initTags
@@ -37,7 +38,11 @@ class PhotoAdapter(
         if ("null" == urls[position]) {
             Utils.changeImage(holder.photo, R.drawable.ic_add_image, context)
         } else {
-            glide.load(urls[position]).into(holder.photo)
+            glide.load(urls[position]).centerCrop().into(holder.photo)
+        }
+
+        holder.itemView.setOnClickListener {
+            onClick?.invoke()
         }
     }
 

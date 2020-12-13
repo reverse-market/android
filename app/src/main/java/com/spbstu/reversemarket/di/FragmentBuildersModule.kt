@@ -2,6 +2,8 @@ package com.spbstu.reversemarket.di
 
 import android.app.Activity
 import com.spbstu.reversemarket.NavigationActivity
+import com.spbstu.reversemarket.buy.di.BuyInfoModule
+import com.spbstu.reversemarket.buy.presentation.BuyInfoFragment
 import com.spbstu.reversemarket.category.di.CategoryModule
 import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.di.scope.FeatureScope
@@ -55,5 +57,9 @@ abstract class FragmentBuildersModule {
     @FeatureScope
     @ContributesAndroidInjector(modules = [ProductModule::class])
     abstract fun contributeBestOfferFragment(): BestOfferTabFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [BuyInfoModule::class])
+    abstract fun contributeBuyInfoFragment(): BuyInfoFragment
 
 }
