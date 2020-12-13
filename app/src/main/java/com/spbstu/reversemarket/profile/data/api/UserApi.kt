@@ -13,10 +13,10 @@ interface UserApi {
     @PUT("/user")
     fun editUser(@Body userBody: UserBody): Observable<Response<Void>>
 
-    @GET("/user/address")
+    @GET("/user/addresses")
     fun getAddresses(): Observable<Response<List<AddressBodyWithId>>>
 
-    @POST("/user/address")
+    @POST("/user/addresses")
     fun addAddress(@Body addressBodyNoId: AddressBodyNoId): Observable<Response<Void>>
 
     @PUT("/user/addresses/{id}")

@@ -77,5 +77,6 @@
     <string name="best_proposal_tab">лучшее предложение</string>
     <string name="Name">Название</string>
     <string name="item_name">Модель</string>
+    <string name="street">Street</string>
 
 </resources>

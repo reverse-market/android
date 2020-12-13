@@ -20,6 +20,7 @@ import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.buy.data.model.Request
 import com.spbstu.reversemarket.buy.domain.Address
 import com.spbstu.reversemarket.filter.data.model.Tag
+import com.spbstu.reversemarket.profile.data.model.AddressBodyWithId
 import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.NO_MARGIN_FLAG
@@ -204,7 +205,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
         )
     )
 
-    private fun provideAddressClickListener(position: Int) {
+    private fun provideAddressClickListener(address: AddressBodyWithId) {
 
     }
 
