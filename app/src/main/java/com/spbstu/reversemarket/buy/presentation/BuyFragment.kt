@@ -1,29 +1,25 @@
 package com.spbstu.reversemarket.buy.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.product.presentation.ProductFragment
 import com.spbstu.reversemarket.sell.data.model.Request
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
-import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
 import com.spbstu.reversemarket.utils.Utils
 import com.spbstu.reversemarket.utils.Utils.Companion.closeSearchView
 import com.spbstu.reversemarket.utils.Utils.Companion.showSearchView
 
-class BuyFragment : Fragment() {
+class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
 
-    private lateinit var buyViewModel: BuyViewModel
     private lateinit var titleTextView: TextView
     private lateinit var productList: RecyclerView
     private lateinit var searchButton: FrameLayout
@@ -32,14 +28,8 @@ class BuyFragment : Fragment() {
     private lateinit var searchCloseBtn: ImageView
     private lateinit var addNewButton: ImageView
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        buyViewModel = ViewModelProvider(this).get(BuyViewModel::class.java)
-        val view = inflater.inflate(R.layout.fragment_buy, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         titleTextView = view.findViewById(R.id.layout_toolbar_search__category_name)
         titleTextView.setText(R.string.frg_buy_title)
         titleTextView.setCompoundDrawables(null, null, null, null)
@@ -88,7 +78,13 @@ class BuyFragment : Fragment() {
         view.findViewById<ImageView>(R.id.layout_toolbar_search__btn).setOnClickListener {
             findNavController().navigate(R.id.buyInfoFragment)
         }
-        return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.createRequest().observe(viewLifecycleOwner, Observer {
+            (productList.adapter as ProductsAdapter).requests = it
+        })
     }
 
     private fun provideProducts(): List<Request> = listOf(
