@@ -1,9 +1,11 @@
 package com.spbstu.reversemarket.sell.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spbstu.reversemarket.di.scope.FeatureScope
+import com.spbstu.reversemarket.profile.data.model.AddressBodyWithId
 import com.spbstu.reversemarket.profile.data.model.toDomainModel
 import com.spbstu.reversemarket.profile.domain.model.Address
 import com.spbstu.reversemarket.sell.data.api.SellApi
@@ -17,13 +19,13 @@ class SellInfoViewModel @Inject constructor(
     private val sellApi: SellApi
 ) : ViewModel() {
 
-    private lateinit var addressData: MutableLiveData<List<Address>>
+    private lateinit var addressData: MutableLiveData<List<AddressBodyWithId>>
 
     fun addProposal(proposalBody: ProposalBody) {
         sellApi.addProposal(proposalBody)
     }
 
-    fun getAddress(): LiveData<List<Address>> {
+    fun getAddress(): LiveData<List<AddressBodyWithId>> {
         if (!this::addressData.isInitialized) {
             addressData = MutableLiveData()
             loadAddress()
@@ -38,7 +40,7 @@ class SellInfoViewModel @Inject constructor(
             }
             .subscribe {
                 if (it.code() == 200) {
-                    addressData.value = it.body()?.map { address -> address.toDomainModel() }
+                    addressData.postValue(it.body())
                 }
             }
     }

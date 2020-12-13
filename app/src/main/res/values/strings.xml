@@ -80,5 +80,6 @@
     <string name="best_proposal_tab">best proposal</string>
     <string name="Name">Name</string>
     <string name="item_name">Item name</string>
+    <string name="street">Street</string>
 
 </resources>

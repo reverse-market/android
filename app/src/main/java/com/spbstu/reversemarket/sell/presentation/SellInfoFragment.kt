@@ -10,6 +10,7 @@ import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.buy.presentation.AddressAdapter
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_ID
+import com.spbstu.reversemarket.profile.data.model.AddressBodyWithId
 import com.spbstu.reversemarket.sell.data.model.ProposalBody
 import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
 import kotlinx.android.synthetic.main.fragment_category.*
@@ -29,6 +30,7 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
             Glide.with(this)
         )
 
+        layout_address_list.visibility = View.GONE
         layout_address_list.adapter = AddressAdapter(
             emptyList(),
             ::provideAddressClickListener,
@@ -69,7 +71,7 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
     private fun provideUrlList(): List<String> = listOf("null")
 
 
-    private fun provideAddressClickListener(position: Int) {
+    private fun provideAddressClickListener(address: AddressBodyWithId) {
 
     }
 

@@ -2,6 +2,7 @@ package com.spbstu.reversemarket.di
 
 import android.app.Activity
 import com.spbstu.reversemarket.NavigationActivity
+import com.spbstu.reversemarket.address.AddressFragment
 import com.spbstu.reversemarket.buy.di.BuyInfoModule
 import com.spbstu.reversemarket.buy.presentation.BuyInfoFragment
 import com.spbstu.reversemarket.category.di.CategoryModule
@@ -17,6 +18,7 @@ import com.spbstu.reversemarket.sell.di.SellModule
 import com.spbstu.reversemarket.sell.presentation.SellFragment
 import com.spbstu.reversemarket.profile.di.ProfileModule
 import com.spbstu.reversemarket.profile.presentation.ProfileFragment
+import com.spbstu.reversemarket.profile.settings.SettingsFragment
 import com.spbstu.reversemarket.sell.di.SellInfoModule
 import com.spbstu.reversemarket.sell.presentation.SellInfoFragment
 import dagger.Binds
@@ -61,5 +63,13 @@ abstract class FragmentBuildersModule {
     @FeatureScope
     @ContributesAndroidInjector(modules = [BuyInfoModule::class])
     abstract fun contributeBuyInfoFragment(): BuyInfoFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeSettings(): SettingsFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeAddresses(): AddressFragment
 
 }
