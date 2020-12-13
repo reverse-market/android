@@ -39,17 +39,6 @@
             android:text="Air Force 1 Shadow White Yellow"
             android:translationY="1.36sp" />
 
-        <TextView
-            android:id="@+id/layout_product_item__view_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/layout_product_item__name"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/def_dimen"
-            android:text="150"
-            android:textColor="#828282"
-            app:drawableEndCompat="@drawable/ic_eye" />
-
         <ImageView
             android:id="@+id/layout_product_item__main_image"
             android:layout_width="match_parent"
@@ -93,16 +82,27 @@
             android:textSize="14sp"
             android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/layout_product_item__price"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layout_product_item__price_title"
-            android:layout_marginStart="@dimen/def_dimen"
-            android:text="$132.10"
-            android:textColor="#2E2D2C"
-            android:textSize="20sp"
-            android:textStyle="normal" />
+            android:layout_marginStart="@dimen/small_dimen"
+            android:layout_below="@id/layout_product_item__price_title">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ruble"/>
+
+            <TextView
+                android:id="@+id/layout_product_item__price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="132.10"
+                android:textColor="#2E2D2C"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/layout_product_item__username"

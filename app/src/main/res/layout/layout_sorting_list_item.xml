@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_sorting_list_item__background"
     android:layout_width="150dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/tag"
+    android:background="@drawable/not_selected_sorting"
     android:paddingStart="@dimen/small_dimen"
     android:paddingEnd="@dimen/small_dimen"
     android:layout_marginEnd="@dimen/small_dimen"
-    android:elevation="1dp">
+    android:elevation="3dp">
 
     <TextView
         android:id="@+id/layout_sorting_list_item__name"

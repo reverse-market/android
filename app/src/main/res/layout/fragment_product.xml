@@ -15,7 +15,8 @@
         android:paddingEnd="@dimen/huge_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frg_product_scroll">
 
         <ImageView
             android:id="@+id/layout_toolbar_product__close"
@@ -41,6 +42,7 @@
     </Toolbar>
 
     <ScrollView
+        android:id="@+id/frg_product_scroll"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:fillViewport="true"

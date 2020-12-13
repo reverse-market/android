@@ -4,13 +4,15 @@
     android:id="@+id/layout_product_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    >
 
     <TextView
         android:id="@+id/layout_product_info__description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="моргенштернчший репер моргенштерн лучший репер"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginEnd="@dimen/big_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,7 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Ценв"
+        android:text="@string/price_title"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginEnd="@dimen/big_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_product_info__description" />
 
@@ -27,7 +31,9 @@
         android:id="@+id/layout_product_info__amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Количество"
+        android:text="@string/amount_title"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginEnd="@dimen/big_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_product_info__price" />
 
@@ -35,7 +41,9 @@
         android:id="@+id/layout_product_info__date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Дата"
+        android:text="@string/date_title"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginEnd="@dimen/big_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_product_info__amount" />
 
@@ -43,16 +51,19 @@
         android:id="@+id/layout_product_info__tags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Теги"
+        android:text="@string/tags_title"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginEnd="@dimen/big_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_product_info__date" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/layout_product_info__tags_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/def_dimen"
-        android:layout_marginEnd="@dimen/def_dimen"
         android:overScrollMode="never"
+        android:layout_marginStart="@dimen/big_dimen"
+        android:layout_marginEnd="@dimen/big_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_product_info__tags" />
 

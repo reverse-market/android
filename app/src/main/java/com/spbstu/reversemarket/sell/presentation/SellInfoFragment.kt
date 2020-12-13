@@ -1,93 +1,74 @@
 package com.spbstu.reversemarket.sell.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
-import com.spbstu.reversemarket.buy.domain.Address
+import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.buy.presentation.AddressAdapter
+import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_ID
+import com.spbstu.reversemarket.sell.data.model.ProposalBody
 import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
-import com.spbstu.reversemarket.utils.Utils.Companion.changeImage
+import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.main.fragment_sell_info.*
+import kotlinx.android.synthetic.main.layout_address.*
+import kotlinx.android.synthetic.main.layout_new_product.*
+import kotlinx.android.synthetic.main.layout_photos.*
 
-class SellInfoFragment : Fragment() {
+class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_sell_info) {
 
-    private lateinit var photosList: RecyclerView
-    private lateinit var addressList: RecyclerView
-    private lateinit var saveTemplateCheckBox: ImageView
-    private lateinit var saveTemplateCheckBoxBackground: LinearLayout
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_sell_info, container, false)
-
-        photosList = view.findViewById(R.id.layout_new_product__photo_list)
-        photosList.adapter = PhotoAdapter(
+        layout_new_product__photo_list.adapter = PhotoAdapter(
             provideUrlList(),
             requireContext(),
             Glide.with(this)
         )
 
-        addressList = view.findViewById(R.id.layout_address_list)
-        addressList.adapter = AddressAdapter(
-            provideAddresses(),
+        layout_address_list.adapter = AddressAdapter(
+            emptyList(),
             ::provideAddressClickListener,
             R.id.sellInfoFragment
         )
-
-        saveTemplateCheckBox = view.findViewById(R.id.frg_sell_info__checkbox)
-        saveTemplateCheckBoxBackground = view.findViewById(R.id.frg_sell_info__checkbox_background)
-        saveTemplateCheckBoxBackground.setOnClickListener { changeCheckBoxState() }
 
         (view.findViewById(R.id.frg_sell_info__back_btn) as ImageView).setOnClickListener {
             findNavController().navigateUp()
         }
 
-        return view
+        frg_sell_info__save_btn.setOnClickListener { saveProposal() }
+        viewAddress()
+    }
+
+    private fun viewAddress() {
+        viewModel.getAddress().observe(viewLifecycleOwner) {
+            (frg_category__list.adapter as AddressAdapter).addresses = it
+        }
+    }
+
+    private fun saveProposal() {
+        val price = layout_new_product__price.text.toString()
+        val amount = layout_new_product__amount.text.toString()
+        viewModel.addProposal(
+            ProposalBody(
+                requireArguments().getInt(PRODUCT_ID),
+                layout_new_product__description_text.text.toString(),
+                emptyList(),
+                if (price.isEmpty()) 0 else price.toInt(),
+                if (amount.isEmpty()) 0 else amount.toInt()
+            )
+        )
+        findNavController().navigate(R.id.navigation_sell)
     }
 
     private fun provideUrlList(): List<String> = listOf("null")
 
-    private fun provideAddresses(): List<Address> = listOf(
-        Address(
-            "Мой адрес",
-            "Ленинградская область, г. Санкт-Петербург, Невский просп. д.28, кв. 1, 190000",
-            "Иванов Иван Иванович"
-        ),
-        Address(
-            "Работа",
-            "Ленинградская область, г. Санкт-Петербург, Невский просп. д.35, кв. 30, 190000",
-            "Иванов Иван Иванович"
-        )
-    )
-
-    private fun changeCheckBoxState() {
-        if (saveTemplateCheckBox.tag == SAVED_TEMPLATE_STATE_TAG) {
-            changeImage(saveTemplateCheckBox, R.drawable.ic_unchecked, requireContext())
-            saveTemplateCheckBox.tag = UNSAVED_TEMPLATE_STATE_TAG
-        } else {
-            changeImage(saveTemplateCheckBox, R.drawable.ic_checkbox, requireContext())
-            saveTemplateCheckBox.tag = SAVED_TEMPLATE_STATE_TAG
-        }
-    }
 
     private fun provideAddressClickListener(position: Int) {
 
     }
-
-    companion object {
-        const val SAVED_TEMPLATE_STATE_TAG = "save"
-        const val UNSAVED_TEMPLATE_STATE_TAG = "no save"
-    }
-
 
 }

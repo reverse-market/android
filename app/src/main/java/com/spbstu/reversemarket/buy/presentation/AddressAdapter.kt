@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.address.AddressFragment
-import com.spbstu.reversemarket.buy.domain.Address
+import com.spbstu.reversemarket.profile.domain.model.Address
 
 class AddressAdapter(
     initTags: List<Address>,
@@ -44,9 +43,9 @@ class AddressAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder.itemViewType == 1) {
             with(holder as AddressViewHolder) {
-                addressName.text = addresses[position - 1].addressName
-                address.text = addresses[position - 1].address
-                name.text = addresses[position - 1].name
+                addressName.text = addresses[position - 1].name
+                address.text = getFullAddress(position)
+                name.text = getFullName(position)
                 editBtn.setOnClickListener { listener(position) }
             }
         } else {
@@ -55,6 +54,18 @@ class AddressAdapter(
                 bundle.putInt(AddressFragment.BACK_NAVIGATION, backNavigation)
                 findNavController(it).navigate(R.id.addressFragment, bundle)
             }
+        }
+    }
+
+    private fun getFullAddress(position: Int): String {
+        with(addresses[position]) {
+            return "$city, $street, д. $number, ст. $building, кв. $apartment, $zip"
+        }
+    }
+
+    private fun getFullName(position: Int): String {
+        with(addresses[position]) {
+            return "$lastName $firstName $fatherName"
         }
     }
 

@@ -3,6 +3,8 @@ package com.spbstu.reversemarket.profile.data.model
 import com.google.gson.annotations.SerializedName
 
 data class AddressBodyNoId(
+    @SerializedName("name")
+    val name: String,
     @SerializedName("region")
     val region: String,
     @SerializedName("city")

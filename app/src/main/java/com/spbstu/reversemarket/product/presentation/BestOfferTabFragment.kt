@@ -1,60 +1,34 @@
 package com.spbstu.reversemarket.product.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
-import com.spbstu.reversemarket.sell.domain.model.Product
-import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
+import com.spbstu.reversemarket.base.InjectionFragment
+import kotlinx.android.synthetic.main.layout_best_offer.*
 
-class BestOfferTabFragment : Fragment() {
-    private lateinit var productList: RecyclerView
+class BestOfferTabFragment(private val ids: IntArray?) :
+    InjectionFragment<BestOfferViewModel>(R.layout.layout_best_offer) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.layout_best_offer, container, false)
-        productList = view.findViewById(R.id.layout_best_offer__buy__list)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        productList.layoutManager = LinearLayoutManager(context)
-        productList.adapter =
-            ProductsAdapter(
-                provideProducts(),
-                context
+        layout_best_offer__buy__list.layoutManager = LinearLayoutManager(context)
+        layout_best_offer__buy__list.adapter =
+            ProposalAdapter(
+                emptyList(),
             )
-        return view
+        loadItems()
     }
 
-    private fun provideProducts(): List<Product> = listOf(
-        Product(
-            "Nike кроссовки",
-            "Air Force 1 Shadow White Yellow",
-            150,
-            provideProductTags(),
-            "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
-            "$132.10",
-            "zvladn7",
-            "03.10.20"
-        ),
-        Product(
-            "Adidas кроссовки",
-            "Yeezy boost 500",
-            524,
-            provideProductTags2(),
-            "Кроссовки Yeezy 500 от Yeezy. Закругленный носок, шнуровка спереди, сетчатые вставки и резиновая подошва в рубчик. Черный цвет.",
-            "Р42000",
-            "zvladn7",
-            "02.10.20"
-        ),
-    )
+    private fun loadItems() {
+        ids?.forEach {
+            viewModel.getProposal(it).observe(viewLifecycleOwner) { proposals ->
+                (layout_best_offer__buy__list.adapter as ProposalAdapter).proposals = proposals
+                (layout_best_offer__buy__list.adapter as ProposalAdapter).notifyDataSetChanged()
+            }
+        }
+    }
 
-    fun provideProductTags(): List<String> = listOf("Кроссовки", "Желтый")
-    fun provideProductTags2(): List<String> =
-        listOf("Adidas", "Черный", "Кроссовки", "Adidas", "Черный", "Кроссовки")
 }
