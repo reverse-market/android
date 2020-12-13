@@ -1,5 +1,6 @@
 package com.spbstu.reversemarket.buy.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,8 +25,17 @@ import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.NO_MARGIN_FLA
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.getFocusListener
 import com.spbstu.reversemarket.utils.Utils
+import kotlinx.android.synthetic.main.fragment_buy_info.*
+import kotlinx.android.synthetic.main.layout_new_product.view.*
+import kotlinx.android.synthetic.main.layout_photos.*
+import kotlinx.android.synthetic.main.layout_photos.view.*
+
 
 class BuyInfoFragment : Fragment() {
+
+    companion object {
+        const val PICK_IMAGE = 50123
+    }
 
     private lateinit var photosList: RecyclerView
     private lateinit var addressList: RecyclerView
@@ -98,6 +108,35 @@ class BuyInfoFragment : Fragment() {
         )
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        layout_new_product__photo_list.adapter = PhotoAdapter(
+            provideUrlList(),
+            requireContext(),
+            Glide.with(this)
+        ) {
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE) {
+            val uri = data?.data
+            if (uri != null) {
+                val adapter = layout_new_product__photo_list.adapter as PhotoAdapter
+                val newList = mutableListOf<String>()
+                newList.addAll(adapter.urls)
+                newList.add(uri.toString())
+                adapter.urls = newList
+            }
+        }
     }
 
     private fun provideUrlList(): List<String> = listOf("null")
