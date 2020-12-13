@@ -78,5 +78,7 @@
     <string name="tags_title">Tags</string>
     <string name="description_tab">description</string>
     <string name="best_proposal_tab">best proposal</string>
+    <string name="Name">Name</string>
+    <string name="item_name">Item name</string>
 
 </resources>

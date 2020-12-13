@@ -2,13 +2,12 @@ package com.spbstu.reversemarket.buy.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,6 +16,8 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.base.InjectionFragment
+import com.spbstu.reversemarket.buy.data.model.Request
 import com.spbstu.reversemarket.buy.domain.Address
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
@@ -26,12 +27,12 @@ import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.getFocusListener
 import com.spbstu.reversemarket.utils.Utils
 import kotlinx.android.synthetic.main.fragment_buy_info.*
-import kotlinx.android.synthetic.main.layout_new_product.view.*
+import kotlinx.android.synthetic.main.layout_new_product.*
 import kotlinx.android.synthetic.main.layout_photos.*
-import kotlinx.android.synthetic.main.layout_photos.view.*
+import java.lang.Exception
 
 
-class BuyInfoFragment : Fragment() {
+class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_buy_info) {
 
     companion object {
         const val PICK_IMAGE = 50123
@@ -46,16 +47,13 @@ class BuyInfoFragment : Fragment() {
     private lateinit var selectedTagsList: RecyclerView
     private lateinit var addTagsList: RecyclerView
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_buy_info, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         view.findViewById<ImageView>(R.id.frg_buy_info__back_btn).setOnClickListener {
             findNavController().navigate(R.id.navigation_buy)
         }
 
+        frg_buy_info__address.visibility = View.GONE
         photosList = view.findViewById(R.id.layout_new_product__photo_list)
         photosList.adapter = PhotoAdapter(
             provideUrlList(),
@@ -85,12 +83,7 @@ class BuyInfoFragment : Fragment() {
         closeBtn.setOnClickListener { Utils.closeKeyboard(activity, search) }
 
         addTagsList = view.findViewById(R.id.layout_selected_tags__new_tags)
-        addTagsList.adapter =
-            TagsAdapter(
-                provideAddTagsList(),
-                R.layout.layout_add_tag,
-                addFunc = { tag: Tag -> addTag(selectedTagsList, tag) },
-            )
+
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
@@ -107,11 +100,6 @@ class BuyInfoFragment : Fragment() {
             )
         )
 
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         layout_new_product__photo_list.adapter = PhotoAdapter(
             provideUrlList(),
@@ -123,6 +111,52 @@ class BuyInfoFragment : Fragment() {
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE)
         }
+
+        frg_buy_info__save_btn.setOnClickListener {
+            try {
+                val description = layout_new_product__description_text.text.toString()
+                val price = layout_new_product__price.text.toString().toInt()
+                val amount = layout_new_product__amount.text.toString().toInt()
+                val name = layout_new_product__name.text.toString()
+                val itemName = layout_new_product__itemName.text.toString()
+                val tags = (addTagsList.adapter as TagsAdapter).tags
+                if (description.isBlank() || name.isBlank() || itemName.isBlank()) {
+                    throw IllegalArgumentException("Fields must not be blank!")
+                }
+                val request = Request(name, itemName, description, emptyList(), price, amount, tags)
+                viewModel.createRequest(request).observe(viewLifecycleOwner, {
+                    if (it) {
+                        try {
+                            findNavController().popBackStack()
+                        } catch (ignored: Exception) {
+                        }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Не удалось создать объявление",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Неверно заполнены поля!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        // TODO Change provideAddTagsList() to it, when backend part is done
+        viewModel.getTags().observe(viewLifecycleOwner, {
+            Log.d("WWWW", "initialized")
+            addTagsList.adapter =
+                TagsAdapter(
+                    provideAddTagsList(),
+                    R.layout.layout_add_tag,
+                    addFunc = { tag: Tag -> addTag(selectedTagsList, tag) },
+                )
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

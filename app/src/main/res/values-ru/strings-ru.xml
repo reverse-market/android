@@ -7,7 +7,7 @@
     <string name="login_facebook">Войти через Facebook</string>
     <string name="login_google">Войти через Google</string>
     <string name="title_product">Продукт</string>
-    <string name="price_title" >Цена</string>
+    <string name="price_title">Цена</string>
 
     <string name="searchHint">Поиск</string>
     <string name="fragment_filter_title">ФИЛЬТР</string>
@@ -75,5 +75,7 @@
     <string name="tags_title">Теги</string>
     <string name="description_tab">описание</string>
     <string name="best_proposal_tab">лучшее предложение</string>
+    <string name="Name">Название</string>
+    <string name="item_name">Модель</string>
 
 </resources>

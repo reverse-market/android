@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.filter.data.model.Tag
+import com.spbstu.reversemarket.product.presentation.ProductFragment
 import com.spbstu.reversemarket.sell.data.model.Request
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
 import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
@@ -44,20 +45,21 @@ class BuyFragment : Fragment() {
         titleTextView.setCompoundDrawables(null, null, null, null)
 
         productList = view.findViewById(R.id.frg_buy__list)
-        productList.addOnItemTouchListener(
-            RecyclerItemClickListener(productList,
-                object : RecyclerItemClickListener.OnItemClickListener {
-                    override fun onItemClick(view: View, position: Int) {
-                        findNavController().navigate(R.id.action_navigation_buy_to_navigation_product)
-                    }
-                })
-        )
         productList.layoutManager = LinearLayoutManager(context)
         productList.adapter =
             ProductsAdapter(
                 provideProducts(),
                 context
-            )
+            ) {
+                val bundle = Bundle()
+                bundle.putInt(ProductFragment.PRODUCT_ID, it.id)
+                bundle.putString(ProductFragment.PRODUCT_NAME, it.name)
+                bundle.putString(ProductFragment.PRODUCT_ITEM_NAME, it.itemName)
+                findNavController().navigate(
+                    R.id.action_navigation_buy_to_navigation_product,
+                    bundle
+                )
+            }
         searchTextBackground = view.findViewById(R.id.layout_toolbar_search_text__background)
         searchText = view.findViewById(R.id.layout_toolbar_search__text)
         searchButton = view.findViewById(R.id.layout_toolbar_search__button)
@@ -67,7 +69,13 @@ class BuyFragment : Fragment() {
 
         searchCloseBtn = view.findViewById(R.id.layout_toolbar__search_close_btn)
         searchCloseBtn.setOnClickListener {
-            closeSearchView(titleTextView, searchTextBackground, searchCloseBtn, searchText, activity)
+            closeSearchView(
+                titleTextView,
+                searchTextBackground,
+                searchCloseBtn,
+                searchText,
+                activity
+            )
         }
         addNewButton = view.findViewById(R.id.layout_toolbar_search__btn)
         addNewButton.setImageDrawable(
@@ -131,7 +139,13 @@ class BuyFragment : Fragment() {
 
     private val searchButtonListener = View.OnClickListener {
         if (titleTextView.visibility == View.VISIBLE) {
-            showSearchView(titleTextView, searchTextBackground, searchText, searchCloseBtn, activity)
+            showSearchView(
+                titleTextView,
+                searchTextBackground,
+                searchText,
+                searchCloseBtn,
+                activity
+            )
         } else {
             filterRecycler()
         }

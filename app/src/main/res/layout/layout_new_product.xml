@@ -11,8 +11,8 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text="@string/description_title"
-        style="@style/editTextTitleStyle"/>
+        style="@style/editTextTitleStyle"
+        android:text="@string/description_title" />
 
     <EditText
         android:id="@+id/layout_new_product__description_text"
@@ -22,32 +22,54 @@
         android:layout_marginTop="@dimen/small_dimen"
         android:layout_marginEnd="@dimen/x_huge_dimen"
         android:background="@drawable/white_rounded_background"
-        android:elevation="10dp"
+        android:elevation="4dp"
         android:gravity="top"
         android:hint="@string/description_hint"
         android:padding="@dimen/def_dimen" />
 
     <TextView
-        android:text="@string/price_title"
-        style="@style/editTextTitleStyle"/>
+        style="@style/editTextTitleStyle"
+        android:text="@string/price_title" />
 
     <EditText
         android:id="@+id/layout_new_product__price"
+        style="@style/editTextStyle"
+        android:elevation="4dp"
         android:hint="@string/price_hint"
-        android:inputType="numberDecimal"
-        android:elevation="10dp"
-        style="@style/editTextStyle" />
+        android:inputType="numberDecimal" />
 
     <TextView
-        android:text="@string/amount_title"
-        style="@style/editTextTitleStyle"/>
+        style="@style/editTextTitleStyle"
+        android:text="@string/amount_title" />
 
     <EditText
         android:id="@+id/layout_new_product__amount"
+        style="@style/editTextStyle"
+        android:elevation="4dp"
         android:hint="@string/amount_hint"
-        android:inputType="numberDecimal"
-        android:elevation="10dp"
-        style="@style/editTextStyle" />
+        android:inputType="numberDecimal" />
+
+    <TextView
+        style="@style/editTextTitleStyle"
+        android:text="@string/Name" />
+
+    <EditText
+        android:id="@+id/layout_new_product__name"
+        style="@style/editTextStyle"
+        android:elevation="4dp"
+        android:hint="@string/amount_hint" />
+
+    <TextView
+        style="@style/editTextTitleStyle"
+        android:text="@string/item_name" />
+
+    <EditText
+        android:id="@+id/layout_new_product__itemName"
+        style="@style/editTextStyle"
+        android:layout_marginBottom="12dp"
+        android:elevation="4dp"
+        android:hint="@string/amount_hint" />
+
 
     <include
         android:id="@+id/frg_buy_info__address"

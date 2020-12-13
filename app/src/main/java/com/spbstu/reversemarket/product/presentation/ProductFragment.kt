@@ -65,7 +65,6 @@ class ProductFragment : Fragment() {
         productId = requireArguments().getInt(PRODUCT_ID)
         frg_product_name.text = requireArguments().getString(PRODUCT_NAME)
         frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
-        frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
     }
 
     private fun provideDescriptionBundle(): Bundle {
