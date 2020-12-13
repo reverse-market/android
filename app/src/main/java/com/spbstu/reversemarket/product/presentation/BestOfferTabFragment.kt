@@ -6,6 +6,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
+import com.spbstu.reversemarket.product.data.model.Proposal
 import kotlinx.android.synthetic.main.layout_best_offer.*
 
 class BestOfferTabFragment(private val ids: IntArray?) :

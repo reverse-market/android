@@ -139,7 +139,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                     }
                 })
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Неверно заполнены поля!", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Неверно заполнены поля!", Toast.LENGTH_LONG)
                     .show()
             }
         }

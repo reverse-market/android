@@ -53,7 +53,7 @@
                 android:id="@+id/frg_sell_info__information"
                 layout="@layout/layout_new_product"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/frg_sell_info__save_btn"

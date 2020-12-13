@@ -41,6 +41,8 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
 
         frg_sell_info__save_btn.setOnClickListener { saveProposal() }
         viewAddress()
+        layout_new_product__name.visibility = View.GONE
+        layout_new_product__itemName.visibility = View.GONE
     }
 
     private fun viewAddress() {
