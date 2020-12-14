@@ -18,7 +18,7 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
         layout_toolbar_search__category_name.setOnClickListener {
             val args = Bundle()
             args.putString(CATEGORY_NAME, layout_toolbar_search__category_name.text.toString())
-            findNavController().navigate(R.id.navigation_sell, args)
+            findNavController().navigate(R.id.action_categoryFragment_to_navigation_sell, args)
         }
         arguments?.getString(CATEGORY_NAME)?.let {
             layout_toolbar_search__category_name.text = it
@@ -45,7 +45,7 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
         val categoryName = (frg_category__list.adapter as CategoryAdapter).categories[position].name
         args.putInt(CATEGORY_ID, categoryId)
         args.putString(CATEGORY_NAME, categoryName)
-        findNavController().navigate(R.id.navigation_sell, args)
+        findNavController().navigate(R.id.action_categoryFragment_to_navigation_sell, args)
     }
 
     companion object {
