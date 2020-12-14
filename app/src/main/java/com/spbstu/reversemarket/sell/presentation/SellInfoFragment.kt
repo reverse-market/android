@@ -45,6 +45,9 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
         viewAddress()
         layout_new_product__name.visibility = View.GONE
         layout_new_product__itemName.visibility = View.GONE
+        layout_new_product__name_title.visibility = View.INVISIBLE
+        layout_new_product__itemName_title.visibility = View.INVISIBLE
+        layout_address__title.visibility = View.INVISIBLE
     }
 
     private fun viewAddress() {
