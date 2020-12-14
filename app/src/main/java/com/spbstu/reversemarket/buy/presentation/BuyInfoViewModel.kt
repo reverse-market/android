@@ -129,6 +129,8 @@ class BuyInfoViewModel @Inject constructor(
         val res = MutableLiveData(false)
         uploadRequest().observeForever {
             if (it.isNotEmpty()) {
+                request.photos = it
+                Log.d("WWWW", "Trying to send $request")
                 api.createRequest(request)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

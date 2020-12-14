@@ -38,7 +38,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
         productList.layoutManager = LinearLayoutManager(context)
         productList.adapter =
             ProductsAdapter(
-                provideProducts(),
+                emptyList(),
                 context
             ) {
                 val bundle = Bundle()

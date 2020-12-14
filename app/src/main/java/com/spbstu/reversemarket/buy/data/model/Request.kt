@@ -12,7 +12,7 @@ data class Request(
     @SerializedName("description")
     val description: String,
     @SerializedName("photos")
-    val photos: List<String>,
+    var photos: List<String>,
     @SerializedName("price")
     val price: Int,
     @SerializedName("quantity")
