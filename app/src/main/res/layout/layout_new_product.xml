@@ -50,6 +50,7 @@
         android:inputType="numberDecimal" />
 
     <TextView
+        android:id="@+id/layout_new_product__name_title"
         style="@style/editTextTitleStyle"
         android:text="@string/Name" />
 
@@ -60,6 +61,7 @@
         android:hint="@string/name_hint" />
 
     <TextView
+        android:id="@+id/layout_new_product__itemName_title"
         style="@style/editTextTitleStyle"
         android:text="@string/item_name" />
 
