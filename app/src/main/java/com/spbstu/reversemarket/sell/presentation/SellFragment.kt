@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -73,7 +72,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
                 CategoryFragment.CATEGORY_NAME,
                 layout_toolbar_search__category_name.text.toString()
             )
-            findNavController().navigate(R.id.categoryFragment, args)
+            findNavController().navigate(R.id.action_navigation_sell_to_categoryFragment, args)
         }
 
         val tags = initPrevTags(arguments)
@@ -104,7 +103,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             val args = provideTagsBundle(filterTags)
             args.putInt(CATEGORY_ID, categoryId)
             addSortingParamsToBundle(args)
-            findNavController().navigate(R.id.filterFragment, args)
+            findNavController().navigate(R.id.action_navigation_sell_to_filterFragment, args)
         }
     }
 
@@ -118,9 +117,9 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             priceFrom,
             priceTo,
             sort
-        ).observe(viewLifecycleOwner) {
+        ).observe(viewLifecycleOwner, {
             (frg_product_list.adapter as ProductsAdapter).requests = it
-        }
+        })
     }
 
     private fun navigateToItem(position: Int) {

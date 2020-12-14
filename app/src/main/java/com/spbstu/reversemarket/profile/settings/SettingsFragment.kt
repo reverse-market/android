@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
@@ -31,14 +32,14 @@ class SettingsFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_s
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getAddresses().observe(viewLifecycleOwner, {
+        viewModel.getAddresses().observe(viewLifecycleOwner) {
             Log.d("WWWW", "$it")
             addressList.adapter = AddressAdapter(
-                it ?: emptyList(),
+                it,
                 ::provideAddressClickListener,
                 R.id.settingsFragment
             )
-        })
+        }
     }
 
     private fun provideAddresses(): List<Address> = listOf(
@@ -57,6 +58,6 @@ class SettingsFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_s
     private fun provideAddressClickListener(address: AddressBodyWithId) {
         val bundle = Bundle()
         bundle.putParcelable(AddressFragment.ADDRESS_KEY, address)
-        findNavController().navigate(R.id.addressFragment, bundle)
+        findNavController().navigate(R.id.action_settingsFragment_to_addressFragment, bundle)
     }
 }
