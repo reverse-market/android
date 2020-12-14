@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -118,9 +117,9 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             priceFrom,
             priceTo,
             sort
-        ).observe(viewLifecycleOwner) {
+        ).observe(viewLifecycleOwner, {
             (frg_product_list.adapter as ProductsAdapter).requests = it
-        }
+        })
     }
 
     private fun navigateToItem(position: Int) {

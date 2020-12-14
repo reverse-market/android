@@ -55,7 +55,7 @@
             android:layout_marginEnd="@dimen/def_dimen"
             android:gravity="top"
             android:lineSpacingExtra="3sp"
-            android:text="Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает..."
+            tools:text="Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает..."
             android:textColor="#828282"
             android:textSize="13sp"
             android:translationY="-1.36sp" />
