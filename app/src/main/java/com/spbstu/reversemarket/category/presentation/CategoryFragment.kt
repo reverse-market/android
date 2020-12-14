@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.category.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -48,7 +49,7 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
     }
 
     companion object {
-        const val CATEGORY_NAME = "CATEGORY"
-        const val CATEGORY_ID = "CATEGORY"
+        const val CATEGORY_NAME = "CATEGORY_NAME"
+        const val CATEGORY_ID = "CATEGORY_ID"
     }
 }

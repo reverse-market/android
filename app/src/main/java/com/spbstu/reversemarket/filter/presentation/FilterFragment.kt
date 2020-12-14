@@ -3,6 +3,7 @@ package com.spbstu.reversemarket.filter.presentation
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation.findNavController
@@ -121,6 +122,7 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.getTags(requireArguments().getInt(CATEGORY_ID)).observe(viewLifecycleOwner) {
+            Log.d("WWWW", "${requireArguments().getInt(CATEGORY_ID)}")
             (layout_selected_tags__new_tags.adapter as TagsAdapter).tags = it
         }
     }

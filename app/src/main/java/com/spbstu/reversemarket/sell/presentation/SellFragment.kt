@@ -34,7 +34,7 @@ import kotlinx.android.synthetic.main.layout_toolbar__search.*
 
 class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
 
-    private var categoryId: Int = 0
+    private var categoryId: Int = 5
     private var priceFrom: Int = 0
     private var priceTo = 100000
     private var sort = "price_desc"
@@ -46,6 +46,9 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         activity?.findViewById<BottomNavigationView>(R.id.nav_view)?.visibility = View.VISIBLE
         val toolbar: Toolbar = view.findViewById(R.id.frg_search_bar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+        categoryId = arguments?.getInt(CATEGORY_ID) ?: 5
+
 
         frg_product_list.addOnItemTouchListener(
             RecyclerItemClickListener(frg_product_list,
@@ -73,7 +76,8 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         val tags = initPrevTags(arguments)
         initFilterParams()
 
-        frg_tags_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        frg_tags_list.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         frg_tags_list.adapter =
             TagsAdapter(
                 tags,

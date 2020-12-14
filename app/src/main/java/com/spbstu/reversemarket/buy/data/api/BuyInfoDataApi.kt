@@ -7,11 +7,12 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface BuyInfoDataApi {
     @POST("/user/requests")
     fun createRequest(@Body request: Request): Observable<Response<Void>>
 
     @GET("/tags")
-    fun getTags(): Observable<Response<List<Tag>>>
+    fun getTags(@Query("category") category: Int): Observable<Response<List<Tag>>>
 }

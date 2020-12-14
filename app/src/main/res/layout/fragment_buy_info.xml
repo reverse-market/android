@@ -38,7 +38,7 @@
 
     </RelativeLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/frg_buy_info__scroll_view_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,6 +55,19 @@
                 layout="@layout/layout_new_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/editTextTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category" />
+
+            <Spinner
+                android:id="@+id/frg_but_info__category"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp" />
 
             <include
                 android:id="@+id/frg_but_info__search_text_background"
@@ -111,14 +124,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/x_huge_dimen"
+                android:background="@drawable/filter_save_btn_background"
                 android:paddingTop="@dimen/def_dimen"
                 android:paddingBottom="@dimen/def_dimen"
-                android:background="@drawable/filter_save_btn_background"
                 android:text="@string/create"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

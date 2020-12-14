@@ -2,12 +2,8 @@ package com.spbstu.reversemarket.buy.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,6 +15,7 @@ import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.buy.data.model.Request
 import com.spbstu.reversemarket.buy.domain.Address
+import com.spbstu.reversemarket.category.data.model.Category
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.profile.data.model.AddressBodyWithId
 import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
@@ -72,7 +69,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
         selectedTagsList = view.findViewById(R.id.frg_filter__selected_categories)
         selectedTagsList.adapter =
             TagsAdapter(
-                provideSelectedList(),
+                emptyList(),
                 R.layout.layout_filter_selected_item,
                 addFunc = { tag: Tag -> addTag(addTagsList, tag) },
             )
@@ -146,18 +143,42 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
         }
     }
 
+    private lateinit var allCategories: List<Category>
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // TODO Change provideAddTagsList() to it, when backend part is done
-        viewModel.getTags().observe(viewLifecycleOwner, {
-            Log.d("WWWW", "initialized")
+        viewModel.getTags(true).observe(viewLifecycleOwner, {
             addTagsList.adapter =
                 TagsAdapter(
-                    provideAddTagsList(),
+                    it,
                     R.layout.layout_add_tag,
                     addFunc = { tag: Tag -> addTag(selectedTagsList, tag) },
                 )
         })
+
+        viewModel.getCategories().observe(viewLifecycleOwner, {
+            allCategories = it
+            frg_but_info__category.adapter = ArrayAdapter<String>(
+                requireContext(),
+                R.layout.support_simple_spinner_dropdown_item,
+                it.map { it.name }
+            )
+            frg_but_info__category.setSelection(0)
+            frg_but_info__category.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        //Toast.makeText(requireContext(), "${allCategories[p2]}", Toast.LENGTH_SHORT).show()
+                        viewModel.getTags(true, allCategories[p2].id)
+                    }
+
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                    }
+
+                }
+        })
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
