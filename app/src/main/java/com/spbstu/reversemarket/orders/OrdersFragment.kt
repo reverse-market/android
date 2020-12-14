@@ -14,7 +14,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         frg_orders__pager.adapter = OrdersTabAdapter(
             childFragmentManager, listOf(
                 getString(R.string.bought), getString(R.string.sold)
-            ), requireContext()
+            )
         )
         frg_orders__tab_layout.setupWithViewPager(frg_orders__pager)
 
