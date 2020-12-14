@@ -42,9 +42,9 @@
         <ImageView
             android:id="@+id/layout_product_item__main_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="400dp"
             android:layout_below="@id/layout_product_item__full_name"
-            android:src="@drawable/nike" />
+            tools:src="@drawable/nike" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/layout_product_item__tags"

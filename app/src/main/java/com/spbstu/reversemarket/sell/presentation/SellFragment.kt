@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
@@ -61,7 +62,8 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         frg_product_list.adapter =
             ProductsAdapter(
                 provideProducts(),
-                context
+                context,
+                Glide.with(this)
             )
 
         layout_toolbar_search__category_name.setOnClickListener {
