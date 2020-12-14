@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.filter.data.model.Tag
@@ -39,7 +40,8 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
         productList.adapter =
             ProductsAdapter(
                 emptyList(),
-                context
+                context,
+                Glide.with(this)
             ) {
                 val bundle = Bundle()
                 bundle.putInt(ProductFragment.PRODUCT_ID, it.id)

@@ -6,10 +6,9 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
-import com.spbstu.reversemarket.product.data.model.Proposal
 import kotlinx.android.synthetic.main.layout_best_offer.*
 
-class BestOfferTabFragment(private val ids: IntArray?) :
+class BestOfferTabFragment(private val ids: IntArray?, private val isSell: Boolean) :
     InjectionFragment<BestOfferViewModel>(R.layout.layout_best_offer) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -18,6 +17,7 @@ class BestOfferTabFragment(private val ids: IntArray?) :
         layout_best_offer__buy__list.layoutManager = LinearLayoutManager(context)
         layout_best_offer__buy__list.adapter =
             ProposalAdapter(
+                requireActivity(),
                 emptyList(),
             )
         loadItems()
@@ -25,7 +25,7 @@ class BestOfferTabFragment(private val ids: IntArray?) :
 
     private fun loadItems() {
         ids?.forEach {
-            viewModel.getProposal(it).observe(viewLifecycleOwner) { proposals ->
+            viewModel.getProposal(it, isSell).observe(viewLifecycleOwner) { proposals ->
                 (layout_best_offer__buy__list.adapter as ProposalAdapter).proposals = proposals
                 (layout_best_offer__buy__list.adapter as ProposalAdapter).notifyDataSetChanged()
             }

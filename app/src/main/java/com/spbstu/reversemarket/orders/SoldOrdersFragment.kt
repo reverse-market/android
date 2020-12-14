@@ -14,33 +14,8 @@ class SoldOrdersFragment : Fragment(R.layout.fragment_sold_orders) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         frg_sold__list.adapter =
-            SoldOrderAdapter(provideOrders(), Glide.with(this)) { pos, view ->
+            SoldOrderAdapter(emptyList(), Glide.with(this)) { pos, view ->
 
             }
     }
-
-    private fun provideOrders(): List<SoldOrder> =
-        listOf(
-            SoldOrder(
-                "Nike кроссовки",
-                "https://cdn-images.farfetch-contents.com/15/44/86/97/15448697_27349244_600.jpg",
-                "Air Force 1 Shadow White Yellow",
-                1,
-                12300
-            ),
-            SoldOrder(
-                "Nike кроссовки",
-                "https://cdn-images.farfetch-contents.com/15/44/86/97/15448697_27349244_600.jpg",
-                "Air Force 1 Shadow White Yellow",
-                1,
-                1000
-            ),
-            SoldOrder(
-                "Nike кроссовки",
-                "https://cdn-images.farfetch-contents.com/15/44/86/97/15448697_27349244_600.jpg",
-                "Air Force 1 Shadow White Yellow",
-                1,
-                200
-            )
-        )
 }

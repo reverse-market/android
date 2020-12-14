@@ -13,4 +13,9 @@ interface ProductApi {
         @Path("id") id: Int,
     ): Observable<Response<Proposal>>
 
+    @GET("/user/proposals/{id}")
+    fun getUserBestProposal(
+        @Path("id") id: Int,
+    ): Observable<Response<Proposal>>
+
 }

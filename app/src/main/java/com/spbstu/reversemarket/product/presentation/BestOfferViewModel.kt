@@ -19,25 +19,34 @@ class BestOfferViewModel @Inject constructor(
     private lateinit var proposalData: MutableLiveData<List<Proposal>>
     private val proposals = mutableListOf<Proposal>()
 
-    fun getProposal(bestProposalId: Int): LiveData<List<Proposal>> {
+    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<List<Proposal>> {
         if (!this::proposalData.isInitialized) {
             proposalData = MutableLiveData()
-            loadProposal(bestProposalId)
+            if (sell) {
+                productApi.getBestProposal(bestProposalId).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError {
+                    }
+                    .subscribe {
+                        if (it.code() == 200) {
+                            it.body()?.let { proposal -> proposals.add(proposal) }
+                            proposalData.value = proposals
+                        }
+                    }
+            } else {
+                productApi.getUserBestProposal(bestProposalId).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError {
+                    }
+                    .subscribe {
+                        if (it.code() == 200) {
+                            it.body()?.let { proposal -> proposals.add(proposal) }
+                            proposalData.value = proposals
+                        }
+                    }
+            }
         }
         return proposalData
-    }
-
-    private fun loadProposal(bestProposalId: Int) {
-        productApi.getBestProposal(bestProposalId).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {
-            }
-            .subscribe {
-                if (it.code() == 200) {
-                    it.body()?.let { proposal -> proposals.add(proposal) }
-                    proposalData.value = proposals
-                }
-            }
     }
 
 }
