@@ -2,7 +2,6 @@ package com.spbstu.reversemarket.buy.data.model
 
 import com.google.gson.annotations.SerializedName
 import com.spbstu.reversemarket.filter.data.model.Tag
-import java.util.*
 
 data class Request(
     @SerializedName("name")
@@ -22,5 +21,5 @@ data class Request(
     @SerializedName("category_id")
     val categoryId: Int,
     @SerializedName("date")
-    val date: Date
+    val date: String
 )

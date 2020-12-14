@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.content.FileProvider
+import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -27,6 +28,7 @@ import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.NO_MARGIN_FLAG
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.getFocusListener
+import com.spbstu.reversemarket.utils.Extensions.formatLeadingZero
 import com.spbstu.reversemarket.utils.PermissionUtils
 import com.spbstu.reversemarket.utils.Utils
 import kotlinx.android.synthetic.main.fragment_buy_info.*
@@ -52,6 +54,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
     private lateinit var selectedTagsList: RecyclerView
     private lateinit var addTagsList: RecyclerView
     private var attachedImageFile: File? = null
+    private lateinit var allTags: List<Tag>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -106,6 +109,13 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
             )
         )
 
+        search.doOnTextChanged { text, start, before, count ->
+            text?.let {
+                (addTagsList.adapter as TagsAdapter).tags =
+                    allTags.filter { it.name.contains(text, true) }
+            }
+        }
+
 
         layout_new_product__photo_list.adapter = PhotoAdapter(
             provideUrlList(),
@@ -142,12 +152,27 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                 val amount = layout_new_product__amount.text.toString().toInt()
                 val name = layout_new_product__name.text.toString()
                 val itemName = layout_new_product__itemName.text.toString()
-                val tags = (addTagsList.adapter as TagsAdapter).tags
+                val tags = (selectedTagsList.adapter as TagsAdapter).tags
                 if (description.isBlank() || name.isBlank() || itemName.isBlank()) {
                     throw IllegalArgumentException("Fields must not be blank!")
                 }
+                val cal = Calendar.getInstance()
+                cal.time = Date()
+                val date = "${cal.get(Calendar.DAY_OF_MONTH).formatLeadingZero()}.${
+                    cal.get(Calendar.MONTH).formatLeadingZero()
+                }.${cal.get(Calendar.YEAR)}"
                 val request =
-                    Request(name, itemName, description, emptyList(), price, amount, tags, category, Date())
+                    Request(
+                        name,
+                        itemName,
+                        description,
+                        emptyList(),
+                        price,
+                        amount,
+                        tags,
+                        category,
+                        date
+                    )
                 viewModel.createRequest(request).observe(viewLifecycleOwner, {
                     if (it) {
                         try {
@@ -175,6 +200,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
         super.onActivityCreated(savedInstanceState)
         // TODO Change provideAddTagsList() to it, when backend part is done
         viewModel.getTags(true).observe(viewLifecycleOwner, {
+            allTags = it.toList()
             addTagsList.adapter =
                 TagsAdapter(
                     it,

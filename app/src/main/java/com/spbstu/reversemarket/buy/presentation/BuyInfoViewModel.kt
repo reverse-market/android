@@ -126,7 +126,7 @@ class BuyInfoViewModel @Inject constructor(
     }
 
     fun createRequest(request: Request): LiveData<Boolean> {
-        val res = MutableLiveData(false)
+        val res = MutableLiveData<Boolean>()
         uploadRequest().observeForever {
             if (it.isNotEmpty()) {
                 request.photos = it
@@ -136,7 +136,7 @@ class BuyInfoViewModel @Inject constructor(
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
                         Log.d("WWWW", "Request response: $it")
-                        if (it.code() == 200) {
+                        if (it.isSuccessful) {
                             res.postValue(true)
                         } else {
                             res.postValue(false)

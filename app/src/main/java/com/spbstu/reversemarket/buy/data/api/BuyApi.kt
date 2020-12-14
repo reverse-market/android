@@ -6,6 +6,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface BuyApi {
-    @GET("/user/request")
+    @GET("/user/requests")
     fun getUserRequests(): Observable<Response<List<Request>>>
 }
