@@ -34,6 +34,7 @@ import kotlinx.android.synthetic.main.layout_new_product.*
 import kotlinx.android.synthetic.main.layout_photos.*
 import java.io.File
 import java.lang.Exception
+import java.util.*
 
 
 class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_buy_info) {
@@ -146,7 +147,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                     throw IllegalArgumentException("Fields must not be blank!")
                 }
                 val request =
-                    Request(name, itemName, description, emptyList(), price, amount, tags, category)
+                    Request(name, itemName, description, emptyList(), price, amount, tags, category, Date())
                 viewModel.createRequest(request).observe(viewLifecycleOwner, {
                     if (it) {
                         try {
