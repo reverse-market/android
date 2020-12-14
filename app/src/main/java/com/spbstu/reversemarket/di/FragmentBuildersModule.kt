@@ -14,6 +14,9 @@ import com.spbstu.reversemarket.filter.di.FilterModule
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
 import com.spbstu.reversemarket.login.di.LoginModule
 import com.spbstu.reversemarket.login.presentation.LoginFragment
+import com.spbstu.reversemarket.orders.BoughtOrdersFragment
+import com.spbstu.reversemarket.orders.OrdersFragment
+import com.spbstu.reversemarket.orders.SoldOrdersFragment
 import com.spbstu.reversemarket.product.di.ProductModule
 import com.spbstu.reversemarket.product.presentation.BestOfferTabFragment
 import com.spbstu.reversemarket.profile.di.ProfileModule
@@ -77,5 +80,17 @@ abstract class FragmentBuildersModule {
     @FeatureScope
     @ContributesAndroidInjector(modules = [ProfileModule::class])
     abstract fun contributeAddresses(): AddressFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeOrders(): OrdersFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeSoldOrders(): SoldOrdersFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeBoughtOrders(): BoughtOrdersFragment
 
 }
