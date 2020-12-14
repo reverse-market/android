@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
@@ -27,8 +28,7 @@ class AddressFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_ad
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(BACK_NAVIGATION)
         view.findViewById<ImageView>(R.id.frg_address__back_btn).setOnClickListener {
-            arguments?.getInt(BACK_NAVIGATION)
-                ?.let { backNav -> findNavController().navigate(backNav) }
+            findNavController().popBackStack()
         }
 
         frg_address__save_btn.setOnClickListener {
@@ -63,7 +63,7 @@ class AddressFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_ad
                         name,
                         father
                     )
-                    viewModel.addAddress(address).observe(viewLifecycleOwner, {
+                    viewModel.addAddress(address).observe(viewLifecycleOwner) {
                         if (it) {
                             findNavController().popBackStack()
                         } else {
@@ -73,7 +73,7 @@ class AddressFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_ad
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                    })
+                    }
                 } else {
                     val naming = frg_address__naming.text.toString()
                     val region = frg_address__region.text.toString()
@@ -104,7 +104,7 @@ class AddressFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_ad
                         name,
                         father
                     )
-                    viewModel.editAddress(address).observe(viewLifecycleOwner, {
+                    viewModel.editAddress(address).observe(viewLifecycleOwner) {
                         Log.d("WWWW", "observable = $it")
                         if (it) {
                             findNavController().popBackStack()
@@ -115,7 +115,7 @@ class AddressFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_ad
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                    })
+                    }
                 }
             } catch (e: Exception) {
 
