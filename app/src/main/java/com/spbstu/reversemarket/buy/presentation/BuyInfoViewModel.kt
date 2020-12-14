@@ -29,7 +29,7 @@ class BuyInfoViewModel @Inject constructor(
     private val categoryApi: CategoryApi
 ) : ViewModel() {
     private lateinit var tagsData: MutableLiveData<List<Tag>>
-    private lateinit var photosData: MutableLiveData<Boolean>
+    private lateinit var photosData: MutableLiveData<List<String>>
     val filesMap: MutableMap<Uri, File> = mutableMapOf()
 
     fun getTags(refresh: Boolean, category: Int = 8): LiveData<List<Tag>> {
@@ -76,8 +76,8 @@ class BuyInfoViewModel @Inject constructor(
         return categoryData
     }
 
-    fun uploadRequest(): LiveData<Boolean> {
-        photosData = MutableLiveData<Boolean>()
+    fun uploadRequest(): LiveData<List<String>> {
+        photosData = MutableLiveData<List<String>>()
         // firstly upload each photo
         val files = filesMap.values
         if (files.isNotEmpty()) {
@@ -99,15 +99,16 @@ class BuyInfoViewModel @Inject constructor(
                 .subscribe(
                     { res ->
                         Log.d("WWWW", "Images responses: $res")
+                        Log.d("WWWW", "Images bodies: ${res.map { it.body() }}")
                         // here all data ready - we can create requests
-                        photosData.postValue(true)
+                        photosData.postValue(res.map { it.body()!!.url })
                     },
                     {
-                        photosData.postValue(false)
+                        photosData.postValue(emptyList())
                     })
         } else {
             // create without photos
-            photosData.postValue(true)
+            photosData.postValue(emptyList())
         }
         return photosData
     }
@@ -127,7 +128,7 @@ class BuyInfoViewModel @Inject constructor(
     fun createRequest(request: Request): LiveData<Boolean> {
         val res = MutableLiveData(false)
         uploadRequest().observeForever {
-            if (it) {
+            if (it.isNotEmpty()) {
                 api.createRequest(request)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
