@@ -34,12 +34,6 @@
             android:textAllCaps="true"
             android:textColor="@color/productTitleColor"
             android:textSize="24sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_add_to_fav" />
     </Toolbar>
 
     <ScrollView
@@ -82,18 +76,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/frg_product_name" />
 
-                <TextView
-                    android:id="@+id/layout_product_item__view_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/def_dimen"
-                    android:layout_marginEnd="@dimen/def_dimen"
-                    android:drawableEnd="@drawable/ic_eye"
-                    android:text="150"
-                    android:textColor="#828282"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
