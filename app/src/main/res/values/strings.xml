@@ -81,5 +81,6 @@
     <string name="Name">Name</string>
     <string name="item_name">Item name</string>
     <string name="street">Street</string>
+    <string name="choose_photo">Выберите фото</string>
 
 </resources>

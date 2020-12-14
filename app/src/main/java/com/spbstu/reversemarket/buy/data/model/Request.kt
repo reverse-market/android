@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.buy.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.spbstu.reversemarket.category.data.model.Category
 import com.spbstu.reversemarket.filter.data.model.Tag
 
 data class Request(
@@ -17,5 +18,7 @@ data class Request(
     @SerializedName("quantity")
     val quantity: Int,
     @SerializedName("tags")
-    val tags: List<Tag>
+    val tags: List<Tag>,
+    @SerializedName("category_id")
+    val categoryId: Int
 )

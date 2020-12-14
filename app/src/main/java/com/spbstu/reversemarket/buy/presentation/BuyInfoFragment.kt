@@ -2,8 +2,12 @@ package com.spbstu.reversemarket.buy.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -23,10 +27,12 @@ import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.NO_MARGIN_FLAG
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.getFocusListener
+import com.spbstu.reversemarket.utils.PermissionUtils
 import com.spbstu.reversemarket.utils.Utils
 import kotlinx.android.synthetic.main.fragment_buy_info.*
 import kotlinx.android.synthetic.main.layout_new_product.*
 import kotlinx.android.synthetic.main.layout_photos.*
+import java.io.File
 import java.lang.Exception
 
 
@@ -44,6 +50,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
     private lateinit var closeBtn: ImageView
     private lateinit var selectedTagsList: RecyclerView
     private lateinit var addTagsList: RecyclerView
+    private var attachedImageFile: File? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -104,14 +111,31 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
             requireContext(),
             Glide.with(this)
         ) {
-            val intent = Intent()
-            intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE)
+            PermissionUtils.checkReadWriteStorage(requireContext()) {
+                if (it) {
+                    val intent = Intent(
+                        Intent.ACTION_GET_CONTENT,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                    )
+                    this.attachedImageFile =
+                        File.createTempFile(
+                            System.currentTimeMillis().toString(),
+                            ".jpg",
+                            requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                        )
+                    intent.type = "image/*"
+                    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+                    startActivityForResult(
+                        Intent.createChooser(intent, getString(R.string.choose_photo)),
+                        PICK_IMAGE
+                    )
+                }
+            }
         }
 
         frg_buy_info__save_btn.setOnClickListener {
             try {
+                val category: Int = allCategories[frg_but_info__category.selectedItemPosition].id
                 val description = layout_new_product__description_text.text.toString()
                 val price = layout_new_product__price.text.toString().toInt()
                 val amount = layout_new_product__amount.text.toString().toInt()
@@ -121,7 +145,8 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                 if (description.isBlank() || name.isBlank() || itemName.isBlank()) {
                     throw IllegalArgumentException("Fields must not be blank!")
                 }
-                val request = Request(name, itemName, description, emptyList(), price, amount, tags)
+                val request =
+                    Request(name, itemName, description, emptyList(), price, amount, tags, category)
                 viewModel.createRequest(request).observe(viewLifecycleOwner, {
                     if (it) {
                         try {
@@ -186,6 +211,9 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
         if (requestCode == PICK_IMAGE) {
             val uri = data?.data
             if (uri != null) {
+                val file = attachedImageFile ?: return
+                viewModel.copyUriDataToFile(requireActivity().contentResolver, uri, file)
+                viewModel.addImageFile(uri, file)
                 val adapter = layout_new_product__photo_list.adapter as PhotoAdapter
                 val newList = mutableListOf<String>()
                 newList.addAll(adapter.urls)
