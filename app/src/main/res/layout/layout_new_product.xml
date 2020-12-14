@@ -57,7 +57,7 @@
         android:id="@+id/layout_new_product__name"
         style="@style/editTextStyle"
         android:elevation="4dp"
-        android:hint="@string/amount_hint" />
+        android:hint="@string/name_hint" />
 
     <TextView
         style="@style/editTextTitleStyle"
@@ -68,7 +68,7 @@
         style="@style/editTextStyle"
         android:layout_marginBottom="12dp"
         android:elevation="4dp"
-        android:hint="@string/amount_hint" />
+        android:hint="@string/item_name_hint" />
 
 
     <include
