@@ -72,7 +72,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
                 CategoryFragment.CATEGORY_NAME,
                 layout_toolbar_search__category_name.text.toString()
             )
-            findNavController().navigate(R.id.categoryFragment, args)
+            findNavController().navigate(R.id.action_navigation_sell_to_categoryFragment, args)
         }
 
         val tags = initPrevTags(arguments)
@@ -103,7 +103,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             val args = provideTagsBundle(filterTags)
             args.putInt(CATEGORY_ID, categoryId)
             addSortingParamsToBundle(args)
-            findNavController().navigate(R.id.filterFragment, args)
+            findNavController().navigate(R.id.action_navigation_sell_to_filterFragment, args)
         }
     }
 
