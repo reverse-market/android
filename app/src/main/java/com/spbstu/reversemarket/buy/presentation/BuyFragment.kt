@@ -29,6 +29,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
     private lateinit var searchText: EditText
     private lateinit var searchCloseBtn: ImageView
     private lateinit var addNewButton: ImageView
+    private lateinit var recyclerDataCopy: List<Request>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,55 +85,10 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.createRequest(true).observe(viewLifecycleOwner, Observer {
+            recyclerDataCopy = it
             (productList.adapter as ProductsAdapter).requests = it
         })
     }
-
-    private fun provideProducts(): List<Request> = listOf(
-        Request(
-            1,
-            "Nike кроссовки",
-            "Air Force 1 Shadow White Yellow",
-            "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
-            emptyList(),
-            150,
-            1,
-            "zvladn7",
-            "03.10.20",
-            provideProductTags2(),
-            3,
-            false
-        ),
-        Request(
-            1,
-            "Nike кроссовки",
-            "Air Force 1 Shadow White Yellow",
-            "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
-            emptyList(),
-            42000,
-            1,
-            "zvladn7",
-            "02.10.20",
-            provideProductTags2(),
-            5,
-            false
-        )
-    )
-
-    fun provideProductTags(): List<Tag> = listOf(
-        Tag(0, "Кроссовки"),
-        Tag(0, "Желтый")
-    )
-
-    fun provideProductTags2(): List<Tag> =
-        listOf(
-            Tag(0, "Adidas"),
-            Tag(0, "Черный"),
-            Tag(0, "Кроссовки"),
-            Tag(0, "Adidas"),
-            Tag(0, "Черный"),
-            Tag(0, "Кроссовки")
-        )
 
     private val searchButtonListener = View.OnClickListener {
         if (titleTextView.visibility == View.VISIBLE) {
@@ -150,7 +106,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
 
     private fun filterRecycler() {
         val text = searchText.text.toString().trim().toLowerCase()
-        val filter = provideProducts().filter {
+        val filter = recyclerDataCopy.filter {
             (it.name.contains(text, true) || it.itemName.contains(text, true))
         }
         (productList.adapter as ProductsAdapter).requests = filter
