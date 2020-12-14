@@ -29,6 +29,7 @@ class ProductFragment : Fragment() {
         const val PRODUCT_QUANTITY = "PRODUCT_QUANTITY"
         const val PRODUCT_DATE = "PRODUCT_DATE"
         const val PRODUCT_TAGS_NAME = "PRODUCT_TAGS_NAME"
+        const val IS_SELL = "IS_SELL"
     }
 
     override fun onCreateView(
@@ -40,13 +41,14 @@ class ProductFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        changeViewOptions()
+        val bundle = provideDescriptionBundle();
+        changeViewOptions(bundle)
         //hide bottom nav
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
         navView?.visibility = View.GONE
         initFields()
         //setup view pager
-        productTabAdapter = ProductTabAdapter(this, provideDescriptionBundle(), requireContext())
+        productTabAdapter = ProductTabAdapter(this, bundle, requireContext())
         viewPager = view.findViewById(R.id.layout_product_item__pager)
         viewPager.adapter = productTabAdapter
         //setup tab layout
@@ -79,12 +81,14 @@ class ProductFragment : Fragment() {
         return bundle
     }
 
-    private fun changeViewOptions() {
+    private fun changeViewOptions(bundle: Bundle) {
         if (findNavController().previousBackStackEntry?.destination?.label ==
             requireActivity().getString(R.string.title_buy)
         ) {
             frg_product_sell_button.visibility = View.GONE
+            bundle.putBoolean(IS_SELL, requireArguments().getBoolean(IS_SELL))
         } else {
+            bundle.putBoolean(IS_SELL, requireArguments().getBoolean(IS_SELL).not())
             frg_product_sell_button.setOnClickListener {
                 var args = Bundle()
                 args.putInt(PRODUCT_ID, productId)

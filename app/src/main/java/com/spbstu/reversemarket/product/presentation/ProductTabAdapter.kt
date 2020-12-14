@@ -28,7 +28,7 @@ class ProductTabAdapter(
                 DescriptionTabFragment(bundle)
             }
             1 -> {
-                BestOfferTabFragment(bundle.getIntArray(ProductFragment.PRODUCT_PROPOSAL_ID))
+                BestOfferTabFragment(bundle.getIntArray(ProductFragment.PRODUCT_PROPOSAL_ID), bundle.getBoolean(ProductFragment.IS_SELL))
             }
             else -> throw IllegalStateException("wrong tab position")
         }
