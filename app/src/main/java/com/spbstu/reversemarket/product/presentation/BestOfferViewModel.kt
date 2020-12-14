@@ -49,8 +49,4 @@ class BestOfferViewModel @Inject constructor(
         return proposalData
     }
 
-    private fun loadProposal(bestProposalId: Int) {
-
-    }
-
 }
