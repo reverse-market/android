@@ -38,7 +38,7 @@
 
     <ScrollView
         android:id="@+id/frg_product_scroll"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,6 +79,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
+                android:id="@+id/frg_product__image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/hugest_dimen"
                 android:src="@drawable/nike" />

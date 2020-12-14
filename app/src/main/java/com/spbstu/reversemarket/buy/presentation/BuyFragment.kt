@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.buy.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
@@ -44,9 +45,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
                 Glide.with(this)
             ) {
                 val bundle = Bundle()
-                bundle.putInt(ProductFragment.PRODUCT_ID, it.id)
-                bundle.putString(ProductFragment.PRODUCT_NAME, it.name)
-                bundle.putString(ProductFragment.PRODUCT_ITEM_NAME, it.itemName)
+                bundle.putParcelable(ProductFragment.REQUEST_KEY, it)
                 findNavController().navigate(
                     R.id.action_navigation_buy_to_navigation_product,
                     bundle
@@ -84,7 +83,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.createRequest().observe(viewLifecycleOwner, Observer {
+        viewModel.createRequest(true).observe(viewLifecycleOwner, Observer {
             (productList.adapter as ProductsAdapter).requests = it
         })
     }

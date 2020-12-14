@@ -17,7 +17,7 @@
         android:layout_marginBottom="@dimen/def_dimen">
 
         <TextView
-            android:id="@+id/layout_product_item__name"
+            android:id="@+id/layout_proposal_item__name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/huge_dimen"
@@ -29,10 +29,10 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/layout_product_item__full_name"
+            android:id="@+id/layout_proposal_item__full_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layout_product_item__name"
+            android:layout_below="@id/layout_proposal_item__name"
             android:layout_marginStart="@dimen/huge_dimen"
             android:gravity="bottom"
             android:lineSpacingExtra="3sp"
@@ -43,8 +43,8 @@
             android:id="@+id/layout_proposal_item__main_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_below="@id/layout_product_item__full_name"
-            android:src="@drawable/nike" />
+            android:layout_below="@id/layout_proposal_item__full_name"
+            tools:src="@drawable/nike" />
 
         <TextView
             android:id="@+id/layout_proposal_item__description"
@@ -117,7 +117,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/small_dimen"
             android:layout_marginEnd="@dimen/def_dimen"
-            android:text="20.09.2020"
+            tools:text="20.09.2020"
             android:textSize="13sp"
             android:textStyle="normal" />
 

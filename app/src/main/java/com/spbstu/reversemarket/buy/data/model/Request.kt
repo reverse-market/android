@@ -1,8 +1,11 @@
 package com.spbstu.reversemarket.buy.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.spbstu.reversemarket.filter.data.model.Tag
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Request(
     @SerializedName("name")
     val name: String,
@@ -22,4 +25,4 @@ data class Request(
     val categoryId: Int,
     @SerializedName("date")
     val date: String
-)
+) : Parcelable

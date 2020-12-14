@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.di.NetworkModule
-import com.spbstu.reversemarket.product.data.model.Proposal
+import com.spbstu.reversemarket.profile.data.model.Order
 
 
 class ProposalAdapter
     (
     val activity : Activity,
-    initRequests: List<Proposal>,
+    initRequests: List<Order>,
 ) : RecyclerView.Adapter<ProposalAdapter.ProposalViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProposalViewHolder {
@@ -27,7 +27,7 @@ class ProposalAdapter
         )
     }
 
-    var proposals: List<Proposal> = initRequests
+    var proposals: List<Order> = initRequests
         set(value) {
             field = value
             notifyDataSetChanged()

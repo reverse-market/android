@@ -5,21 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spbstu.reversemarket.di.scope.FeatureScope
 import com.spbstu.reversemarket.product.data.api.ProductApi
-import com.spbstu.reversemarket.product.data.model.Proposal
+import com.spbstu.reversemarket.profile.data.model.Order
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
-
 
 
 @FeatureScope
 class BestOfferViewModel @Inject constructor(
     private val productApi: ProductApi
 ) : ViewModel() {
-    private lateinit var proposalData: MutableLiveData<List<Proposal>>
-    private val proposals = mutableListOf<Proposal>()
+    private lateinit var proposalData: MutableLiveData<Order>
 
-    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<List<Proposal>> {
+    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<Order> {
         if (!this::proposalData.isInitialized) {
             proposalData = MutableLiveData()
             if (sell) {
@@ -28,9 +26,8 @@ class BestOfferViewModel @Inject constructor(
                     .doOnError {
                     }
                     .subscribe {
-                        if (it.code() == 200) {
-                            it.body()?.let { proposal -> proposals.add(proposal) }
-                            proposalData.value = proposals
+                        if (it.isSuccessful) {
+                            proposalData.value = it.body()
                         }
                     }
             } else {
@@ -39,9 +36,8 @@ class BestOfferViewModel @Inject constructor(
                     .doOnError {
                     }
                     .subscribe {
-                        if (it.code() == 200) {
-                            it.body()?.let { proposal -> proposals.add(proposal) }
-                            proposalData.value = proposals
+                        if (it.isSuccessful) {
+                            proposalData.value = it.body()
                         }
                     }
             }

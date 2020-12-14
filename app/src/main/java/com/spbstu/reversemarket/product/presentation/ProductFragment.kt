@@ -7,19 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.di.NetworkModule
+import com.spbstu.reversemarket.sell.data.model.Request
 import kotlinx.android.synthetic.main.fragment_product.*
 
 class ProductFragment : Fragment() {
 
     private lateinit var productTabAdapter: ProductTabAdapter
     private lateinit var viewPager: ViewPager2
-    private var productId: Int = 0
+    private lateinit var request: Request
 
     companion object {
+        const val REQUEST_KEY = "REQUEST_KEY"
         const val PRODUCT_ID = "PRODUCT_ID"
         const val PRODUCT_PROPOSAL_ID = "PRODUCT_BEST_PROPOSAL_ID"
         const val PRODUCT_NAME = "PRODUCT_NAME"
@@ -41,7 +45,8 @@ class ProductFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val bundle = provideDescriptionBundle();
+        initFields()
+        val bundle = provideDescriptionBundle()
         changeViewOptions(bundle)
         //hide bottom nav
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
@@ -58,26 +63,40 @@ class ProductFragment : Fragment() {
         }.attach()
         //on close button listener
         layout_toolbar_product__close.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
         }
-        initFields()
+
+        if (request.photos.isNotEmpty()) {
+            Glide.with(this)
+                .load(NetworkModule.DATA_BASE_URL + request.photos[0])
+                .centerCrop()
+                .into(frg_product__image)
+        }
     }
 
     private fun initFields() {
-        productId = requireArguments().getInt(PRODUCT_ID)
+        request = requireArguments().getParcelable(REQUEST_KEY)
+            ?: throw IllegalArgumentException("Request must be provided")
         frg_product_name.text = requireArguments().getString(PRODUCT_NAME)
         frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
     }
 
     private fun provideDescriptionBundle(): Bundle {
-        var bundle = Bundle()
-        bundle.putInt(PRODUCT_ID, requireArguments().getInt(PRODUCT_ID))
-        bundle.putIntArray(PRODUCT_PROPOSAL_ID, intArrayOf(requireArguments().getInt(PRODUCT_PROPOSAL_ID)))
+        val bundle = Bundle()
+        bundle.putInt(PRODUCT_ID, request.id)
+        bundle.putParcelable(REQUEST_KEY, request)
+        bundle.putIntArray(
+            PRODUCT_PROPOSAL_ID,
+            intArrayOf(requireArguments().getInt(PRODUCT_PROPOSAL_ID))
+        )
         bundle.putString(PRODUCT_DESCRIPTION, requireArguments().getString(PRODUCT_DESCRIPTION))
         bundle.putInt(PRODUCT_PRICE, requireArguments().getInt(PRODUCT_PRICE))
         bundle.putInt(PRODUCT_QUANTITY, requireArguments().getInt(PRODUCT_QUANTITY))
         bundle.putString(PRODUCT_DATE, requireArguments().getString(PRODUCT_DATE))
-        bundle.putStringArray(PRODUCT_TAGS_NAME, requireArguments().getStringArray(PRODUCT_TAGS_NAME))
+        bundle.putStringArray(
+            PRODUCT_TAGS_NAME,
+            requireArguments().getStringArray(PRODUCT_TAGS_NAME)
+        )
         return bundle
     }
 
@@ -90,9 +109,12 @@ class ProductFragment : Fragment() {
         } else {
             bundle.putBoolean(IS_SELL, requireArguments().getBoolean(IS_SELL).not())
             frg_product_sell_button.setOnClickListener {
-                var args = Bundle()
-                args.putInt(PRODUCT_ID, productId)
-                findNavController().navigate(R.id.action_navigation_product_to_sellInfoFragment, args)
+                val args = Bundle()
+                args.putInt(PRODUCT_ID, request.id)
+                findNavController().navigate(
+                    R.id.action_navigation_product_to_sellInfoFragment,
+                    args
+                )
             }
         }
     }

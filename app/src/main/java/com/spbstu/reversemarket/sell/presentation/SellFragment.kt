@@ -15,6 +15,7 @@ import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment.Companion.CATEGORY_ID
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
+import com.spbstu.reversemarket.product.presentation.ProductFragment
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_PROPOSAL_ID
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_DATE
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_DESCRIPTION
@@ -132,6 +133,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
 
     private fun formItemArgs(request: Request): Bundle {
         val args = Bundle()
+        args.putParcelable(ProductFragment.REQUEST_KEY, request)
         args.putInt(PRODUCT_ID, request.id)
         args.putInt(PRODUCT_PROPOSAL_ID, request.bestProposal)
         args.putString(PRODUCT_NAME, request.name)

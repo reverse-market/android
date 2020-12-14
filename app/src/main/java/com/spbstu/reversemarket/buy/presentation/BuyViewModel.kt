@@ -14,14 +14,14 @@ import javax.inject.Inject
 class BuyViewModel @Inject constructor(private val api: BuyApi) : ViewModel() {
     private lateinit var responses: MutableLiveData<List<Request>>
 
-    fun createRequest(): LiveData<List<Request>> {
-        if (!this::responses.isInitialized) {
+    fun createRequest(isRefersh: Boolean): LiveData<List<Request>> {
+        if (!this::responses.isInitialized || isRefersh) {
             responses = MutableLiveData()
             api.getUserRequests()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    if (it.code() == 200) {
+                    if (it.isSuccessful) {
                         responses.value = it.body()
                     }
                 }
