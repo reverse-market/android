@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.google.android.material.card.MaterialCardView
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.di.NetworkModule
 import com.spbstu.reversemarket.orders.domain.SoldOrder
+import com.spbstu.reversemarket.profile.data.model.Order
 
 class SoldOrderAdapter(
-    private val orders: List<SoldOrder>,
+    private val orders: List<Order>,
     private val glide: RequestManager,
     private val onClick: (Int, View) -> Unit
 ) :
@@ -28,11 +30,14 @@ class SoldOrderAdapter(
     override fun onBindViewHolder(holder: SoldOrderViewHolder, position: Int) {
         with(holder) {
             val order = orders[position]
-            title.text = order.title
-            subTitle.text = order.description
-            glide.load(order.image).into(image)
-            amount.text = order.amount.toString()
+            title.text = order.name
+            subTitle.text = order.itemName
+            amount.text = order.quantity.toString()
             price.text = order.price.toString()
+            if (order.photos.isNotEmpty()) {
+                val photo = order.photos[0]
+                glide.load(NetworkModule.DATA_BASE_URL + photo).into(image)
+            }
             imageCard.setOnClickListener { onClick.invoke(position, it) }
         }
     }
