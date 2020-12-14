@@ -25,6 +25,7 @@ import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.profile.data.model.AddressBodyWithId
 import com.spbstu.reversemarket.sell.presentation.adapter.PhotoAdapter
 import com.spbstu.reversemarket.sell.presentation.adapter.TagsAdapter
+import com.spbstu.reversemarket.utils.AddSearchViewUtils
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.NO_MARGIN_FLAG
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.addTag
 import com.spbstu.reversemarket.utils.AddSearchViewUtils.Companion.getFocusListener
@@ -34,6 +35,7 @@ import com.spbstu.reversemarket.utils.Utils
 import kotlinx.android.synthetic.main.fragment_buy_info.*
 import kotlinx.android.synthetic.main.layout_new_product.*
 import kotlinx.android.synthetic.main.layout_photos.*
+import kotlinx.android.synthetic.main.layout_search.*
 import java.io.File
 import java.lang.Exception
 import java.util.*
@@ -108,6 +110,18 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                 NO_MARGIN_FLAG
             )
         )
+
+        search.onFocusChangeListener =
+            View.OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    AddSearchViewUtils.openSearchView(
+                        searchButtonBackground,
+                        searchOpenLayout,
+                        closeBtn,
+                        0
+                    )
+                }
+            }
 
         search.doOnTextChanged { text, start, before, count ->
             text?.let {

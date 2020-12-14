@@ -16,7 +16,7 @@ class AddSearchViewUtils {
     companion object {
         const val NO_MARGIN_FLAG = -1
 
-        private fun openSearchView(
+        fun openSearchView(
             searchButtonBackground: View,
             searchOpenLayout: View,
             closeBtn: ImageView,
