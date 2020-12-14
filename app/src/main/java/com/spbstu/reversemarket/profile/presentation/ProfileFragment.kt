@@ -18,6 +18,7 @@ class ProfileFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_pr
             findNavController().navigate(R.id.action_navigation_profile_to_settingsFragment)
         }
 
+        frg_profile__favorite_button.visibility = View.GONE
         frg_profile__favorite_button.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_favoriteFragment)
         }
