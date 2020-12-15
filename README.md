@@ -53,7 +53,7 @@
 
     gradle wrapper --gradle-version <latest-version> --distribution-type all
 
-    ./gradlew build
+    ./gradlew build -x testReleaseUnitTest
 
 Для того чтобы успешно прошли все тесты необходимо правильно настроить android устройство:
     Отключаем анимацию на вашем устройстве, для этого включаем параметры разработчика:
