@@ -65,3 +65,8 @@
 Чтобы запустить Android тесты необходимо подключить android устройство к компьютеру или использовать Android Virtual Device, предварительно настроив его по инструкции выше. Далее открываем командную строку в папке проекта и выполняем следующую команду:
 
     ./gradlew connectedAndroidTest
+# Примеры работы
+Основные экраны приложения
+![image](https://user-images.githubusercontent.com/17166741/102265192-d5500e00-3f27-11eb-8fe7-5f0db8aa36d2.png)
+![image](https://user-images.githubusercontent.com/17166741/102265203-da14c200-3f27-11eb-9cac-c6b5298d6d05.png)
+![image](https://user-images.githubusercontent.com/17166741/102265277-f44ea000-3f27-11eb-9d12-cbb1e125b3cc.png)
