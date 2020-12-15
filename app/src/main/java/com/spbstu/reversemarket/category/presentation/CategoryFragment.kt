@@ -1,12 +1,14 @@
 package com.spbstu.reversemarket.category.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
+import com.spbstu.reversemarket.filter.presentation.FilterFragment
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.layout_toolbar__search.*
 
@@ -15,9 +17,7 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layout_toolbar_search__category_name.setOnClickListener {
-            val args = Bundle()
-            args.putString(CATEGORY_NAME, layout_toolbar_search__category_name.text.toString())
-            findNavController().navigate(R.id.navigation_sell, args)
+            findNavController().popBackStack()
         }
         arguments?.getString(CATEGORY_NAME)?.let {
             layout_toolbar_search__category_name.text = it
@@ -44,11 +44,17 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
         val categoryName = (frg_category__list.adapter as CategoryAdapter).categories[position].name
         args.putInt(CATEGORY_ID, categoryId)
         args.putString(CATEGORY_NAME, categoryName)
-        findNavController().navigate(R.id.navigation_sell, args)
+        args.putInt(FilterFragment.PRICE_TO, requireArguments().getInt(FilterFragment.PRICE_TO))
+        args.putInt(FilterFragment.PRICE_FROM, requireArguments().getInt(FilterFragment.PRICE_FROM))
+        if (categoryId == requireArguments().getInt(CATEGORY_ID)) {
+            findNavController().popBackStack()
+        } else {
+            findNavController().navigate(R.id.action_categoryFragment_to_navigation_sell, args)
+        }
     }
 
     companion object {
-        const val CATEGORY_NAME = "CATEGORY"
-        const val CATEGORY_ID = "CATEGORY"
+        const val CATEGORY_NAME = "CATEGORY_NAME"
+        const val CATEGORY_ID = "CATEGORY_ID"
     }
 }

@@ -84,6 +84,17 @@
                 android:elevation="4dp"
                 style="@style/editTextStyle" />
 
+            <TextView
+                android:text="@string/street"
+                style="@style/editTextTitleStyle" />
+
+            <EditText
+                android:id="@+id/frg_address__street"
+                android:hint="@string/city_hint"
+                android:inputType="text"
+                android:elevation="4dp"
+                style="@style/editTextStyle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

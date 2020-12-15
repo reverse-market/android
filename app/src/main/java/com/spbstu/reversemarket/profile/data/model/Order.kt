@@ -5,8 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class Order(
     @SerializedName("id")
     val id: Int,
-    @SerializedName("request_id")
-    val requestId: Int,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("item_name")
+    val itemName: String,
     @SerializedName("description")
     val description: String,
     @SerializedName("photos")

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.sell.data.model.Request
@@ -29,7 +30,8 @@ class FavoriteFragment : Fragment() {
         favoriteList.adapter =
             ProductsAdapter(
                 provideProducts(),
-                context
+                context,
+                Glide.with(this)
             )
 
         return view
@@ -55,8 +57,7 @@ class FavoriteFragment : Fragment() {
             "zvladn7",
             "03.10.20",
             provideProductTags(),
-            3,
-            false
+            3
         ),
         Request(
             1,
@@ -70,7 +71,6 @@ class FavoriteFragment : Fragment() {
             "02.10.20",
             provideProductTags2(),
             5,
-            false
         ),
     )
 

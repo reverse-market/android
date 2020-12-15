@@ -2,6 +2,11 @@ package com.spbstu.reversemarket.di
 
 import android.app.Activity
 import com.spbstu.reversemarket.NavigationActivity
+import com.spbstu.reversemarket.address.AddressFragment
+import com.spbstu.reversemarket.buy.di.BuyInfoModule
+import com.spbstu.reversemarket.buy.di.BuyModule
+import com.spbstu.reversemarket.buy.presentation.BuyFragment
+import com.spbstu.reversemarket.buy.presentation.BuyInfoFragment
 import com.spbstu.reversemarket.category.di.CategoryModule
 import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.di.scope.FeatureScope
@@ -9,13 +14,17 @@ import com.spbstu.reversemarket.filter.di.FilterModule
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
 import com.spbstu.reversemarket.login.di.LoginModule
 import com.spbstu.reversemarket.login.presentation.LoginFragment
+import com.spbstu.reversemarket.orders.BoughtOrdersFragment
+import com.spbstu.reversemarket.orders.OrdersFragment
+import com.spbstu.reversemarket.orders.SoldOrdersFragment
 import com.spbstu.reversemarket.product.di.ProductModule
 import com.spbstu.reversemarket.product.presentation.BestOfferTabFragment
-import com.spbstu.reversemarket.sell.di.SellModule
-import com.spbstu.reversemarket.sell.presentation.SellFragment
 import com.spbstu.reversemarket.profile.di.ProfileModule
 import com.spbstu.reversemarket.profile.presentation.ProfileFragment
+import com.spbstu.reversemarket.profile.settings.SettingsFragment
 import com.spbstu.reversemarket.sell.di.SellInfoModule
+import com.spbstu.reversemarket.sell.di.SellModule
+import com.spbstu.reversemarket.sell.presentation.SellFragment
 import com.spbstu.reversemarket.sell.presentation.SellInfoFragment
 import dagger.Binds
 import dagger.Module
@@ -49,11 +58,39 @@ abstract class FragmentBuildersModule {
     abstract fun contributeSellFragment(): SellFragment
 
     @FeatureScope
+    @ContributesAndroidInjector(modules = [BuyModule::class])
+    abstract fun contributeBuyFragment(): BuyFragment
+
+    @FeatureScope
     @ContributesAndroidInjector(modules = [SellInfoModule::class])
     abstract fun contributeSellInfoFragment(): SellInfoFragment
 
     @FeatureScope
     @ContributesAndroidInjector(modules = [ProductModule::class])
     abstract fun contributeBestOfferFragment(): BestOfferTabFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [BuyInfoModule::class])
+    abstract fun contributeBuyInfoFragment(): BuyInfoFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeSettings(): SettingsFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeAddresses(): AddressFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeOrders(): OrdersFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeSoldOrders(): SoldOrdersFragment
+
+    @FeatureScope
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
+    abstract fun contributeBoughtOrders(): BoughtOrdersFragment
 
 }

@@ -5,39 +5,62 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spbstu.reversemarket.di.scope.FeatureScope
 import com.spbstu.reversemarket.product.data.api.ProductApi
-import com.spbstu.reversemarket.product.data.model.Proposal
+import com.spbstu.reversemarket.product.data.model.BestProposalToBuyBody
+import com.spbstu.reversemarket.profile.data.model.Order
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
-
 
 
 @FeatureScope
 class BestOfferViewModel @Inject constructor(
     private val productApi: ProductApi
 ) : ViewModel() {
-    private lateinit var proposalData: MutableLiveData<List<Proposal>>
-    private val proposals = mutableListOf<Proposal>()
+    private lateinit var proposalData: MutableLiveData<Order>
 
-    fun getProposal(bestProposalId: Int): LiveData<List<Proposal>> {
-        if (!this::proposalData.isInitialized) {
-            proposalData = MutableLiveData()
-            loadProposal(bestProposalId)
-        }
-        return proposalData
+    fun buyProposal(bestId: Int): LiveData<Boolean> {
+        val res = MutableLiveData<Boolean>()
+        productApi.buyProposal(BestProposalToBuyBody(bestId))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                if (it.isSuccessful) {
+                    res.postValue(true)
+                } else {
+                    res.postValue(false)
+                }
+            }, {
+                res.postValue(false)
+            })
+        return res
     }
 
-    private fun loadProposal(bestProposalId: Int) {
-        productApi.getBestProposal(bestProposalId).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {
+    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<Order> {
+        if (!this::proposalData.isInitialized) {
+            proposalData = MutableLiveData()
+            if (sell) {
+                productApi.getBestProposal(bestProposalId).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError {
+                    }
+                    .subscribe {
+                        if (it.isSuccessful) {
+                            proposalData.value = it.body()
+                        }
+                    }
+            } else {
+                productApi.getUserBestProposal(bestProposalId).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError {
+                    }
+                    .subscribe {
+                        if (it.isSuccessful) {
+                            proposalData.value = it.body()
+                        }
+                    }
             }
-            .subscribe {
-                if (it.code() == 200) {
-                    it.body()?.let { proposal -> proposals.add(proposal) }
-                    proposalData.value = proposals
-                }
-            }
+        }
+        return proposalData
     }
 
 }

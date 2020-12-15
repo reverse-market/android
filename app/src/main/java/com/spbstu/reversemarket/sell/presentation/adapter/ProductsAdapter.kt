@@ -4,19 +4,24 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.spbstu.reversemarket.R
+import com.spbstu.reversemarket.di.NetworkModule
 import com.spbstu.reversemarket.sell.data.model.Request
 
 
 class ProductsAdapter(
     initRequests: List<Request>,
-    private val context: Context?
+    private val context: Context?,
+    private val glide: RequestManager,
+    private val onClick: ((Request) -> Unit)? = null
 ) : RecyclerView.Adapter<ProductsAdapter.TagViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
@@ -55,6 +60,13 @@ class ProductsAdapter(
         holder.price.text = requests[position].price.toString()
         holder.userName.text = requests[position].userName
         holder.date.text = requests[position].date
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(requests[position])
+        }
+        if (requests[position].photos.isNotEmpty()) {
+            val photo = requests[position].photos[0]
+            glide.load(NetworkModule.DATA_BASE_URL + photo).centerCrop().into(holder.image)
+        }
     }
 
     class TagViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -65,5 +77,6 @@ class ProductsAdapter(
         val price: TextView = view.findViewById(R.id.layout_product_item__price)
         val userName: TextView = view.findViewById(R.id.layout_product_item__username)
         val date: TextView = view.findViewById(R.id.layout_product_item__date)
+        val image: ImageView = view.findViewById(R.id.layout_product_item__main_image)
     }
 }

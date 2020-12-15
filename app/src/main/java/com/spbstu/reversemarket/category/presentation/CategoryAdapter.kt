@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
@@ -40,22 +41,13 @@ class CategoryAdapter(
             name.text = categories[position].name
             name.setOnClickListener { listener(position) }
             glide.load(NetworkModule.DATA_BASE_URL + categories[position].photo)
-                .into(object : CustomTarget<Drawable>() {
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        transition: Transition<in Drawable>?
-                    ) {
-                        name.background = resource
-                    }
-
-                })
+                .into(photo)
         }
     }
 
     class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById(R.id.layout_categories_item__name)
+        val name: TextView = view.findViewById(R.id.layout_categories_item__name)
+        val photo: ImageView = view.findViewById(R.id.layout_categories_item__photo)
     }
 
 }

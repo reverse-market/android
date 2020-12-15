@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/category_background"
-    app:cardCornerRadius="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
     android:layout_marginStart="@dimen/big_dimen"
+    android:layout_marginTop="@dimen/huge_dimen"
     android:layout_marginEnd="@dimen/big_dimen"
-    android:layout_marginTop="@dimen/huge_dimen">
+    android:background="@color/colorBackground"
+    app:cardCornerRadius="10dp">
+
+    <ImageView
+        android:id="@+id/layout_categories_item__photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground" />
 
 
     <TextView
         android:id="@+id/layout_categories_item__name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/xxx_huge_dimen"
+        android:background="@android:color/transparent"
+        android:gravity="center"
         android:lineSpacingExtra="5sp"
-        android:textSize="30sp"
-        android:background="@drawable/category_background"
+        android:textAllCaps="true"
         android:textColor="@color/colorText"
-        android:textAllCaps="true" />
+        android:textSize="30sp"
+        tools:text="Животные" />
 
 
 </androidx.cardview.widget.CardView>

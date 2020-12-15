@@ -1,7 +1,10 @@
 package com.spbstu.reversemarket.profile.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class AddressBodyNoId(
     @SerializedName("name")
     val name: String,
@@ -12,17 +15,17 @@ data class AddressBodyNoId(
     @SerializedName("street")
     val street: String,
     @SerializedName("number")
-    val number: Int,
+    val number: String,
     @SerializedName("building")
     val building: String,
-    @SerializedName("apartment")
-    val apartment: Int,
+    @SerializedName("appartment")
+    val apartment: String,
     @SerializedName("zip")
-    val zip: String,
+    val zip: Int,
     @SerializedName("last_name")
     val lastName: String,
     @SerializedName("first_name")
     val firstName: String,
     @SerializedName("father_name")
     val fatherName: String,
-)
+): Parcelable

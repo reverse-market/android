@@ -10,15 +10,16 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.address.AddressFragment
+import com.spbstu.reversemarket.profile.data.model.AddressBodyWithId
 import com.spbstu.reversemarket.profile.domain.model.Address
 
 class AddressAdapter(
-    initTags: List<Address>,
-    private val listener: (Int) -> Unit,
+    initTags: List<AddressBodyWithId>,
+    private val listener: (AddressBodyWithId) -> Unit,
     private val backNavigation: Int
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var addresses: List<Address> = initTags
+    var addresses: List<AddressBodyWithId> = initTags
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -44,9 +45,9 @@ class AddressAdapter(
         if (holder.itemViewType == 1) {
             with(holder as AddressViewHolder) {
                 addressName.text = addresses[position - 1].name
-                address.text = getFullAddress(position)
-                name.text = getFullName(position)
-                editBtn.setOnClickListener { listener(position) }
+                address.text = getFullAddress(position - 1)
+                name.text = getFullName(position - 1)
+                editBtn.setOnClickListener { listener(addresses[position - 1]) }
             }
         } else {
             (holder as AddViewHolder).addBtn.setOnClickListener {

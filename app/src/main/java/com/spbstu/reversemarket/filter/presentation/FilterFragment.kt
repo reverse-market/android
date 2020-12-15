@@ -3,6 +3,7 @@ package com.spbstu.reversemarket.filter.presentation
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation.findNavController
@@ -134,7 +135,7 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
         val filterTags = (frg_filter__selected_categories.adapter as TagsAdapter).tags
         val bundle = provideTagsBundle(filterTags)
         addSortingParamsToBundle(bundle)
-        findNavController(requireView()).navigate(R.id.navigation_sell, bundle)
+        findNavController(requireView()).navigate(R.id.action_filterFragment_to_navigation_sell, bundle)
     }
 
     private val toSellFragmentBackClickListener = View.OnClickListener {
@@ -142,7 +143,8 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
         bundle.putInt(PRICE_FROM, priceFrom)
         bundle.putInt(PRICE_TO, priceTo)
         bundle.putString(SORT, sort)
-        findNavController(requireView()).navigate(R.id.navigation_sell, bundle)
+        bundle.putInt(CATEGORY_ID, categoryId)
+        findNavController(requireView()).navigate(R.id.action_filterFragment_to_navigation_sell, bundle)
     }
 
     private fun addSortingParamsToBundle(bundle: Bundle) {
@@ -152,6 +154,7 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
         bundle.putInt(PRICE_TO, if (from.isEmpty()) SLIDER_MAX_VALUE_INDEX else to.toInt())
         val sort = getSortingParam()
         bundle.putString(SORT, sort)
+        bundle.putInt(CATEGORY_ID, categoryId)
     }
 
 
@@ -168,23 +171,7 @@ class FilterFragment : InjectionFragment<FilterViewModel>(R.layout.fragment_filt
     }
 
     private fun provideSorting(): List<Tag> =
-        listOf(Tag(0, "Цена"), Tag(0, "Просмотры"), Tag(0, "Дата"))
-
-    private fun provideSelectedList(): List<Tag> =
-        listOf(Tag(0, "Обувь"), Tag(0, "Кроссовки"), Tag(0, "Санкт-Петербург"))
-
-    private fun provideAddTagsList(): List<Tag> = listOf(
-        Tag(0, "Кроссовки"),
-        Tag(0, "Костюмы"),
-        Tag(0, "Брюки"),
-        Tag(0, "Джинсы"),
-        Tag(0, "Шорты"),
-        Tag(0, "Носки"),
-        Tag(0, "Куртки"),
-        Tag(0, "Пальто"),
-        Tag(0, "Футболки"),
-        Tag(0, "Плавки")
-    )
+        listOf(Tag(0, "Цена"), Tag(0, "Дата"))
 
     private val sliderListener = object : RangeSlider.OnSliderTouchListener {
         override fun onStartTrackingTouch(slider: RangeSlider) =
