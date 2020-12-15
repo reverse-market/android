@@ -38,7 +38,7 @@
 
     </RelativeLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:id="@+id/frg_buy_info__scroll_view_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -134,5 +134,5 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </LinearLayout>
