@@ -33,10 +33,8 @@ class CreateProposalTest {
     fun test() {
         val sellScreen = Navigator.navigateToSell()
         val sellInfoScreen = sellScreen.makeProposalToItemByIndex(PROPOSAL_INDEX)
-            .enterSellScreen()
-        sellInfoScreen.enterDescription(DESCRIPTION)
-            .enterPrice(PRICE)
-            .enterAmount(AMOUNT)
-            .saveClick()
+            ?.enterSellScreen()
+        sellInfoScreen?.enterDescription(DESCRIPTION)?.enterPrice(PRICE)?.enterAmount(AMOUNT)
+            ?.saveClick()
     }
 }
