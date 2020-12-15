@@ -51,17 +51,16 @@ class CreateRequestTest {
     @Test
     fun typeNotParams() {
         val buyScreen = Navigator.navigateToBuy()
+        val buyInfoScreen = buyScreen.openAddNew()
         assertThrows(NoMatchingViewException::class.java) {
-            buyScreen.openAddNew()
+            buyInfoScreen
                 .enterDescription(DESCRIPTION)
                 .enterPrice(PRICE)
                 .swipeUp()
                 .enterItemName(ITEM_NAME)
                 .saveClick()
         }
-        onView(withText("Неверно заполнены поля!"))
-            .inRoot(TestUtils.toastMatcher)
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        buyInfoScreen.checkVisibility()
     }
 
 }

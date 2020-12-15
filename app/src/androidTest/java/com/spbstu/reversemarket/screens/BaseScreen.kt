@@ -14,7 +14,7 @@ abstract class BaseScreen(private val id: Int) {
         checkVisibility()
     }
 
-    protected fun checkVisibility() {
+    fun checkVisibility() {
         val matcher = ViewMatchers.withId(id)
         val idlingResource: IdlingResource = IsDisplayedIdling(matcher)
         try {
