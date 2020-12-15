@@ -89,23 +89,19 @@ class SellInfoViewModel @Inject constructor(
     fun createProposal(proposal: ProposalBody): LiveData<Boolean> {
         val res = MutableLiveData<Boolean>()
         uploadRequest().observeForever {
-            if (it.isNotEmpty()) {
-                proposal.photos = it
-                Log.d("WWWW", "Trying to send $proposal")
-                sellInfoApi.addProposal(proposal)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        Log.d("WWWW", "Request response: $it")
-                        if (it.isSuccessful) {
-                            res.postValue(true)
-                        } else {
-                            res.postValue(false)
-                        }
+            proposal.photos = it
+            Log.d("WWWW", "Trying to send $proposal")
+            sellInfoApi.addProposal(proposal)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    Log.d("WWWW", "Request response: $it")
+                    if (it.isSuccessful) {
+                        res.postValue(true)
+                    } else {
+                        res.postValue(false)
                     }
-            } else {
-                res.postValue(false)
-            }
+                }
         }
         return res
     }
