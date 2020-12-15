@@ -46,7 +46,6 @@ class BuyInfoScreen : BaseScreen(R.id.frg_buy_info__title) {
     fun enterItemName(itemName: String): BuyInfoScreen {
         onView(itemNameView).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             .perform(
-                ViewActions.scrollTo(),
                 ViewActions.typeText(itemName),
                 ViewActions.closeSoftKeyboard()
             )
@@ -54,14 +53,17 @@ class BuyInfoScreen : BaseScreen(R.id.frg_buy_info__title) {
         return this
     }
 
+    fun swipeUp(): BuyInfoScreen {
+        for (i in 0..20) {
+            onView(nameView).perform(ViewActions.swipeUp())
+        }
+        return this
+    }
+
     fun saveClick(): SellScreen {
         checkVisibility()
-        for (i in 0..10) {
-            onView(itemNameView).perform(ViewActions.swipeUp())
-        }
         onView(saveButton).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             .perform(
-                ViewActions.scrollTo(),
                 ViewActions.click()
             )
         return SellScreen()

@@ -42,6 +42,7 @@ class CreateRequestTest {
             .enterPrice(PRICE)
             .enterAmount(AMOUNT)
             .enterName(NAME)
+            .swipeUp()
             .enterItemName(ITEM_NAME)
             .saveClick()
     }
