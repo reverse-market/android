@@ -7,9 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spbstu.reversemarket.di.scope.FeatureScope
 import com.spbstu.reversemarket.profile.data.api.UserApi
-import com.spbstu.reversemarket.profile.data.model.AddressBodyNoId
-import com.spbstu.reversemarket.profile.data.model.AddressBodyWithId
-import com.spbstu.reversemarket.profile.data.model.toDomainModel
+import com.spbstu.reversemarket.profile.data.model.*
 import com.spbstu.reversemarket.profile.domain.model.User
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -25,10 +23,8 @@ class ProfileViewModel @Inject constructor(
     private lateinit var addressesData: MutableLiveData<List<AddressBodyWithId>>
 
     fun getUser(): LiveData<User> {
-        if (!this::userData.isInitialized) {
-            userData = MutableLiveData()
-            loadUser()
-        }
+        userData = MutableLiveData()
+        loadUser()
         return userData
     }
 
@@ -39,6 +35,20 @@ class ProfileViewModel @Inject constructor(
         }
 
         return addressesData
+    }
+
+    fun changeName(name: String): LiveData<Boolean> {
+        val res = MutableLiveData<Boolean>()
+        userApi.editUser(UserBodyName(name))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                res.postValue(true)
+            }, {
+                res.postValue(false)
+            })
+
+        return res
     }
 
     private fun loadAddressses() {

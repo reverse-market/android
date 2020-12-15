@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -28,6 +29,32 @@ class SettingsFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_s
             findNavController().popBackStack()
         }
         addressList = view.findViewById(R.id.layout_address_list)
+
+        frg_settings__save_btn.setOnClickListener { view ->
+            view.isClickable = false
+            val newName = frg_settings__name_field.text.toString()
+            if (newName.isBlank()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Новое имя не должно быть пустым",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
+            viewModel.changeName(newName).observe(viewLifecycleOwner, {
+                try {
+                    view.isClickable = true
+                    findNavController().popBackStack()
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Не удалось изменить данные",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

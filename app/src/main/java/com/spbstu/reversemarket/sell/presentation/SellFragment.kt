@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.sell.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
+import com.spbstu.reversemarket.category.data.model.Category
 import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment.Companion.CATEGORY_ID
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
@@ -72,6 +74,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
                 CategoryFragment.CATEGORY_NAME,
                 layout_toolbar_search__category_name.text.toString()
             )
+            addSortingParamsToBundle(args)
             findNavController().navigate(R.id.action_navigation_sell_to_categoryFragment, args)
         }
 
@@ -81,6 +84,18 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         tagsAdapter = TagsAdapter(
             tags,
             R.layout.layout_removable_product_tag,
+            onRemove = {
+                if (it.isEmpty()) {
+                    frg_tags_list.visibility = View.GONE
+                } else {
+                    frg_tags_list.visibility = View.VISIBLE
+                }
+                refreshData()
+                val filterTagsId = it.map { it.id }
+                val filterTagsName = it.map { it.name }
+                requireArguments().putIntArray(FilterFragment.FILTER_TAGS_IDS, filterTagsId.toIntArray())
+                requireArguments().putStringArray(FilterFragment.FILTER_TAGS_NAME, filterTagsName.toTypedArray())
+            }
         )
         frg_tags_list.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -92,6 +107,8 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         } else {
             frg_tags_list.visibility = View.VISIBLE
         }
+
+        layout_toolbar_search__category_name.text = categoriesList().find { it.id == categoryId }?.name
 
         layout_toolbar_search__button.setOnClickListener(searchButtonListener)
         layout_toolbar_search__text.setOnKeyListener(Utils(::refreshData).enterListener)
@@ -110,6 +127,8 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             val filterTags = (frg_tags_list.adapter as TagsAdapter).tags
             val args = provideTagsBundle(filterTags)
             args.putInt(CATEGORY_ID, categoryId)
+            args.putInt(FilterFragment.PRICE_TO, priceTo)
+            args.putInt(FilterFragment.PRICE_FROM, priceFrom)
             addSortingParamsToBundle(args)
             findNavController().navigate(R.id.action_navigation_sell_to_filterFragment, args)
         }
@@ -142,7 +161,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         val args = Bundle()
         args.putParcelable(ProductFragment.REQUEST_KEY, request)
         args.putInt(PRODUCT_ID, request.id)
-        args.putInt(PRODUCT_PROPOSAL_ID, request.bestProposal)
+        args.putInt(PRODUCT_PROPOSAL_ID, request.bestProposal?:0)
         args.putString(PRODUCT_NAME, request.name)
         args.putString(PRODUCT_ITEM_NAME, request.itemName)
         args.putString(PRODUCT_DESCRIPTION, request.description)
@@ -157,6 +176,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         bundle.putInt(FilterFragment.PRICE_FROM, priceFrom)
         bundle.putInt(FilterFragment.PRICE_TO, priceTo)
         bundle.putString(FilterFragment.SORT, sort)
+        bundle.putInt(CATEGORY_ID, categoryId)
     }
 
     private fun initFilterParams() {
@@ -169,9 +189,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         arguments?.getInt(FilterFragment.PRICE_FROM)?.run {
             priceFrom = this
         }
-        arguments?.getInt(FilterFragment.PRICE_TO)?.run {
-            priceTo = this
-        }
+        priceTo = arguments?.getInt(FilterFragment.PRICE_TO) ?: 100000
         arguments?.getString(FilterFragment.SORT)?.run {
             sort = this
         }
@@ -207,4 +225,15 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         }
     }
 
+    fun categoriesList(): List<Category> =
+        listOf(
+            Category(1, "Недвижимость", ""),
+            Category(2, "Электроника", ""),
+            Category(3, "Хобби и отдых", ""),
+            Category(4, "Транспорт", ""),
+            Category(5, "Одежда", ""),
+            Category(6, "Животные", ""),
+            Category(7, "Для дома", ""),
+            Category(8, "Прочее", ""),
+        )
 }

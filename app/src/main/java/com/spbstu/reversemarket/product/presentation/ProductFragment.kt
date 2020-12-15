@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.product.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,6 +78,7 @@ class ProductFragment : Fragment() {
     private fun initFields() {
         request = requireArguments().getParcelable(REQUEST_KEY)
             ?: throw IllegalArgumentException("Request must be provided")
+        Log.d("WWWW", "$request")
         frg_product_name.text = requireArguments().getString(PRODUCT_NAME)
         frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
     }

@@ -27,8 +27,6 @@ data class Request(
     val date: String,
     @SerializedName("tags")
     val tags: List<Tag>,
-    @SerializedName("best_proposal")
-    val bestProposal: Int,
-    @SerializedName("is_favorite")
-    val isFavorite: Boolean,
+    @SerializedName("best_proposal_id")
+    val bestProposal: Int?,
 ) : Parcelable

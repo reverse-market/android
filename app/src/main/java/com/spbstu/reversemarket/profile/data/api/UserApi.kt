@@ -11,7 +11,7 @@ interface UserApi {
     fun getUser(): Observable<Response<UserBody>>
 
     @PUT("/user")
-    fun editUser(@Body userBody: UserBody): Observable<Response<Void>>
+    fun editUser(@Body userBody: UserBodyName): Observable<Response<Void>>
 
     @GET("/user/addresses")
     fun getAddresses(): Observable<Response<List<AddressBodyWithId>>>

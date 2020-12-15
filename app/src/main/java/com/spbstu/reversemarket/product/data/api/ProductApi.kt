@@ -13,7 +13,7 @@ interface ProductApi {
         @Path("id") id: Int,
     ): Observable<Response<Order>>
 
-    @GET("/user/proposals/{id}")
+    @GET("/proposals/{id}")
     fun getUserBestProposal(
         @Path("id") id: Int,
     ): Observable<Response<Order>>

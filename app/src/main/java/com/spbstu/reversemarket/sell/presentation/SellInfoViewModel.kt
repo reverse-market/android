@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spbstu.reversemarket.buy.data.model.ImageResponse
+import com.spbstu.reversemarket.category.data.api.CategoryApi
+import com.spbstu.reversemarket.category.data.model.Category
 import com.spbstu.reversemarket.di.scope.FeatureScope
 import com.spbstu.reversemarket.sell.data.api.SellInfoApi
 import com.spbstu.reversemarket.sell.data.model.ProposalBody

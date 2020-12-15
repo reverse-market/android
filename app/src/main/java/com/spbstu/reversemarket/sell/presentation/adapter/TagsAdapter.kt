@@ -19,6 +19,7 @@ class TagsAdapter(
     private val deleteFunc: KFunction0<Unit>? = null,
     private val addFunc: ((Tag) -> Unit)? = null,
     private val context: Context? = null,
+    private val onRemove: ((List<Tag>) -> Unit)? = null
 ) : RecyclerView.Adapter<TagsAdapter.TagViewHolder>() {
 
     var tags: List<Tag> = initTags
@@ -55,6 +56,7 @@ class TagsAdapter(
                 notifyDataSetChanged()
                 deleteFunc?.invoke()
                 addFunc?.invoke(tag)
+                onRemove?.invoke(newTags)
             }
         } else {
             holder.tagBtn?.setOnClickListener {

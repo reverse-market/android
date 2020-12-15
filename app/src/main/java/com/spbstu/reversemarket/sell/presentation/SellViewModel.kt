@@ -1,8 +1,11 @@
 package com.spbstu.reversemarket.sell.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.spbstu.reversemarket.category.data.api.CategoryApi
+import com.spbstu.reversemarket.category.data.model.Category
 import com.spbstu.reversemarket.di.scope.FeatureScope
 import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.sell.data.api.SellApi
@@ -13,7 +16,8 @@ import javax.inject.Inject
 
 @FeatureScope
 class SellViewModel @Inject constructor(
-    private val sellApi: SellApi
+    private val sellApi: SellApi,
+    private val categoryApi: CategoryApi
 ) : ViewModel() {
     private lateinit var requestData: MutableLiveData<List<Request>>
 
@@ -64,6 +68,8 @@ class SellViewModel @Inject constructor(
             .doOnError {
             }
             .subscribe {
+                Log.d("WWWW", "Requests response: $it")
+                Log.d("WWWW", "Requests body: ${it.body()}")
                 if (it.code() == 200) {
                     requestData.value = it.body()
                 }
@@ -94,5 +100,29 @@ class SellViewModel @Inject constructor(
         queryMap["search"] = search
         return queryMap
     }
+
+    private lateinit var categoryData: MutableLiveData<List<Category>>
+
+    fun getCategories(): LiveData<List<Category>> {
+        if (!this::categoryData.isInitialized) {
+            categoryData = MutableLiveData()
+            loadCategories()
+        }
+        return categoryData
+    }
+
+    private fun loadCategories() {
+        categoryApi.getCategories().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError {
+            }
+            .subscribe {
+                if (it.code() == 200) {
+                    categoryData.value = it.body()
+                }
+            }
+    }
+
+
 
 }

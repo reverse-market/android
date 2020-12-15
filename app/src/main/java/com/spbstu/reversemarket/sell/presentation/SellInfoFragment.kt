@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -94,9 +95,7 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
             }
             val cal = Calendar.getInstance()
             cal.time = Date()
-            val date = "${cal.get(Calendar.DAY_OF_MONTH).formatLeadingZero()}.${
-            cal.get(Calendar.MONTH).formatLeadingZero()
-            }.${cal.get(Calendar.YEAR)}"
+            val date = "${cal.get(Calendar.DAY_OF_MONTH).formatLeadingZero()}.${cal.get(Calendar.MONTH).formatLeadingZero()}.${cal.get(Calendar.YEAR)}"
             val proposalBody =
                 ProposalBody(
                     requireArguments().getInt(PRODUCT_ID),

@@ -61,6 +61,8 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
 
         searchCloseBtn = view.findViewById(R.id.layout_toolbar__search_close_btn)
         searchCloseBtn.setOnClickListener {
+            searchText.setText("", TextView.BufferType.EDITABLE)
+            filterRecycler()
             closeSearchView(
                 titleTextView,
                 searchTextBackground,

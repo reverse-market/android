@@ -57,8 +57,7 @@ class FavoriteFragment : Fragment() {
             "zvladn7",
             "03.10.20",
             provideProductTags(),
-            3,
-            false
+            3
         ),
         Request(
             1,
@@ -72,7 +71,6 @@ class FavoriteFragment : Fragment() {
             "02.10.20",
             provideProductTags2(),
             5,
-            false
         ),
     )
 
