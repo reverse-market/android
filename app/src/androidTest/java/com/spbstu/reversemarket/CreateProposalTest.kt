@@ -30,7 +30,7 @@ class CreateProposalTest {
     }
 
     @Test
-    fun test() {
+    fun createProposal() {
         val sellScreen = Navigator.navigateToSell()
         val sellInfoScreen = sellScreen.makeProposalToItemByIndex(PROPOSAL_INDEX)
             ?.enterSellScreen()

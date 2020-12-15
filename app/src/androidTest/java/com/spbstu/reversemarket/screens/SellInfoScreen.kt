@@ -1,6 +1,5 @@
 package com.spbstu.reversemarket.screens
 
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -35,10 +34,10 @@ class SellInfoScreen : BaseScreen(R.id.frg_sell_info__title) {
         return this
     }
 
-    fun saveClick(): SellScreen {
+    fun saveClick(): ProductScreen {
         checkVisibility()
         onView(saveButton).check(matches(isDisplayed())).perform(scrollTo(), click())
-        return SellScreen()
+        return ProductScreen()
     }
 
 }

@@ -55,6 +55,7 @@ class CreateRequestTest {
             buyScreen.openAddNew()
                 .enterDescription(DESCRIPTION)
                 .enterPrice(PRICE)
+                .swipeUp()
                 .enterItemName(ITEM_NAME)
                 .saveClick()
         }
