@@ -8,7 +8,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-@Module(includes = [SellDataModule::class])
+@Module(includes = [SellInfoDataModule::class])
 abstract class SellInfoModule {
     @Binds
     @IntoMap

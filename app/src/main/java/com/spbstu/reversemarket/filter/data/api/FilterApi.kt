@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface FilterApi {
 
-    @GET("/categories")
+    @GET("/tags")
     fun getTags(
         @Query("category") category: Int,
         @Query("search") search: String

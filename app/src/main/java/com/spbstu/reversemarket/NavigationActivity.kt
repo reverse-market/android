@@ -1,16 +1,17 @@
 package com.spbstu.reversemarket
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.di.injector.Injectable
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
+
 
 class NavigationActivity : AppCompatActivity(), Injectable, HasAndroidInjector {
 
@@ -20,18 +21,17 @@ class NavigationActivity : AppCompatActivity(), Injectable, HasAndroidInjector {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        setUpNavigation()
+    }
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_buy, R.id.navigation_sell, R.id.navigation_profile
-            )
+    fun setUpNavigation() {
+        val bottomNavigationView = findViewById<View>(R.id.nav_view)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
+        NavigationUI.setupWithNavController(
+            bottomNavigationView as BottomNavigationView,
+            navHostFragment!!.navController
         )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
