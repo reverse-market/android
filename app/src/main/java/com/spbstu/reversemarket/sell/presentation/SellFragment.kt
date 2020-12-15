@@ -12,7 +12,6 @@ import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment
 import com.spbstu.reversemarket.category.presentation.CategoryFragment.Companion.CATEGORY_ID
-import com.spbstu.reversemarket.filter.data.model.Tag
 import com.spbstu.reversemarket.filter.presentation.FilterFragment
 import com.spbstu.reversemarket.product.presentation.ProductFragment
 import com.spbstu.reversemarket.product.presentation.ProductFragment.Companion.PRODUCT_PROPOSAL_ID
@@ -41,6 +40,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
     private var sort = "price_desc"
     private var page = 0
     private var size = 20
+    private lateinit var tagsAdapter: TagsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,7 +61,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         )
         frg_product_list.adapter =
             ProductsAdapter(
-                provideProducts(),
+                emptyList(),
                 context,
                 Glide.with(this)
             )
@@ -78,13 +78,21 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         val tags = initPrevTags(arguments)
         initFilterParams()
 
+        tagsAdapter = TagsAdapter(
+            tags,
+            R.layout.layout_removable_product_tag,
+        )
         frg_tags_list.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        frg_tags_list.adapter =
-            TagsAdapter(
-                tags,
-                R.layout.layout_removable_product_tag,
-            )
+        frg_tags_list.adapter = tagsAdapter
+
+
+        if (tagsAdapter.tags.isEmpty()) {
+            frg_tags_list.visibility = View.GONE
+        } else {
+            frg_tags_list.visibility = View.VISIBLE
+        }
+
         layout_toolbar_search__button.setOnClickListener(searchButtonListener)
         layout_toolbar_search__text.setOnKeyListener(Utils(::refreshData).enterListener)
 
@@ -168,52 +176,6 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             sort = this
         }
     }
-
-    private fun provideProducts(): List<Request> = listOf(
-        Request(
-            1,
-            "Nike кроссовки",
-            "Air Force 1 Shadow White Yellow",
-            "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
-            emptyList(),
-            150,
-            1,
-            "zvladn7",
-            "03.10.20",
-            provideProductTags(),
-            3,
-            false
-        ),
-        Request(
-            1,
-            "Nike кроссовки",
-            "Air Force 1 Shadow White Yellow",
-            "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
-            emptyList(),
-            42000,
-            1,
-            "zvladn7",
-            "02.10.20",
-            provideProductTags2(),
-            5,
-            false
-        ),
-    )
-
-    fun provideProductTags(): List<Tag> = listOf(
-        Tag(0, "Кроссовки"),
-        Tag(0, "Желтый")
-    )
-
-    fun provideProductTags2(): List<Tag> =
-        listOf(
-            Tag(0, "Adidas"),
-            Tag(0, "Черный"),
-            Tag(0, "Кроссовки"),
-            Tag(0, "Adidas"),
-            Tag(0, "Черный"),
-            Tag(0, "Кроссовки")
-        )
 
     private val searchButtonListener = View.OnClickListener {
         if (layout_toolbar_search__category_name.visibility == View.VISIBLE) {
