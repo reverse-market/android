@@ -51,6 +51,8 @@
 
 Далее из командной строки в папке проекте нужно выполнить следующую команду для сборки:
 
+    gradle wrapper --gradle-version <latest-version> --distribution-type all
+
     ./gradlew build
 
 Для того чтобы успешно прошли все тесты необходимо правильно настроить android устройство:
