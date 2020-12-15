@@ -77,7 +77,10 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
             findNavController().navigateUp()
         }
 
-        frg_sell_info__save_btn.setOnClickListener { saveProposal() }
+        frg_sell_info__save_btn.setOnClickListener {
+            it.isClickable = false
+            saveProposal(it)
+        }
         layout_new_product__name.visibility = View.GONE
         layout_new_product__itemName.visibility = View.GONE
         layout_new_product__name_title.visibility = View.INVISIBLE
@@ -85,17 +88,21 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
         layout_address__title.visibility = View.INVISIBLE
     }
 
-    private fun saveProposal() {
+    private fun saveProposal(view: View) {
         try {
             val description = layout_new_product__description_text.text.toString()
             val price = layout_new_product__price.text.toString().toInt()
             val amount = layout_new_product__amount.text.toString().toInt()
-            if (description.isBlank() || price.toString().isBlank() || amount.toString().isBlank()) {
+            if (description.isBlank() || price.toString().isBlank() || amount.toString()
+                    .isBlank()
+            ) {
                 throw IllegalArgumentException("Fields must not be blank!")
             }
             val cal = Calendar.getInstance()
             cal.time = Date()
-            val date = "${cal.get(Calendar.DAY_OF_MONTH).formatLeadingZero()}.${cal.get(Calendar.MONTH).formatLeadingZero()}.${cal.get(Calendar.YEAR)}"
+            val date = "${cal.get(Calendar.DAY_OF_MONTH).formatLeadingZero()}.${
+                cal.get(Calendar.MONTH).formatLeadingZero()
+            }.${cal.get(Calendar.YEAR)}"
             val proposalBody =
                 ProposalBody(
                     requireArguments().getInt(PRODUCT_ID),
@@ -106,6 +113,7 @@ class SellInfoFragment : InjectionFragment<SellInfoViewModel>(R.layout.fragment_
                     date
                 )
             viewModel.createProposal(proposalBody).observe(viewLifecycleOwner, {
+                view.isClickable = true
                 if (it) {
                     try {
                         findNavController().popBackStack()

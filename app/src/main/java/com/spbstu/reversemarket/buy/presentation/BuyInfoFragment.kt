@@ -158,8 +158,9 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
             }
         }
 
-        frg_buy_info__save_btn.setOnClickListener {
+        frg_buy_info__save_btn.setOnClickListener { view ->
             try {
+                view.isClickable = false
                 val category: Int = allCategories[frg_but_info__category.selectedItemPosition].id
                 val description = layout_new_product__description_text.text.toString()
                 val price = layout_new_product__price.text.toString().toInt()
@@ -188,6 +189,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                         date
                     )
                 viewModel.createRequest(request).observe(viewLifecycleOwner, {
+                    view.isClickable = true
                     if (it) {
                         try {
                             findNavController().popBackStack()
