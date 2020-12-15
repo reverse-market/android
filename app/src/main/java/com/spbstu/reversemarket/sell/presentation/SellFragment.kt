@@ -171,6 +171,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         args.putInt(PRODUCT_PRICE, request.price)
         args.putInt(PRODUCT_QUANTITY, request.quantity)
         args.putString(PRODUCT_DATE, request.date)
+        args.putBoolean(ProductFragment.IS_SELL, true)
         args.putStringArray(PRODUCT_TAGS_NAME, request.tags.map { it.name }.toTypedArray())
         return args
     }

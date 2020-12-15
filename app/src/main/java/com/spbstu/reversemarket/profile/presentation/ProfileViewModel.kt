@@ -21,11 +21,25 @@ class ProfileViewModel @Inject constructor(
     ViewModel() {
     private lateinit var userData: MutableLiveData<User>
     private lateinit var addressesData: MutableLiveData<List<AddressBodyWithId>>
+    private lateinit var boughtOrders: MutableLiveData<List<Order>>
+    private lateinit var soldOrders: MutableLiveData<List<Order>>
 
     fun getUser(): LiveData<User> {
         userData = MutableLiveData()
         loadUser()
         return userData
+    }
+
+    fun getBought(): LiveData<List<Order>> {
+        boughtOrders = MutableLiveData()
+        loadBought()
+        return boughtOrders
+    }
+
+    fun getSold(): LiveData<List<Order>> {
+        soldOrders = MutableLiveData()
+        loadSold()
+        return soldOrders
     }
 
     fun getAddresses(): LiveData<List<AddressBodyWithId>> {
@@ -49,6 +63,30 @@ class ProfileViewModel @Inject constructor(
             })
 
         return res
+    }
+
+    private fun loadBought() {
+        userApi.getOrdersBuy()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.d("WWWW", "Bought - $it")
+                boughtOrders.postValue(it.body())
+            }, {
+
+            })
+    }
+
+    private fun loadSold() {
+        userApi.getOrdersSell()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.d("WWWW", "Sold - $it")
+                soldOrders.postValue(it.body())
+            }, {
+
+            })
     }
 
     private fun loadAddressses() {

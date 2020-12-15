@@ -47,6 +47,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
             ) {
                 val bundle = Bundle()
                 bundle.putParcelable(ProductFragment.REQUEST_KEY, it)
+                bundle.putBoolean(ProductFragment.IS_SELL, false)
                 findNavController().navigate(
                     R.id.action_navigation_buy_to_navigation_product,
                     bundle
@@ -80,7 +81,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
         )
 
         view.findViewById<ImageView>(R.id.layout_toolbar_search__btn).setOnClickListener {
-            findNavController().navigate(R.id.buyInfoFragment)
+            findNavController().navigate(R.id.action_navigation_buy_to_buyInfoFragment)
         }
     }
 

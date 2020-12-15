@@ -73,6 +73,12 @@ class ProductFragment : Fragment() {
                 .centerCrop()
                 .into(frg_product__image)
         }
+
+        if (requireArguments().getBoolean(IS_SELL)) {
+            frg_product_sell_button.visibility = View.VISIBLE
+        } else {
+            frg_product_sell_button.visibility = View.GONE
+        }
     }
 
     private fun initFields() {
@@ -109,7 +115,7 @@ class ProductFragment : Fragment() {
             frg_product_sell_button.visibility = View.GONE
             bundle.putBoolean(IS_SELL, requireArguments().getBoolean(IS_SELL))
         } else {
-            bundle.putBoolean(IS_SELL, requireArguments().getBoolean(IS_SELL).not())
+            bundle.putBoolean(IS_SELL, requireArguments().getBoolean(IS_SELL))
             frg_product_sell_button.setOnClickListener {
                 val args = Bundle()
                 args.putInt(PRODUCT_ID, request.id)

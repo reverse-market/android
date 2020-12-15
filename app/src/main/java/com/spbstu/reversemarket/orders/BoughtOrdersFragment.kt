@@ -13,11 +13,13 @@ import kotlinx.android.synthetic.main.fragment_bought_orders.*
 
 class BoughtOrdersFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_bought_orders) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        frg_bought__list.adapter =
-            BoughtOrderAdapter(emptyList(), Glide.with(this)) { pos, view ->
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.getBought().observe(viewLifecycleOwner, {
+            frg_bought__list.adapter =
+                BoughtOrderAdapter(it, Glide.with(this)) { pos, view ->
 
-            }
+                }
+        })
     }
 }
