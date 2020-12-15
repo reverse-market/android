@@ -10,20 +10,23 @@
     <Toolbar
         android:id="@+id/layout_toolbar_product"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
+        android:layout_height="@dimen/xxxxx_huge_dimen"
+        android:paddingStart="@dimen/huge_dimen"
+        android:paddingEnd="@dimen/huge_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frg_product_scroll">
 
         <ImageView
+            android:id="@+id/layout_toolbar_product__close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:src="@drawable/ic_close_product" />
 
         <TextView
+            android:id="@+id/layout_toolbar_product__title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,21 +34,16 @@
             android:textAllCaps="true"
             android:textColor="@color/productTitleColor"
             android:textSize="24sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_add_to_fav" />
     </Toolbar>
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:id="@+id/frg_product_scroll"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_toolbar_product">
 
         <LinearLayout
@@ -63,38 +61,27 @@
                     android:id="@+id/frg_product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="кроссовки найк"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="кроссовки найк" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/frg_product_sub_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="форсачи"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/frg_product_name"
-                    tools:text="форсачи" />
+                    app:layout_constraintTop_toBottomOf="@id/frg_product_name" />
 
-                <TextView
-                    android:id="@+id/layout_product_item__view_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/def_dimen"
-                    android:layout_marginEnd="@dimen/def_dimen"
-                    android:drawableEnd="@drawable/ic_eye"
-                    android:textColor="#828282"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="150" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
+                android:id="@+id/frg_product__image"
                 android:layout_width="match_parent"
-                android:layout_height="360dp"
+                android:layout_height="@dimen/hugest_dimen"
                 android:src="@drawable/nike" />
 
             <com.google.android.material.tabs.TabLayout
@@ -105,10 +92,21 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/layout_product_item__pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </ScrollView>
 
+    <Button
+        android:id="@+id/frg_product_sell_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_dimen"
+        android:background="@drawable/rounded_facebook_login_button"
+        android:elevation="@dimen/def_dimen"
+        android:text="@string/sell_button"
+        android:translationZ="@dimen/def_dimen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

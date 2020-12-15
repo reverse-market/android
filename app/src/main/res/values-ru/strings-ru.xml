@@ -7,7 +7,7 @@
     <string name="login_facebook">Войти через Facebook</string>
     <string name="login_google">Войти через Google</string>
     <string name="title_product">Продукт</string>
-    <string name="price_title" >Цена</string>
+    <string name="price_title">Цена</string>
 
     <string name="searchHint">Поиск</string>
     <string name="fragment_filter_title">ФИЛЬТР</string>
@@ -37,6 +37,7 @@
     <string name="price_hint">Введите цену…</string>
     <string name="amount_title">Количество</string>
     <string name="amount_hint">Введите количество товара…</string>
+    <string name="name_hint">Введите название…</string>
     <string name="address_title">Адрес</string>
     <string name="create">Создать</string>
     <string name="suggest">Предложить</string>
@@ -60,7 +61,6 @@
     <string name="index">Индекс</string>
     <string name="index_hint">Индекс…</string>
     <string name="name">Имя</string>
-    <string name="name_hint">Имя…</string>
     <string name="surname">Фамилия</string>
     <string name="surname_hint">Фамилия…</string>
     <string name="father_name">Отчество</string>
@@ -69,5 +69,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sold">Проданные</string>
     <string name="bought">Купленные</string>
+
+    <string name="sell_button">Продать</string>
+    <string name="buy_button">Купить</string>
+    <string name="date_title">Дата</string>
+    <string name="tags_title">Теги</string>
+    <string name="description_tab">описание</string>
+    <string name="category">Категория</string>
+    <string name="best_proposal_tab">лучшее предложение</string>
+    <string name="Name">Название</string>
+    <string name="item_name">Модель</string>
+    <string name="item_name_hint">Введите название модели…</string>
+    <string name="street">Street</string>
 
 </resources>

@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
-import com.spbstu.reversemarket.sell.domain.model.Product
-import com.spbstu.reversemarket.sell.presentation.RecyclerItemClickListener
+import com.spbstu.reversemarket.filter.data.model.Tag
+import com.spbstu.reversemarket.sell.data.model.Request
 import com.spbstu.reversemarket.sell.presentation.adapter.ProductsAdapter
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
@@ -30,7 +30,8 @@ class FavoriteFragment : Fragment() {
         favoriteList.adapter =
             ProductsAdapter(
                 provideProducts(),
-                context
+                context,
+                Glide.with(this)
             )
 
         return view
@@ -44,31 +45,48 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun provideProducts(): List<Product> = listOf(
-        Product(
+    private fun provideProducts(): List<Request> = listOf(
+        Request(
+            1,
             "Nike кроссовки",
             "Air Force 1 Shadow White Yellow",
-            150,
-            provideProductTags(),
             "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
-            "$132.10",
+            emptyList(),
+            150,
+            1,
             "zvladn7",
-            "03.10.20"
+            "03.10.20",
+            provideProductTags(),
+            3
         ),
-        Product(
-            "Adidas кроссовки",
-            "Yeezy boost 500",
-            524,
-            provideProductTags2(),
-            "Кроссовки Yeezy 500 от Yeezy. Закругленный носок, шнуровка спереди, сетчатые вставки и резиновая подошва в рубчик. Черный цвет.",
-            "Р42000",
+        Request(
+            1,
+            "Nike кроссовки",
+            "Air Force 1 Shadow White Yellow",
+            "Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает...",
+            emptyList(),
+            42000,
+            1,
             "zvladn7",
-            "02.10.20"
+            "02.10.20",
+            provideProductTags2(),
+            5,
         ),
     )
 
-    fun provideProductTags(): List<String> = listOf("Кроссовки", "Желтый")
-    fun provideProductTags2(): List<String> =
-        listOf("Adidas", "Черный", "Кроссовки", "Adidas", "Черный", "Кроссовки")
+    fun provideProductTags(): List<Tag> = listOf(
+        Tag(0, "Кроссовки"),
+        Tag(0, "Желтый")
+    )
+
+    fun provideProductTags2(): List<Tag> =
+        listOf(
+            Tag(0, "Adidas"),
+            Tag(0, "Черный"),
+            Tag(0, "Кроссовки"),
+            Tag(0, "Adidas"),
+            Tag(0, "Черный"),
+            Tag(0, "Кроссовки")
+        )
 
 }

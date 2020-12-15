@@ -4,19 +4,24 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.spbstu.reversemarket.R
-import com.spbstu.reversemarket.sell.domain.model.Product
+import com.spbstu.reversemarket.di.NetworkModule
+import com.spbstu.reversemarket.sell.data.model.Request
 
 
 class ProductsAdapter(
-    initProducts: List<Product>,
-    private val context: Context?
+    initRequests: List<Request>,
+    private val context: Context?,
+    private val glide: RequestManager,
+    private val onClick: ((Request) -> Unit)? = null
 ) : RecyclerView.Adapter<ProductsAdapter.TagViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
@@ -27,23 +32,22 @@ class ProductsAdapter(
         )
     }
 
-    var products: List<Product> = initProducts
+    var requests: List<Request> = initRequests
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
 
-    override fun getItemCount(): Int = products.size
+    override fun getItemCount(): Int = requests.size
 
 
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
-        holder.name.text = products[position].name
-        holder.fullName.text = products[position].fullName
-        holder.viewAmount.text = products[position].viewAmount.toString()
+        holder.name.text = requests[position].name
+        holder.fullName.text = requests[position].itemName
         holder.productTags.adapter =
             TagsAdapter(
-                products[position].tags,
+                requests[position].tags,
                 R.layout.layout_product_tag,
                 context = context
             )
@@ -52,20 +56,27 @@ class ProductsAdapter(
         layoutManager.justifyContent = JustifyContent.FLEX_START
         layoutManager.flexWrap = FlexWrap.WRAP
         holder.productTags.layoutManager = layoutManager
-        holder.productDescription.text = products[position].description
-        holder.price.text = products[position].price
-        holder.userName.text = products[position].username
-        holder.date.text = products[position].date
+        holder.productDescription.text = requests[position].description
+        holder.price.text = requests[position].price.toString()
+        holder.userName.text = requests[position].userName
+        holder.date.text = requests[position].date
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(requests[position])
+        }
+        if (requests[position].photos.isNotEmpty()) {
+            val photo = requests[position].photos[0]
+            glide.load(NetworkModule.DATA_BASE_URL + photo).centerCrop().into(holder.image)
+        }
     }
 
     class TagViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.layout_product_item__name)
         val fullName: TextView = view.findViewById(R.id.layout_product_item__full_name)
-        val viewAmount: TextView = view.findViewById(R.id.layout_product_item__view_amount)
         val productTags: RecyclerView = view.findViewById(R.id.layout_product_item__tags)
         val productDescription: TextView = view.findViewById(R.id.layout_product_item__description)
         val price: TextView = view.findViewById(R.id.layout_product_item__price)
         val userName: TextView = view.findViewById(R.id.layout_product_item__username)
         val date: TextView = view.findViewById(R.id.layout_product_item__date)
+        val image: ImageView = view.findViewById(R.id.layout_product_item__main_image)
     }
 }

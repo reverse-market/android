@@ -57,37 +57,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="40dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/x_huge_dimen"
-                android:layout_marginTop="@dimen/huge_dimen"
-                android:text="@string/photo_title"
-                android:textAllCaps="true"
-                android:textColor="@color/colorText"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/huge_dimen"
-                android:paddingEnd="0dp">
-
-                <ImageView
-                    android:id="@+id/frg_settings__photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/big_dimen"
-                    android:layout_marginBottom="@dimen/small_dimen"
-                    android:background="@drawable/shadows"
-                    android:elevation="3dp"
-                    android:layout_marginStart="@dimen/small_dimen"
-                    android:layout_marginTop="@dimen/small_dimen"
-                    android:src="@drawable/ic_add_image" />
-
-            </LinearLayout>
-
             <include
                 android:id="@+id/frg_settings__address"
                 layout="@layout/layout_address"

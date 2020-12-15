@@ -38,6 +38,7 @@
     <string name="price_hint">Enter the price…</string>
     <string name="amount_title">Amount</string>
     <string name="amount_hint">Enter product amount…</string>
+    <string name="item_name_hint">Enter product name…</string>
     <string name="address_title">Address</string>
     <string name="create">Create</string>
     <string name="suggest">Suggest</string>
@@ -67,10 +68,22 @@
     <string name="father_name">Father name</string>
     <string name="father_name_hint">Father name…</string>
 
+    <string name="sell_button">Sell</string>
+    <string name="buy_button">Buy</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sold">Sold</string>
     <string name="bought">Bought</string>
     <string name="server_client_id" translatable="false">1011272468065-4d5befdc86q57f3oohisd600k3dkthuh.apps.googleusercontent.com</string>
+    <string name="date_title">Date</string>
+    <string name="tags_title">Tags</string>
+    <string name="description_tab">description</string>
+    <string name="category">Category</string>
+    <string name="best_proposal_tab">best proposal</string>
+    <string name="Name">Name</string>
+    <string name="item_name">Item name</string>
+    <string name="street">Street</string>
+    <string name="choose_photo">Выберите фото</string>
 
 </resources>
