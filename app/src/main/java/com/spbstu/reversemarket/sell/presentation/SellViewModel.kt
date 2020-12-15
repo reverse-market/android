@@ -95,7 +95,9 @@ class SellViewModel @Inject constructor(
         }
         queryMap["tags"]
         queryMap["price_from"] = priceFrom.toString()
-        queryMap["price_to"] = priceTo.toString()
+        if (priceTo != 100000) {
+            queryMap["price_to"] = priceTo.toString()
+        }
         queryMap["sort"] = sort
         queryMap["search"] = search
         return queryMap

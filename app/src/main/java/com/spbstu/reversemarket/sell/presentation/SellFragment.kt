@@ -3,6 +3,7 @@ package com.spbstu.reversemarket.sell.presentation
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
@@ -114,6 +115,8 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
         layout_toolbar_search__text.setOnKeyListener(Utils(::refreshData).enterListener)
 
         layout_toolbar__search_close_btn.setOnClickListener {
+            layout_toolbar_search__text.setText("", TextView.BufferType.EDITABLE)
+            refreshData()
             Utils.closeSearchView(
                 layout_toolbar_search__category_name,
                 layout_toolbar_search_text__background,
