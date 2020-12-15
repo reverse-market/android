@@ -79,6 +79,8 @@ class ProductFragment : Fragment() {
         } else {
             frg_product_sell_button.visibility = View.GONE
         }
+        frg_product_name.text = request.name
+        frg_product_sub_name.text = request.itemName
     }
 
     private fun initFields() {
