@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_buy"
         android:icon="@drawable/ic_buy"
-        android:orderInCategory="1"
-        android:title="@string/title_buy"
-        app:showAsAction="ifRoom" />
+        android:title="@string/title_buy" />
 
     <item
         android:id="@+id/navigation_sell"
         android:icon="@drawable/ic_sell_default"
-        android:orderInCategory="2"
-        android:title="@string/title_sell"
-        app:showAsAction="ifRoom" />
+        android:title="@string/title_sell" />
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_profile_default"
-        android:orderInCategory="3"
-        android:title="@string/title_profile"
-        app:showAsAction="ifRoom" />
+        android:title="@string/title_profile" />
 
 </menu>

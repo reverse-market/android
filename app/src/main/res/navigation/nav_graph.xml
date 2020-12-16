@@ -25,6 +25,14 @@
             app:popEnterAnim="@anim/sheet_fade_in"
             app:popExitAnim="@anim/sheet_fade_out" />
 
+        <action
+            android:id="@+id/action_navigation_buy_to_sell"
+            app:destination="@id/navigation_sell"
+            app:enterAnim="@anim/sheet_fade_in"
+            app:exitAnim="@anim/sheet_fade_out"
+            app:popEnterAnim="@anim/sheet_fade_in"
+            app:popExitAnim="@anim/sheet_fade_out" />
+
     </fragment>
 
     <fragment
@@ -54,6 +62,14 @@
             app:exitAnim="@anim/sheet_fade_out"
             app:popEnterAnim="@anim/sheet_fade_in"
             app:popExitAnim="@anim/sheet_fade_out" />
+
+        <action
+            android:id="@+id/action_navigation_sell_to_profile"
+            app:destination="@id/navigation_profile"
+            app:enterAnim="@anim/sheet_fade_in"
+            app:exitAnim="@anim/sheet_fade_out"
+            app:popEnterAnim="@anim/sheet_fade_in"
+            app:popExitAnim="@anim/sheet_fade_out" />
     </fragment>
 
     <fragment
@@ -78,6 +94,14 @@
         <action
             android:id="@+id/action_navigation_profile_to_ordersFragment"
             app:destination="@id/ordersFragment"
+            app:enterAnim="@anim/sheet_fade_in"
+            app:exitAnim="@anim/sheet_fade_out"
+            app:popEnterAnim="@anim/sheet_fade_in"
+            app:popExitAnim="@anim/sheet_fade_out" />
+
+        <action
+            android:id="@+id/action_navigation_profile_to_buy"
+            app:destination="@id/navigation_buy"
             app:enterAnim="@anim/sheet_fade_in"
             app:exitAnim="@anim/sheet_fade_out"
             app:popEnterAnim="@anim/sheet_fade_in"

@@ -10,6 +10,7 @@ import com.spbstu.reversemarket.di.injector.Injectable
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import kotlinx.android.synthetic.main.activity_navigation.*
 import javax.inject.Inject
 
 
@@ -24,12 +25,11 @@ class NavigationActivity : AppCompatActivity(), Injectable, HasAndroidInjector {
         setUpNavigation()
     }
 
-    fun setUpNavigation() {
-        val bottomNavigationView = findViewById<View>(R.id.nav_view)
+    private fun setUpNavigation() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         NavigationUI.setupWithNavController(
-            bottomNavigationView as BottomNavigationView,
+            nav_view as BottomNavigationView,
             navHostFragment!!.navController
         )
     }
