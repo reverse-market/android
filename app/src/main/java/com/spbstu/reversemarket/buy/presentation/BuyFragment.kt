@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.base.InjectionFragment
 import com.spbstu.reversemarket.filter.data.model.Tag
@@ -36,6 +37,9 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
         titleTextView = view.findViewById(R.id.layout_toolbar_search__category_name)
         titleTextView.setText(R.string.frg_buy_title)
         titleTextView.setCompoundDrawables(null, null, null, null)
+
+        val navView: BottomNavigationView? = requireActivity().findViewById(R.id.nav_view)
+        navView?.visibility = View.VISIBLE
 
         productList = view.findViewById(R.id.frg_buy__list)
         productList.layoutManager = LinearLayoutManager(context)
