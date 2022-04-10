@@ -22,9 +22,10 @@
 
         <ImageView
             android:id="@+id/frg_orders__back"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:padding="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="8dp"
             android:src="@drawable/ic_arrow_left" />
     </FrameLayout>
 

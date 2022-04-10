@@ -3,6 +3,8 @@ package com.spbstu.reversemarket.login.data.model
 import com.google.gson.annotations.SerializedName
 
 data class SignInResponse(
-    @SerializedName("jwt_token")
-    val jwtToken: String
+    @SerializedName("access_token")
+    val jwtToken: String,
+    @SerializedName("refresh_token")
+    val refreshToken: String,
 )

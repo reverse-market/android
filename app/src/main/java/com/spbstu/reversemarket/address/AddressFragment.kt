@@ -69,7 +69,7 @@ class AddressFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_ad
                         } else {
                             Toast.makeText(
                                 requireContext(),
-                                "Не удалось создать адрес",
+                                getString(R.string.no_internet_connection),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -105,20 +105,24 @@ class AddressFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_ad
                         father
                     )
                     viewModel.editAddress(address).observe(viewLifecycleOwner) {
-                        Log.d("WWWW", "observable = $it")
                         if (it) {
                             findNavController().popBackStack()
                         } else {
                             Toast.makeText(
                                 requireContext(),
-                                "Не удалось изменить адрес",
+                                getString(R.string.no_internet_connection),
                                 Toast.LENGTH_SHORT
                             ).show()
+
                         }
                     }
                 }
             } catch (e: Exception) {
-
+                Toast.makeText(
+                    requireContext(),
+                    "Не удалось изменить адрес",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 

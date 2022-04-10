@@ -42,25 +42,33 @@ class SettingsFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_s
                 return@setOnClickListener
             }
 
-            viewModel.changeName(newName).observe(viewLifecycleOwner, {
-                try {
+            viewModel.changeName(newName).observe(viewLifecycleOwner) {
+                if (it) {
+                    try {
+                        view.isClickable = true
+                        findNavController().popBackStack()
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Не удалось изменить данные",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
                     view.isClickable = true
-                    findNavController().popBackStack()
-                } catch (e: Exception) {
                     Toast.makeText(
                         requireContext(),
-                        "Не удалось изменить данные",
+                        getString(R.string.no_internet_connection),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            })
+            }
         }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.getAddresses().observe(viewLifecycleOwner) {
-            Log.d("WWWW", "$it")
             addressList.adapter = AddressAdapter(
                 it,
                 ::provideAddressClickListener,
@@ -68,19 +76,6 @@ class SettingsFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_s
             )
         }
     }
-
-    private fun provideAddresses(): List<Address> = listOf(
-        Address(
-            "Мой адрес",
-            "Ленинградская область, г. Санкт-Петербург, Невский просп. д.28, кв. 1, 190000",
-            "Иванов Иван Иванович"
-        ),
-        Address(
-            "Работа",
-            "Ленинградская область, г. Санкт-Петербург, Невский просп. д.35, кв. 30, 190000",
-            "Иванов Иван Иванович"
-        )
-    )
 
     private fun provideAddressClickListener(address: AddressBodyWithId) {
         val bundle = Bundle()

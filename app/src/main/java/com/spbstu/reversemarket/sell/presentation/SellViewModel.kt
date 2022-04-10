@@ -19,7 +19,7 @@ class SellViewModel @Inject constructor(
     private val sellApi: SellApi,
     private val categoryApi: CategoryApi
 ) : ViewModel() {
-    private lateinit var requestData: MutableLiveData<List<Request>>
+    private lateinit var requestData: MutableLiveData<List<Request>?>
 
     fun getRequests(
         page: Int,
@@ -29,7 +29,7 @@ class SellViewModel @Inject constructor(
         priceFrom: Int,
         priceTo: Int,
         sort: String,
-    ): LiveData<List<Request>> {
+    ): LiveData<List<Request>?> {
         if (!this::requestData.isInitialized) {
             requestData = MutableLiveData()
             loadRequests(page, size, category, tags, priceFrom, priceTo, sort, "")
@@ -46,7 +46,7 @@ class SellViewModel @Inject constructor(
         priceTo: Int,
         sort: String,
         search: String
-    ): LiveData<List<Request>> {
+    ): LiveData<List<Request>?> {
         loadRequests(page, size, category, tags, priceFrom, priceTo, sort, search)
         return requestData
     }
@@ -66,10 +66,9 @@ class SellViewModel @Inject constructor(
         ).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
+                requestData.value = null
             }
             .subscribe {
-                Log.d("WWWW", "Requests response: $it")
-                Log.d("WWWW", "Requests body: ${it.body()}")
                 if (it.code() == 200) {
                     requestData.value = it.body()
                 }
@@ -124,7 +123,6 @@ class SellViewModel @Inject constructor(
                 }
             }
     }
-
 
 
 }

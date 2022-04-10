@@ -10,7 +10,6 @@ import com.bumptech.glide.RequestManager
 import com.google.android.material.card.MaterialCardView
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.di.NetworkModule
-import com.spbstu.reversemarket.orders.domain.SoldOrder
 import com.spbstu.reversemarket.profile.data.model.Order
 
 class SoldOrderAdapter(
@@ -36,7 +35,7 @@ class SoldOrderAdapter(
             price.text = order.price.toString()
             if (order.photos.isNotEmpty()) {
                 val photo = order.photos[0]
-                glide.load(NetworkModule.DATA_BASE_URL + photo).into(image)
+                glide.load(NetworkModule.BASE_URL + photo).into(image)
             }
             imageCard.setOnClickListener { onClick.invoke(position, it) }
         }

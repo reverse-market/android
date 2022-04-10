@@ -1,5 +1,6 @@
 package com.spbstu.reversemarket.login.presentation
 
+import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -43,7 +44,7 @@ class LoginFragment : InjectionFragment<LoginViewModel>(R.layout.fragment_login)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getState().observe(viewLifecycleOwner, {
+        viewModel.getState().observe(viewLifecycleOwner) {
             when (it) {
                 LoginViewModel.State.SUCCESS -> {
                     findNavController().navigate(R.id.action_navigation_login_to_navigation_buy)
@@ -52,8 +53,7 @@ class LoginFragment : InjectionFragment<LoginViewModel>(R.layout.fragment_login)
                     frg_login__google_login_button.isClickable = true
                 }
             }
-        })
-        viewModel.checkAuth()
+        }
     }
 
     override fun onDestroy() {
@@ -73,7 +73,7 @@ class LoginFragment : InjectionFragment<LoginViewModel>(R.layout.fragment_login)
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GOOGLE_RC_SIGN_IN) {
+        if (requestCode == GOOGLE_RC_SIGN_IN && resultCode == Activity.RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
             val idToken = account?.idToken

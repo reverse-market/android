@@ -98,8 +98,6 @@ class BuyInfoViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { res ->
-                        Log.d("WWWW", "Images responses: $res")
-                        Log.d("WWWW", "Images bodies: ${res.map { it.body() }}")
                         // here all data ready - we can create requests
                         photosData.postValue(res.map { it.body()!!.url })
                     },
@@ -116,31 +114,32 @@ class BuyInfoViewModel @Inject constructor(
     private fun loadCategories() {
         categoryApi.getCategories().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {
-            }
-            .subscribe {
+            .subscribe({
                 if (it.code() == 200) {
                     categoryData.value = it.body()
                 }
-            }
+            }, {
+                Log.e(TAG, "loadCategories: ", it)
+            })
     }
 
-    fun createRequest(request: Request): LiveData<Boolean> {
+    fun createRequest(request: Request): LiveData<Boolean?> {
         val res = MutableLiveData<Boolean>()
         uploadRequest().observeForever {
             request.photos = it
-            Log.d("WWWW", "Trying to send $request")
             api.createRequest(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    Log.d("WWWW", "Request response: $it")
+                .subscribe({
                     if (it.isSuccessful) {
                         res.postValue(true)
                     } else {
                         res.postValue(false)
                     }
-                }
+                }, {
+                    res.postValue(null)
+                    Log.e(TAG, "createRequest: ", it)
+                })
         }
         return res
     }
@@ -149,12 +148,19 @@ class BuyInfoViewModel @Inject constructor(
         api.getTags(category)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe({
                 if (it.isSuccessful) {
                     tagsData.postValue(it.body())
                 } else {
                     tagsData.postValue(listOf())
                 }
-            }
+            },
+                {
+                    Log.e(TAG, "loadTags: ", it)
+                })
+    }
+
+    companion object {
+        private val TAG = BuyInfoViewModel::class.simpleName
     }
 }

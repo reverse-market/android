@@ -42,7 +42,7 @@ class ProposalAdapter
             productDescription.text = proposals[position].description
             Glide
                 .with(activity)
-                .load(NetworkModule.DATA_BASE_URL + proposals[position].photos[0])
+                .load(NetworkModule.BASE_URL + proposals[position].photos[0])
                 .centerCrop()
                 .into(productImage)
             price.text = proposals[position].price.toString()

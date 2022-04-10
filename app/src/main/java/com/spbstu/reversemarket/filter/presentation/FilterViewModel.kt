@@ -1,5 +1,6 @@
 package com.spbstu.reversemarket.filter.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,13 +28,17 @@ class FilterViewModel @Inject constructor(
     private fun loadTags(categoryId: Int) {
         filterApi.getTags(categoryId, "").subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {
-            }
-            .subscribe {
+            .subscribe({
                 if (it.code() == 200) {
                     tagsData.value = it.body()
                 }
-            }
+            }, {
+                Log.e(TAG, "loadTags: ", it)
+            })
+    }
+
+    companion object {
+        private val TAG = FilterViewModel::class.simpleName
     }
 
 }

@@ -100,4 +100,10 @@ dependencies {
 
     // dexter
     implementation 'com.karumi:dexter:6.2.0'
+
+    // image viewer
+    implementation "com.github.stfalcon-studio:StfalconImageViewer:v1.0.1"
+
+    // eventbus
+    implementation "org.greenrobot:eventbus:3.3.1"
 }

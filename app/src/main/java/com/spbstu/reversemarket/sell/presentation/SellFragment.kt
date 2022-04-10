@@ -1,11 +1,12 @@
 package com.spbstu.reversemarket.sell.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -147,9 +148,19 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             priceFrom,
             priceTo,
             sort
-        ).observe(viewLifecycleOwner, {
-            (frg_product_list.adapter as ProductsAdapter).requests = it
-        })
+        ).observe(viewLifecycleOwner) {
+            if (it != null) {
+                frg_sell__progress.isVisible = false
+                (frg_product_list.adapter as ProductsAdapter).requests = it
+            } else {
+                frg_sell__progress.isVisible = false
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_internet_connection),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
     private fun navigateToItem(position: Int) {
@@ -214,6 +225,7 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
     }
 
     private fun refreshData() {
+        frg_sell__progress.isVisible = true
         viewModel.refreshSearch(
             page,
             size,
@@ -224,8 +236,18 @@ class SellFragment : InjectionFragment<SellViewModel>(R.layout.fragment_sell) {
             sort,
             layout_toolbar_search__text.text.toString()
         ).observe(viewLifecycleOwner) {
-            (frg_product_list.adapter as ProductsAdapter).requests = it
-            (frg_product_list.adapter as ProductsAdapter).notifyDataSetChanged()
+            if (it != null) {
+                frg_sell__progress.isVisible = false
+                (frg_product_list.adapter as? ProductsAdapter)?.requests = it
+                (frg_product_list.adapter as? ProductsAdapter)?.notifyDataSetChanged()
+            } else {
+                frg_sell__progress.isVisible = false
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_internet_connection),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 

@@ -8,20 +8,29 @@
 
     <include
         android:id="@+id/frg_category__bar"
+        layout="@layout/layout_toolbar__search"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/layout_toolbar__search"/>
+        android:layout_height="wrap_content" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frg_category__list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/frg_category__bar"
         android:background="@color/mainBackgroundColor"
+        android:overScrollMode="never"
         android:paddingTop="@dimen/big_dimen"
         android:paddingBottom="@dimen/big_dimen"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_below="@id/frg_category__bar"
-        tools:listitem="@layout/layout_categories_item"
-        android:overScrollMode="never" />
+        tools:listitem="@layout/layout_categories_item" />
+
+
+    <ProgressBar
+        android:id="@+id/frg_category__progress"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true" />
 
 </RelativeLayout>

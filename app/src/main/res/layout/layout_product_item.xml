@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="@dimen/huge_dimen"
     android:layout_marginTop="@dimen/huge_dimen"
     android:layout_marginEnd="@dimen/huge_dimen"
@@ -24,9 +24,9 @@
             android:layout_marginTop="@dimen/huge_dimen"
             android:gravity="center_vertical"
             android:lineSpacingExtra="3sp"
-            tools:text="Кроссовки nike"
             android:textColor="#2E2D2C"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="Кроссовки nike" />
 
         <TextView
             android:id="@+id/layout_product_item__full_name"
@@ -36,14 +36,15 @@
             android:layout_marginStart="@dimen/huge_dimen"
             android:gravity="bottom"
             android:lineSpacingExtra="3sp"
-            android:text="Air Force 1 Shadow White Yellow"
-            android:translationY="1.36sp" />
+            android:translationY="1.36sp"
+            tools:text="Air Force 1 Shadow White Yellow" />
 
         <ImageView
             android:id="@+id/layout_product_item__main_image"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_below="@id/layout_product_item__full_name"
+            android:layout_marginTop="16dp"
             tools:src="@drawable/nike" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -52,8 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/layout_product_item__main_image"
             android:layout_marginStart="@dimen/def_dimen"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/def_dimen"
-            android:overScrollMode="never"/>
+            android:overScrollMode="never" />
 
         <TextView
             android:id="@+id/layout_product_item__description"
@@ -64,10 +66,10 @@
             android:layout_marginEnd="@dimen/def_dimen"
             android:gravity="top"
             android:lineSpacingExtra="3sp"
-            android:text="Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает..."
             android:textColor="#828282"
             android:textSize="13sp"
-            android:translationY="-1.36sp" />
+            android:translationY="-1.36sp"
+            tools:text="Nike Air Force 1 - это обновленная версия модели 1982 года со свежими цветовыми решениями и новыми деталями. Этот прочный предмет продолжает..." />
 
 
         <TextView
@@ -85,22 +87,22 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_dimen"
-            android:layout_below="@id/layout_product_item__price_title">
+            android:layout_below="@id/layout_product_item__price_title"
+            android:layout_marginStart="@dimen/small_dimen">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_ruble"/>
+                android:src="@drawable/ic_ruble" />
 
             <TextView
                 android:id="@+id/layout_product_item__price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="132.10"
                 android:textColor="#2E2D2C"
                 android:textSize="20sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                tools:text="132.10" />
 
         </LinearLayout>
 
@@ -112,9 +114,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/def_dimen"
             android:layout_marginEnd="@dimen/def_dimen"
-            android:text="UserName"
             android:textSize="13sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            tools:text="UserName" />
 
         <TextView
             android:id="@+id/layout_product_item__date"
@@ -124,9 +126,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/small_dimen"
             android:layout_marginEnd="@dimen/def_dimen"
-            android:text="20.09.2020"
             android:textSize="13sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            tools:text="20.09.2020" />
 
     </RelativeLayout>
 

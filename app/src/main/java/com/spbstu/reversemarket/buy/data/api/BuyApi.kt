@@ -8,4 +8,7 @@ import retrofit2.http.GET
 interface BuyApi {
     @GET("/user/requests")
     fun getUserRequests(): Observable<Response<List<Request>>>
+
+    @GET("/check")
+    fun checkAuth(): Observable<Response<Void>>
 }

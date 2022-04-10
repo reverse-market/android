@@ -1,8 +1,9 @@
 package com.spbstu.reversemarket.category.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -29,12 +30,22 @@ class CategoryFragment : InjectionFragment<CategoryViewModel>(R.layout.fragment_
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.getCategories().observe(viewLifecycleOwner) {
-            frg_category__list.adapter =
-                CategoryAdapter(
-                    it,
-                    ::provideCategoryClickListener,
-                    Glide.with(this)
-                )
+            if (it != null) {
+                frg_category__progress.isVisible = false
+                frg_category__list.adapter =
+                    CategoryAdapter(
+                        it,
+                        ::provideCategoryClickListener,
+                        Glide.with(this)
+                    )
+            } else {
+                frg_category__progress.isVisible = false
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_internet_connection),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 

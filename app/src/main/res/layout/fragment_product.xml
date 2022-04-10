@@ -13,10 +13,10 @@
         android:layout_height="@dimen/xxxxx_huge_dimen"
         android:paddingStart="@dimen/huge_dimen"
         android:paddingEnd="@dimen/huge_dimen"
+        app:layout_constraintBottom_toTopOf="@id/frg_product_scroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/frg_product_scroll">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/layout_toolbar_product__close"
@@ -61,28 +61,27 @@
                     android:id="@+id/frg_product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="кроссовки найк"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="кроссовки найк" />
 
                 <TextView
                     android:id="@+id/frg_product_sub_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="форсачи"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/frg_product_name" />
+                    app:layout_constraintTop_toBottomOf="@id/frg_product_name"
+                    tools:text="форсачи" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/frg_product__image"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/frg_product__images"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/hugest_dimen"
-                android:src="@drawable/nike" />
+                android:layout_height="@dimen/hugest_dimen" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/layout_product_item__tab"

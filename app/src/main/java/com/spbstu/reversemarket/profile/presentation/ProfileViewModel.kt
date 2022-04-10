@@ -19,24 +19,24 @@ class ProfileViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) :
     ViewModel() {
-    private lateinit var userData: MutableLiveData<User>
+    private lateinit var userData: MutableLiveData<User?>
     private lateinit var addressesData: MutableLiveData<List<AddressBodyWithId>>
-    private lateinit var boughtOrders: MutableLiveData<List<Order>>
-    private lateinit var soldOrders: MutableLiveData<List<Order>>
+    private lateinit var boughtOrders: MutableLiveData<List<Order>?>
+    private lateinit var soldOrders: MutableLiveData<List<Order>?>
 
-    fun getUser(): LiveData<User> {
+    fun getUser(): LiveData<User?> {
         userData = MutableLiveData()
         loadUser()
         return userData
     }
 
-    fun getBought(): LiveData<List<Order>> {
+    fun getBought(): LiveData<List<Order>?> {
         boughtOrders = MutableLiveData()
         loadBought()
         return boughtOrders
     }
 
-    fun getSold(): LiveData<List<Order>> {
+    fun getSold(): LiveData<List<Order>?> {
         soldOrders = MutableLiveData()
         loadSold()
         return soldOrders
@@ -70,10 +70,9 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("WWWW", "Bought - $it")
                 boughtOrders.postValue(it.body())
             }, {
-
+                boughtOrders.postValue(null)
             })
     }
 
@@ -82,10 +81,9 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("WWWW", "Sold - $it")
                 soldOrders.postValue(it.body())
             }, {
-
+                soldOrders.postValue(null)
             })
     }
 
@@ -94,7 +92,6 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("WWWW", "Address response - $it")
                 addressesData.postValue(it.body())
             }, {
 
@@ -107,14 +104,9 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("WWWW", "Add address response = $it")
-                if (it.isSuccessful) {
-                    res.postValue(true)
-                } else {
-                    res.postValue(false)
-                }
+                res.postValue(true)
             }, {
-
+                res.postValue(false)
             })
 
         return res
@@ -140,14 +132,11 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("WWWW", "Edit address response = $it")
                 if (it.isSuccessful) {
                     res.postValue(true)
-                } else {
-                    res.postValue(false)
                 }
             }, {
-
+                res.postValue(false)
             })
 
         return res
@@ -155,17 +144,18 @@ class ProfileViewModel @Inject constructor(
 
     fun signOut() {
         sharedPreferences.edit().putString("token", "").apply()
+        sharedPreferences.edit().putString("refresh", "").apply()
     }
 
     private fun loadUser() {
         userApi.getUser().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {
-            }
-            .subscribe {
+            .subscribe({
                 if (it.code() == 200) {
                     userData.value = it.body()!!.toDomainModel()
                 }
-            }
+            }, {
+                userData.value = null
+            })
     }
 }

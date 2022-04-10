@@ -84,6 +84,8 @@
     <string name="Name">Name</string>
     <string name="item_name">Item name</string>
     <string name="street">Street</string>
-    <string name="choose_photo">Выберите фото</string>
+    <string name="choose_photo">Pick photo</string>
+    <string name="loading">Loaging...</string>
+    <string name="no_internet_connection">No internet connection</string>
 
 </resources>

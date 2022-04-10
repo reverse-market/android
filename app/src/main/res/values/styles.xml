@@ -6,7 +6,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">#000000</item>
-        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Filter.Page.Style" parent="">

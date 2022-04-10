@@ -31,12 +31,16 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
     private lateinit var searchCloseBtn: ImageView
     private lateinit var addNewButton: ImageView
     private lateinit var recyclerDataCopy: List<Request>
+    private lateinit var progressBar: ProgressBar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.checkAuth()
+
         titleTextView = view.findViewById(R.id.layout_toolbar_search__category_name)
         titleTextView.setText(R.string.frg_buy_title)
         titleTextView.setCompoundDrawables(null, null, null, null)
+        progressBar = view.findViewById(R.id.frg_buy__progress)
 
         val navView: BottomNavigationView? = requireActivity().findViewById(R.id.nav_view)
         navView?.visibility = View.VISIBLE
@@ -91,10 +95,20 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.createRequest(true).observe(viewLifecycleOwner, Observer {
-            recyclerDataCopy = it
-            (productList.adapter as ProductsAdapter).requests = it
-        })
+        viewModel.createRequest(true).observe(viewLifecycleOwner) {
+            if (it != null) {
+                progressBar.visibility = View.GONE
+                recyclerDataCopy = it
+                (productList.adapter as ProductsAdapter).requests = it
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_internet_connection),
+                    Toast.LENGTH_LONG
+                ).show()
+                progressBar.visibility = View.GONE
+            }
+        }
     }
 
     private val searchButtonListener = View.OnClickListener {

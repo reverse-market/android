@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
+                    android:text="@string/loading"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp"
                     tools:text="User Name" />
@@ -69,6 +70,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="12dp"
                     android:gravity="center"
+                    android:text="@string/loading"
                     android:textColor="@color/colorGray"
                     android:textSize="18sp"
                     tools:text="reverse.market@gmail.com" />
@@ -90,7 +92,7 @@
                 android:layout_height="140dp"
                 android:elevation="9dp"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/ic_logo"
+                android:src="@drawable/ic_logo"
                 app:civ_border_color="@color/colorWhite"
                 app:civ_border_width="1dp"
                 app:layout_constraintEnd_toEndOf="parent"

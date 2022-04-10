@@ -2,6 +2,7 @@ package com.spbstu.reversemarket.profile.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
@@ -35,13 +36,22 @@ class ProfileFragment : InjectionFragment<ProfileViewModel>(R.layout.fragment_pr
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getUser().observe(viewLifecycleOwner, {
-            frg_profile__user_name.text = it.name
-            frg_profile__user_email.text = it.email
-            Glide.with(this)
-                .load(NetworkModule.DATA_BASE_URL + it.photo)
-                .centerCrop()
-                .into(frg_profile__avatar)
-        })
+        viewModel.getUser().observe(viewLifecycleOwner) {
+            if (it != null) {
+                frg_profile__user_name.text = it.name
+                frg_profile__user_email.text = it.email
+                Glide.with(this)
+                    .load(NetworkModule.BASE_URL + it.photo)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_logo)
+                    .into(frg_profile__avatar)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_internet_connection),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.google.android.flexbox.FlexDirection
@@ -64,8 +65,11 @@ class ProductsAdapter(
             onClick?.invoke(requests[position])
         }
         if (requests[position].photos.isNotEmpty()) {
+            holder.image.isVisible = true
             val photo = requests[position].photos[0]
-            glide.load(NetworkModule.DATA_BASE_URL + photo).centerCrop().into(holder.image)
+            glide.load(NetworkModule.BASE_URL + photo).centerCrop().into(holder.image)
+        } else {
+            holder.image.isVisible = false
         }
     }
 

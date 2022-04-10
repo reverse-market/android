@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface LoginApi {
-    @GET("/auth/check")
+    @GET("/check")
     fun checkAuth(): Observable<Response<Void>>
 
     @POST("/auth/sign_in")

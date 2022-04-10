@@ -2,6 +2,7 @@ package com.spbstu.reversemarket.orders
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
@@ -15,11 +16,21 @@ class BoughtOrdersFragment : InjectionFragment<ProfileViewModel>(R.layout.fragme
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getBought().observe(viewLifecycleOwner, {
-            frg_bought__list.adapter =
-                BoughtOrderAdapter(it, Glide.with(this)) { pos, view ->
+        viewModel.getBought().observe(viewLifecycleOwner) {
+            if (it != null) {
+                frg_bought__progress.visibility = View.GONE
+                frg_bought__list.adapter =
+                    BoughtOrderAdapter(it, Glide.with(this)) { pos, view ->
 
-                }
-        })
+                    }
+            } else {
+                frg_bought__progress.visibility = View.GONE
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_internet_connection),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }

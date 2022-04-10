@@ -1,6 +1,7 @@
 package com.spbstu.reversemarket.login.presentation
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,30 +28,39 @@ class LoginViewModel @Inject constructor(
         signInUseCase.invoke(SignInBody(token))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe({
                 it?.let {
                     state.value = State.SUCCESS
-                    sharedPreferences.edit().putString("token", it).apply()
+                    sharedPreferences.edit().putString("token", it.jwtToken).apply()
+                    sharedPreferences.edit().putString("refresh", it.refreshToken).apply()
                 }
-            }
+            }, {
+                Log.e(TAG, "signIn: ", it)
+            })
     }
 
     fun checkAuth() {
         authUseCase.invoke()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe({
                 if (it) {
                     state.value = State.SUCCESS
                 } else {
                     state.value = State.ERROR
                 }
-            }
+            }, {
+                Log.e(TAG, "checkAuth: ", it)
+            })
     }
 
     enum class State {
         INITIAL,
         SUCCESS,
         ERROR
+    }
+
+    companion object {
+        private val TAG = LoginViewModel::class.simpleName
     }
 }

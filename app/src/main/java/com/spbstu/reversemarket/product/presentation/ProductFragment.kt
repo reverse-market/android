@@ -1,12 +1,15 @@
 package com.spbstu.reversemarket.product.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -15,6 +18,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.spbstu.reversemarket.R
 import com.spbstu.reversemarket.di.NetworkModule
 import com.spbstu.reversemarket.sell.data.model.Request
+import com.spbstu.reversemarket.utils.FullPhotoAdapter
+import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.fragment_product.*
 
 class ProductFragment : Fragment() {
@@ -68,10 +73,19 @@ class ProductFragment : Fragment() {
         }
 
         if (request.photos.isNotEmpty()) {
-            Glide.with(this)
-                .load(NetworkModule.DATA_BASE_URL + request.photos[0])
-                .centerCrop()
-                .into(frg_product__image)
+            frg_product__images.isVisible = true
+            val snapHelper = LinearSnapHelper()
+            snapHelper.attachToRecyclerView(frg_product__images)
+            frg_product__images.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            frg_product__images.adapter =
+                FullPhotoAdapter(request.photos, requireContext(), Glide.with(this)) {
+                    StfalconImageViewer.Builder<String>(context, request.photos) { photoView, image ->
+                        Glide.with(this).load(NetworkModule.BASE_URL + image).into(photoView)
+                    }.show()
+                }
+        } else {
+            frg_product__images.isVisible = false
         }
 
         if (requireArguments().getBoolean(IS_SELL)) {
@@ -86,7 +100,6 @@ class ProductFragment : Fragment() {
     private fun initFields() {
         request = requireArguments().getParcelable(REQUEST_KEY)
             ?: throw IllegalArgumentException("Request must be provided")
-        Log.d("WWWW", "$request")
         frg_product_name.text = requireArguments().getString(PRODUCT_NAME)
         frg_product_sub_name.text = requireArguments().getString(PRODUCT_ITEM_NAME)
     }

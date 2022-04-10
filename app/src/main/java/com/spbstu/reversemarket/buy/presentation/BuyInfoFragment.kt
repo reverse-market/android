@@ -125,11 +125,10 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
 
         search.doOnTextChanged { text, start, before, count ->
             text?.let {
-                (addTagsList.adapter as TagsAdapter).tags =
+                (addTagsList.adapter as TagsAdapter?)?.tags =
                     allTags.filter { it.name.contains(text, true) }
             }
         }
-
 
         layout_new_product__photo_list.adapter = PhotoAdapter(
             provideUrlList(),
@@ -188,21 +187,30 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                         category,
                         date
                     )
-                viewModel.createRequest(request).observe(viewLifecycleOwner, {
-                    view.isClickable = true
-                    if (it) {
-                        try {
-                            findNavController().popBackStack()
-                        } catch (ignored: Exception) {
+                viewModel.createRequest(request).observe(viewLifecycleOwner) {
+                    if (it != null) {
+                        view.isClickable = true
+                        if (it) {
+                            try {
+                                findNavController().popBackStack()
+                            } catch (ignored: Exception) {
+                            }
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "Не удалось создать объявление",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } else {
+                        view.isClickable = true
                         Toast.makeText(
                             requireContext(),
-                            "Не удалось создать объявление",
-                            Toast.LENGTH_SHORT
+                            getString(R.string.no_internet_connection),
+                            Toast.LENGTH_LONG
                         ).show()
                     }
-                })
+                }
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Неверно заполнены поля!", Toast.LENGTH_LONG)
                     .show()
@@ -215,7 +223,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // TODO Change provideAddTagsList() to it, when backend part is done
-        viewModel.getTags(true).observe(viewLifecycleOwner, {
+        viewModel.getTags(true).observe(viewLifecycleOwner) {
             allTags = it.toList()
             addTagsList.adapter =
                 TagsAdapter(
@@ -223,9 +231,9 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                     R.layout.layout_add_tag,
                     addFunc = { tag: Tag -> addTag(selectedTagsList, tag) },
                 )
-        })
+        }
 
-        viewModel.getCategories().observe(viewLifecycleOwner, {
+        viewModel.getCategories().observe(viewLifecycleOwner) {
             allCategories = it
             frg_but_info__category.adapter = ArrayAdapter<String>(
                 requireContext(),
@@ -245,7 +253,7 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
                     }
 
                 }
-        })
+        }
 
     }
 
@@ -267,35 +275,6 @@ class BuyInfoFragment : InjectionFragment<BuyInfoViewModel>(R.layout.fragment_bu
     }
 
     private fun provideUrlList(): List<String> = listOf("null")
-
-    private fun provideAddTagsList(): List<Tag> = listOf(
-        Tag(0, "Кроссовки"),
-        Tag(0, "Костюмы"),
-        Tag(0, "Брюки"),
-        Tag(0, "Джинсы"),
-        Tag(0, "Шорты"),
-        Tag(0, "Носки"),
-        Tag(0, "Куртки"),
-        Tag(0, "Пальто"),
-        Tag(0, "Футболки"),
-        Tag(0, "Плавки")
-    )
-
-    private fun provideSelectedList(): List<Tag> =
-        listOf(Tag(0, "Обувь"), Tag(0, "Кроссовки"), Tag(0, "Санкт-Петербург"))
-
-    private fun provideAddresses(): List<Address> = listOf(
-        Address(
-            "Мой адрес",
-            "Ленинградская область, г. Санкт-Петербург, Невский просп. д.28, кв. 1, 190000",
-            "Иванов Иван Иванович"
-        ),
-        Address(
-            "Работа",
-            "Ленинградская область, г. Санкт-Петербург, Невский просп. д.35, кв. 30, 190000",
-            "Иванов Иван Иванович"
-        )
-    )
 
     private fun provideAddressClickListener(address: AddressBodyWithId) {
 

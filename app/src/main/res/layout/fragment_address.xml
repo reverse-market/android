@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,7 +8,6 @@
         android:id="@+id/frg_address__title_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/def_dimen"
         android:elevation="20dp">
 
         <TextView
@@ -18,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/def_dimen"
             android:layout_marginTop="@dimen/def_dimen"
             android:layout_marginEnd="@dimen/def_dimen"
@@ -32,10 +31,10 @@
             android:id="@+id/frg_address__back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/big_dimen"
-            android:layout_marginTop="@dimen/xx_huge_dimen"
-            android:rotation="270"
-            android:src="@drawable/ic_arrow" />
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_left" />
 
     </RelativeLayout>
 
@@ -52,48 +51,48 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="@string/naming"
-                style="@style/editTextTitleStyle"/>
+                style="@style/editTextTitleStyle"
+                android:text="@string/naming" />
 
             <EditText
                 android:id="@+id/frg_address__naming"
-                android:hint="@string/naming_hint"
-                android:inputType="text"
+                style="@style/editTextStyle"
                 android:elevation="4dp"
-                style="@style/editTextStyle"/>
+                android:hint="@string/naming_hint"
+                android:inputType="text" />
 
             <TextView
-                android:text="@string/region"
-                style="@style/editTextTitleStyle" />
+                style="@style/editTextTitleStyle"
+                android:text="@string/region" />
 
             <EditText
                 android:id="@+id/frg_address__region"
-                android:hint="@string/region_hint"
-                android:inputType="text"
+                style="@style/editTextStyle"
                 android:elevation="4dp"
-                style="@style/editTextStyle" />
+                android:hint="@string/region_hint"
+                android:inputType="text" />
 
             <TextView
-                android:text="@string/city"
-                style="@style/editTextTitleStyle" />
+                style="@style/editTextTitleStyle"
+                android:text="@string/city" />
 
             <EditText
                 android:id="@+id/frg_address__city"
-                android:hint="@string/city_hint"
-                android:inputType="text"
+                style="@style/editTextStyle"
                 android:elevation="4dp"
-                style="@style/editTextStyle" />
+                android:hint="@string/city_hint"
+                android:inputType="text" />
 
             <TextView
-                android:text="@string/street"
-                style="@style/editTextTitleStyle" />
+                style="@style/editTextTitleStyle"
+                android:text="@string/street" />
 
             <EditText
                 android:id="@+id/frg_address__street"
-                android:hint="@string/city_hint"
-                android:inputType="text"
+                style="@style/editTextStyle"
                 android:elevation="4dp"
-                style="@style/editTextStyle" />
+                android:hint="@string/city_hint"
+                android:inputType="text" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,17 +105,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:orientation="vertical">
+
                     <TextView
-                        android:text="@string/house"
-                        style="@style/editTextTitleStyle"/>
+                        style="@style/editTextTitleStyle"
+                        android:text="@string/house" />
 
                     <EditText
                         android:id="@+id/frg_address__house"
-                        android:hint="@string/house_hint"
-                        android:inputType="numberSigned"
-                        android:elevation="4dp"
                         style="@style/editTextStyle"
-                        android:layout_marginBottom="@dimen/def_dimen"/>
+                        android:layout_marginBottom="@dimen/def_dimen"
+                        android:elevation="4dp"
+                        android:hint="@string/house_hint"
+                        android:inputType="numberSigned" />
                 </LinearLayout>
 
 
@@ -125,17 +125,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:orientation="vertical">
+
                     <TextView
-                        android:text="@string/building"
-                        style="@style/editTextTitleStyle"/>
+                        style="@style/editTextTitleStyle"
+                        android:text="@string/building" />
 
                     <EditText
                         android:id="@+id/frg_address__building"
-                        android:hint="@string/building_hint"
-                        android:inputType="numberSigned"
-                        android:elevation="4dp"
                         style="@style/editTextStyle"
-                        android:layout_marginBottom="@dimen/def_dimen"/>
+                        android:layout_marginBottom="@dimen/def_dimen"
+                        android:elevation="4dp"
+                        android:hint="@string/building_hint"
+                        android:inputType="numberSigned" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -151,17 +152,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:orientation="vertical">
+
                     <TextView
-                        android:text="@string/flat"
-                        style="@style/editTextTitleStyle"/>
+                        style="@style/editTextTitleStyle"
+                        android:text="@string/flat" />
 
                     <EditText
                         android:id="@+id/frg_address__flat"
-                        android:hint="@string/flat_hint"
-                        android:inputType="numberSigned"
-                        android:elevation="4dp"
                         style="@style/editTextStyle"
-                        android:layout_marginBottom="@dimen/def_dimen"/>
+                        android:layout_marginBottom="@dimen/def_dimen"
+                        android:elevation="4dp"
+                        android:hint="@string/flat_hint"
+                        android:inputType="numberSigned" />
                 </LinearLayout>
 
 
@@ -170,53 +172,54 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:orientation="vertical">
+
                     <TextView
-                        android:text="@string/index"
-                        style="@style/editTextTitleStyle"/>
+                        style="@style/editTextTitleStyle"
+                        android:text="@string/index" />
 
                     <EditText
                         android:id="@+id/frg_address__index"
-                        android:hint="@string/index_hint"
-                        android:inputType="numberSigned"
-                        android:elevation="4dp"
                         style="@style/editTextStyle"
-                        android:layout_marginBottom="@dimen/def_dimen"/>
+                        android:layout_marginBottom="@dimen/def_dimen"
+                        android:elevation="4dp"
+                        android:hint="@string/index_hint"
+                        android:inputType="numberSigned" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <TextView
-                android:text="@string/name"
-                style="@style/editTextTitleStyle"/>
+                style="@style/editTextTitleStyle"
+                android:text="@string/name" />
 
             <EditText
                 android:id="@+id/frg_address__name"
-                android:hint="@string/name_hint"
-                android:inputType="text"
+                style="@style/editTextStyle"
                 android:elevation="4dp"
-                style="@style/editTextStyle"/>
+                android:hint="@string/name_hint"
+                android:inputType="text" />
 
             <TextView
-                android:text="@string/surname"
-                style="@style/editTextTitleStyle"/>
+                style="@style/editTextTitleStyle"
+                android:text="@string/surname" />
 
             <EditText
                 android:id="@+id/frg_address__surname"
-                android:hint="@string/surname_hint"
-                android:inputType="text"
+                style="@style/editTextStyle"
                 android:elevation="4dp"
-                style="@style/editTextStyle" />
+                android:hint="@string/surname_hint"
+                android:inputType="text" />
 
             <TextView
-                android:text="@string/father_name"
-                style="@style/editTextTitleStyle"/>
+                style="@style/editTextTitleStyle"
+                android:text="@string/father_name" />
 
             <EditText
                 android:id="@+id/frg_address__father_name"
-                android:hint="@string/father_name_hint"
-                android:inputType="text"
+                style="@style/editTextStyle"
                 android:elevation="4dp"
-                style="@style/editTextStyle"/>
+                android:hint="@string/father_name_hint"
+                android:inputType="text" />
 
             <Button
                 android:id="@+id/frg_address__save_btn"

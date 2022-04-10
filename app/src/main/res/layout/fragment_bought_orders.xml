@@ -17,5 +17,11 @@
         tools:itemCount="3"
         tools:listitem="@layout/item_bought_order" />
 
+    <ProgressBar
+        android:id="@+id/frg_bought__progress"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
 
 </FrameLayout>

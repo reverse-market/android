@@ -16,7 +16,7 @@ import javax.inject.Inject
 class BestOfferViewModel @Inject constructor(
     private val productApi: ProductApi
 ) : ViewModel() {
-    private lateinit var proposalData: MutableLiveData<Order>
+    private lateinit var proposalData: MutableLiveData<Order?>
 
     fun buyProposal(bestId: Int): LiveData<Boolean> {
         val res = MutableLiveData<Boolean>()
@@ -35,29 +35,29 @@ class BestOfferViewModel @Inject constructor(
         return res
     }
 
-    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<Order> {
+    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<Order?> {
         if (!this::proposalData.isInitialized) {
             proposalData = MutableLiveData()
             if (sell) {
                 productApi.getBestProposal(bestProposalId).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError {
-                    }
-                    .subscribe {
+                    .subscribe({
                         if (it.isSuccessful) {
                             proposalData.value = it.body()
                         }
-                    }
+                    }, {
+                        proposalData.value = null
+                    })
             } else {
                 productApi.getUserBestProposal(bestProposalId).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError {
-                    }
-                    .subscribe {
+                    .subscribe({
                         if (it.isSuccessful) {
                             proposalData.value = it.body()
                         }
-                    }
+                    }, {
+                        proposalData.value = null
+                    })
             }
         }
         return proposalData

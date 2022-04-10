@@ -1,5 +1,6 @@
 package com.spbstu.reversemarket.category.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,9 +15,9 @@ import javax.inject.Inject
 class CategoryViewModel @Inject constructor(
     private val categoryApi: CategoryApi
 ) : ViewModel() {
-    private lateinit var categoryData: MutableLiveData<List<Category>>
+    private lateinit var categoryData: MutableLiveData<List<Category>?>
 
-    fun getCategories(): LiveData<List<Category>> {
+    fun getCategories(): LiveData<List<Category>?> {
         if (!this::categoryData.isInitialized) {
             categoryData = MutableLiveData()
             loadCategories()
@@ -27,13 +28,17 @@ class CategoryViewModel @Inject constructor(
     private fun loadCategories() {
         categoryApi.getCategories().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {
-            }
-            .subscribe {
+            .subscribe({
                 if (it.code() == 200) {
                     categoryData.value = it.body()
                 }
-            }
+            }, {
+                categoryData.value = null
+                Log.e(TAG, "loadCategories: ", it)
+            })
     }
 
+    companion object {
+        private val TAG = CategoryViewModel::class.simpleName
+    }
 }
