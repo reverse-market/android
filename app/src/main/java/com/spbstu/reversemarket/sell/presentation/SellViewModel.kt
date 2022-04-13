@@ -70,7 +70,7 @@ class SellViewModel @Inject constructor(
             }
             .subscribe {
                 if (it.code() == 200) {
-                    requestData.value = it.body()
+                    requestData.value = it.body() ?: emptyList()
                 }
             }
     }
@@ -119,7 +119,7 @@ class SellViewModel @Inject constructor(
             }
             .subscribe {
                 if (it.code() == 200) {
-                    categoryData.value = it.body()
+                    categoryData.value = it.body() ?: emptyList()
                 }
             }
     }

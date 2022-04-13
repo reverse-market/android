@@ -16,7 +16,7 @@ import javax.inject.Inject
 class BestOfferViewModel @Inject constructor(
     private val productApi: ProductApi
 ) : ViewModel() {
-    private lateinit var proposalData: MutableLiveData<Order?>
+    private lateinit var proposalData: MutableLiveData<ProposalResult?>
 
     fun buyProposal(bestId: Int): LiveData<Boolean> {
         val res = MutableLiveData<Boolean>()
@@ -35,7 +35,7 @@ class BestOfferViewModel @Inject constructor(
         return res
     }
 
-    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<Order?> {
+    fun getProposal(bestProposalId: Int, sell: Boolean): LiveData<ProposalResult?> {
         if (!this::proposalData.isInitialized) {
             proposalData = MutableLiveData()
             if (sell) {
@@ -43,7 +43,14 @@ class BestOfferViewModel @Inject constructor(
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         if (it.isSuccessful) {
-                            proposalData.value = it.body()
+                            val order = it.body()
+                            if (order != null) {
+                                proposalData.value = ProposalResult.Data(order)
+                            } else {
+                                proposalData.value = ProposalResult.EMPTY
+                            }
+                        } else {
+                            proposalData.value = ProposalResult.EMPTY
                         }
                     }, {
                         proposalData.value = null
@@ -53,7 +60,14 @@ class BestOfferViewModel @Inject constructor(
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         if (it.isSuccessful) {
-                            proposalData.value = it.body()
+                            val order = it.body()
+                            if (order != null) {
+                                proposalData.value = ProposalResult.Data(order)
+                            } else {
+                                proposalData.value = ProposalResult.EMPTY
+                            }
+                        } else {
+                            proposalData.value = ProposalResult.EMPTY
                         }
                     }, {
                         proposalData.value = null
@@ -61,6 +75,11 @@ class BestOfferViewModel @Inject constructor(
             }
         }
         return proposalData
+    }
+
+    sealed class ProposalResult {
+        data class Data(val order: Order): ProposalResult()
+        object EMPTY: ProposalResult()
     }
 
 }

@@ -35,7 +35,6 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.checkAuth()
 
         titleTextView = view.findViewById(R.id.layout_toolbar_search__category_name)
         titleTextView.setText(R.string.frg_buy_title)
@@ -91,10 +90,7 @@ class BuyFragment : InjectionFragment<BuyViewModel>(R.layout.fragment_buy) {
         view.findViewById<ImageView>(R.id.layout_toolbar_search__btn).setOnClickListener {
             findNavController().navigate(R.id.action_navigation_buy_to_buyInfoFragment)
         }
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel.createRequest(true).observe(viewLifecycleOwner) {
             if (it != null) {
                 progressBar.visibility = View.GONE

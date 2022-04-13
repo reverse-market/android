@@ -40,10 +40,6 @@ class LoginFragment : InjectionFragment<LoginViewModel>(R.layout.fragment_login)
         ((view.findViewById(R.id.frg_login__google_login_button)) as Button).setOnClickListener(
             loginWithGoogleListener
         )
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel.getState().observe(viewLifecycleOwner) {
             when (it) {
                 LoginViewModel.State.SUCCESS -> {
@@ -54,6 +50,7 @@ class LoginFragment : InjectionFragment<LoginViewModel>(R.layout.fragment_login)
                 }
             }
         }
+        viewModel.checkAuth()
     }
 
     override fun onDestroy() {

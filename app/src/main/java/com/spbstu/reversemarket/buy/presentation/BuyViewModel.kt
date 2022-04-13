@@ -25,7 +25,7 @@ class BuyViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.isSuccessful) {
-                        responses.value = it.body()
+                        responses.value = it.body() ?: emptyList()
                     }
                 }, {
                     responses.value = null

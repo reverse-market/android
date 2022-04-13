@@ -22,8 +22,8 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        const val BASE_URL = "http://reverse-market.ru"
-        const val REFRESH_ENDPOINT = "http://reverse-market.ru/auth/refresh"
+        const val BASE_URL = "https://reverse-market.ru"
+        const val REFRESH_ENDPOINT = "https://reverse-market.ru/auth/refresh"
         private val TAG = NetworkModule::class.simpleName
         private const val AUTHORIZATION_KEY = "Authorization"
     }

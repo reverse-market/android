@@ -70,7 +70,7 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                boughtOrders.postValue(it.body())
+                boughtOrders.postValue(it.body() ?: emptyList())
             }, {
                 boughtOrders.postValue(null)
             })
@@ -81,7 +81,7 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                soldOrders.postValue(it.body())
+                soldOrders.postValue(it.body() ?: emptyList())
             }, {
                 soldOrders.postValue(null)
             })
@@ -92,7 +92,7 @@ class ProfileViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                addressesData.postValue(it.body())
+                addressesData.postValue(it.body() ?: emptyList())
             }, {
 
             })

@@ -50,6 +50,7 @@ class NavigationActivity : AppCompatActivity(), Injectable, HasAndroidInjector {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: AuthEvent) {
         val controller = findNavController(R.id.nav_host_fragment)
+        if (kotlin.runCatching { controller.getBackStackEntry(R.id.navigation_login) }.getOrNull() != null) return
         kotlin.runCatching {
             while (controller.popBackStack()) {
             }
