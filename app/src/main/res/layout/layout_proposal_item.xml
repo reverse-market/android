@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/layout_proposal_item__name"
             android:layout_marginStart="@dimen/huge_dimen"
+            android:layout_marginBottom="12dp"
             android:gravity="bottom"
             android:lineSpacingExtra="3sp"
             android:translationY="1.36sp"
@@ -59,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/layout_proposal_item__main_image"
             android:layout_marginStart="@dimen/def_dimen"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="@dimen/def_dimen"
             android:gravity="top"
             android:lineSpacingExtra="3sp"
@@ -97,10 +99,10 @@
                 android:id="@+id/layout_proposal_item__price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="132.10"
                 android:textColor="#2E2D2C"
                 android:textSize="20sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                tools:text="132.10" />
 
         </LinearLayout>
 
@@ -112,9 +114,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/def_dimen"
             android:layout_marginEnd="@dimen/def_dimen"
-            android:text="UserName"
             android:textSize="13sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            tools:text="UserName" />
 
         <TextView
             android:id="@+id/layout_proposal_item__date"
