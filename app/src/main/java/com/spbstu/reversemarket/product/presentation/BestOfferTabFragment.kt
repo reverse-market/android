@@ -3,6 +3,7 @@ package com.spbstu.reversemarket.product.presentation
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.spbstu.reversemarket.R
@@ -63,10 +64,13 @@ class BestOfferTabFragment(
                             layout_proposal_item__name.text = it.name
                             layout_proposal_item__full_name.text = it.itemName
                             if (it.photos.isNotEmpty()) {
+                                layout_proposal_item__main_image.isVisible = true
                                 Glide.with(this)
                                     .load(NetworkModule.BASE_URL + it.photos[0])
                                     .centerCrop()
                                     .into(layout_proposal_item__main_image)
+                            } else {
+                                layout_proposal_item__main_image.isVisible = true
                             }
                         }
                     } else {
